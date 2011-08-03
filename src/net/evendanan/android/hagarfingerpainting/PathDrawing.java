@@ -32,44 +32,19 @@
 /*
 http://blog.evendanan.net/2011/08/Fingerpainting-app-for-Hagar-OR-Multitouch-sample-code
 */
-
 package net.evendanan.android.hagarfingerpainting;
 
-import android.os.Bundle;
-import android.app.Dialog;
-import android.content.Context;
+import android.graphics.Path;
 
-public class ColorPickerDialog extends Dialog {
-
-    public interface OnColorChangedListener {
-        void colorChanged(int color, int index);
-    }
-
-    private OnColorChangedListener mListener;
-    private int mInitialColor;
-    private int mPointerIndex;
+class PathDrawing
+{
+	final Path path = new Path();
+	//final int pointerIndex;
+	final int pointerColor;
+    float mX, mY;
     
-    public ColorPickerDialog(Context context,
-                             OnColorChangedListener listener,
-                             int initialColor, int pointerIndex) {
-        super(context);
-
-        mListener = listener;
-        mInitialColor = initialColor;
-        mPointerIndex = pointerIndex;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        OnColorChangedListener l = new OnColorChangedListener() {
-            public void colorChanged(int color, int index) {
-                mListener.colorChanged(color, mPointerIndex);
-                dismiss();
-            }
-        };
-
-        setContentView(new ColorPickerView(getContext(), l, mInitialColor));
-        setTitle("Pick a Color");
+    PathDrawing(int color)
+    {
+    	pointerColor = color;
     }
 }
