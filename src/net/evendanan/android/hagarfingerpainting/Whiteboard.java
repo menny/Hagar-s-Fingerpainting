@@ -13,21 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * Copyright (C) 2011 Menny Even Danan
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 /*
 http://blog.evendanan.net/2011/08/Fingerpainting-app-for-Hagar-OR-Multitouch-sample-code
@@ -128,7 +113,7 @@ public class Whiteboard extends View {
     	mColorsStack.push(pointerColor);
     }
 
-	private void touch_move(float x, float y, int pointerId) {
+	private boolean touch_move(float x, float y, int pointerId) {
     	PathDrawing path = getPath(pointerId);
         float dx = Math.abs(x - path.mX);
         float dy = Math.abs(y - path.mY);
@@ -137,6 +122,11 @@ public class Whiteboard extends View {
         	path.path.quadTo(path.mX, path.mY, (x + path.mX)/2, (y + path.mY)/2);
         	path.mX = x;
         	path.mY = y;
+        	return true;
+        }
+        else
+        {
+        	return false;
         }
     }
     private void touch_up(int pointerId) {
@@ -160,20 +150,28 @@ public class Whiteboard extends View {
             invalidate();
             break;
         case MotionEvent.ACTION_MOVE:
+        	boolean invalidateRequired = false;
         	for(int pointerIndex=0; pointerIndex<event.getPointerCount(); pointerIndex++)
         	{
         		final int pointerId = event.getPointerId(pointerIndex);
         		float pointerX = event.getX(pointerIndex);
                 float pointerY = event.getY(pointerIndex);
                 
-                touch_move(pointerX, pointerY, pointerId);
+                invalidateRequired |= touch_move(pointerX, pointerY, pointerId);
         	}
-            invalidate();
+        	
+        	if (invalidateRequired)
+        		invalidate();
             break;
         case MotionEvent.ACTION_UP:
         case MotionEvent.ACTION_POINTER_UP:
             touch_up(event.getPointerId(event.getActionIndex()));
             invalidate();
+            if (event.getPointerCount() == 1)
+            {
+            	//Now that there are no fingers down, I can clear the stack, and reset the colors sequence. 
+            	mColorsStack.clear();
+            }
             break;
     	}
         

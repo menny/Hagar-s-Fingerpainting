@@ -19,17 +19,15 @@ http://blog.evendanan.net/2011/08/Fingerpainting-app-for-Hagar-OR-Multitouch-sam
 */
 package net.evendanan.android.hagarfingerpainting;
 
-import android.graphics.Path;
+import android.os.Bundle;
+import android.preference.PreferenceActivity;
 
-class PathDrawing
-{
-	final Path path = new Path();
-	//final int pointerIndex;
-	final int pointerColor;
-    float mX, mY;
-    
-    PathDrawing(int color)
-    {
-    	pointerColor = color;
-    }
+public class FingerpaintSettingsActivity extends PreferenceActivity {
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		addPreferencesFromResource(R.layout.preferences);
+	}
 }
