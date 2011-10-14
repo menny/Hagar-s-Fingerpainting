@@ -26,12 +26,17 @@ import java.util.Stack;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.MaskFilter;
 import android.graphics.Paint;
+import android.graphics.Paint.Align;
+import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class Whiteboard extends View {
-	
+	private static final String TAG = "Whiteboard";
     /**
 	 * 
 	 */
@@ -43,12 +48,23 @@ public class Whiteboard extends View {
     private Stack<Integer> mColorsStack = new Stack<Integer>();
     private Paint   mBitmapPaint;
 
+	private int mFontSize;
+
+	private int mPainterNameColor;
+
     public Whiteboard(HagarFingerpaintingActivity hagarFingerpaintingActivity, Context c) {
         super(c);
 		mFingerpaintingActivity = hagarFingerpaintingActivity;
 
         mPaths = new HashMap<Integer, PathDrawing>();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+        mFontSize = c.getResources().getDimensionPixelSize(R.dimen.painter_name_text_size);
+        Typeface tf = Typeface.createFromAsset(c.getAssets(), "fonts/mikie_xmas.ttf");
+        Log.d(TAG, "Typeface is "+tf.toString());
+        mFingerpaintingActivity.mPaint.setTypeface(tf);
+        mFingerpaintingActivity.mPaint.setTextAlign(Align.LEFT);
+        mFingerpaintingActivity.mPaint.setTextSize(mFontSize);
+        mPainterNameColor = c.getResources().getColor(R.color.painter_name_text_color);
     }
 
     @Override
@@ -58,9 +74,11 @@ public class Whiteboard extends View {
         mCanvas = new Canvas(mBitmap);
     }
 
+    Rect mNameRect = new Rect();
+    
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(0xFFAAAAAA);
+        canvas.drawColor(0xFF000000);
 
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
 
@@ -72,6 +90,18 @@ public class Whiteboard extends View {
         		canvas.drawPath(path.path, mFingerpaintingActivity.mPaint);
         	}
         }
+        
+        //now the name of the painter
+        final MaskFilter m = mFingerpaintingActivity.mPaint.getMaskFilter();
+        mFingerpaintingActivity.mPaint.setMaskFilter(null);
+        final float strokeSize = mFingerpaintingActivity.mPaint.getStrokeWidth();
+        mFingerpaintingActivity.mPaint.setStrokeWidth(1);
+        mFingerpaintingActivity.mPaint.setColor(mPainterNameColor);
+        String painterName = mFingerpaintingActivity.getPainterName();
+        mFingerpaintingActivity.mPaint.getTextBounds(painterName, 0, painterName.length(), mNameRect);
+        canvas.drawText(painterName, 20, mNameRect.bottom + 20, mFingerpaintingActivity.mPaint);
+        mFingerpaintingActivity.mPaint.setMaskFilter(m);
+        mFingerpaintingActivity.mPaint.setStrokeWidth(strokeSize);
     }
 
 	private static final float TOUCH_TOLERANCE = 4;

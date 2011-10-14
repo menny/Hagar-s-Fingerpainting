@@ -51,21 +51,21 @@ public class HagarFingerpaintingActivity extends Activity
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        
-        setContentView(new Whiteboard(this, this));
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setDither(true);
+        //mPaint.setDither(true);
         mPaint.setColor(0xFFFF0000);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStrokeWidth(8);
+        mPaint.setStrokeJoin(Paint.Join.BEVEL);
+        mPaint.setStrokeCap(Paint.Cap.BUTT);
+        mPaint.setStrokeWidth(4);
 
-        mBlur = new BlurMaskFilter(4, BlurMaskFilter.Blur.NORMAL);
+        mBlur = new BlurMaskFilter(2, BlurMaskFilter.Blur.NORMAL);
         //starting with blur
         mPaint.setMaskFilter(mBlur);
+        
+        setContentView(new Whiteboard(this, getApplicationContext()));
         
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -108,7 +108,7 @@ public class HagarFingerpaintingActivity extends Activity
     	setTitle(getString(R.string.app_title, painterName));
     }
 
-	private String getPainterName() {
+	String getPainterName() {
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     	String painterName = sp.getString(getString(R.string.settings_key_painter_name), getString(R.string.settings_key_painter_name_default_value));
 		return painterName;
