@@ -17,6 +17,8 @@
                   android:label="@string/app_name" android:exported="false">
         </activity>
         
+        <activity android:name="com.google.ads.AdActivity"
+              android:configChanges="keyboard|keyboardHidden|orientation"/>
     </application>
     <!-- to take screenshots -->
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
@@ -24,6 +26,9 @@
 	<!-- we want to keep screen on, so the learning will not stop -->
 	<uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
 	<uses-permission android:name="android.permission.DISABLE_KEYGUARD"></uses-permission>
+	<!-- for AdMob -->
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	
 	<!-- device features required -->
     <uses-configuration android:reqTouchScreen="finger"/>

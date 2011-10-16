@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
 	android:layout_width="fill_parent" android:layout_height="fill_parent">
 	<net.evendanan.android.hagarfingerpainting.Whiteboard android:id="@+id/whiteboard"
 		android:layout_width="fill_parent" android:layout_height="fill_parent"
@@ -9,5 +10,13 @@
 	<TextView android:id="@+id/painter_name_text" android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
 		android:layout_margin="8dp" android:text="ME!" android:textColor="@color/painter_name_text_color" android:textSize="@dimen/painter_name_text_size"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-		
+	
+	<com.google.ads.AdView android:id="@+id/adView"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14e9af72f8ce55"
+                         ads:adSize="BANNER"
+                         ads:loadAdOnCreate="true"
+                         android:layout_alignParentLeft="true" android:layout_alignParentBottom="true"
+                         />
 </RelativeLayout>
