@@ -6,5 +6,12 @@
 		android:summary="@string/painter_name_summary"
 		android:defaultValue="@string/settings_key_painter_name_default_value"
 		/>
-
+	<CheckBoxPreference
+		android:key="@string/settings_key_admob_enabled"
+		android:title="@string/use_admob_title"
+		android:summaryOn="@string/use_admob_title_summary_on"
+		android:summaryOff="@string/use_admob_title_summary_off"
+		android:persistent="true"
+		android:defaultValue="@bool/settings_key_admob_enabled_default_value"
+		/>
 </PreferenceScreen>

@@ -25,6 +25,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
+import com.google.ads.AdView;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -47,6 +49,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
     public static final String TAG = "HagarFingerpaintingActivity";
 
 	private Whiteboard mWhiteboard;
+	private AdView mAdView;
 	private boolean mBlurFilterApplied = false;
 	private boolean mEraseMode = false;
 	private TextView mPainterName;
@@ -57,22 +60,32 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //setContentView(new Whiteboard(this, getApplicationContext()));
-        setContentView(R.layout.main);
-        mWhiteboard = (Whiteboard)findViewById(R.id.whiteboard);
-        mPainterName = (TextView)findViewById(R.id.painter_name_text);
-        mPainterName.setText(getPainterName());
-        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/schoolbell.ttf");
-        mPainterName.setTypeface(tf);
-        mBlur = new BlurMaskFilter(2, BlurMaskFilter.Blur.NORMAL);
-        mWhiteboard.setMaskFilter(mBlur);
-        mBlurFilterApplied = true;
+        
+        newPaper();
         
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sp.registerOnSharedPreferenceChangeListener(this);
     }
+
+	void newPaper() {
+		setContentView(R.layout.main);
+        mWhiteboard = (Whiteboard)findViewById(R.id.whiteboard);
+        mPainterName = (TextView)findViewById(R.id.painter_name_text);
+        mAdView = (AdView)findViewById(R.id.adView);
+        
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/schoolbell.ttf");
+        mPainterName.setTypeface(tf);
+        mBlur = new BlurMaskFilter(2, BlurMaskFilter.Blur.NORMAL);
+        
+        mWhiteboard.setMaskFilter(mBlur);
+        mBlurFilterApplied = true;
+        mWhiteboard.setEraserMode(false);
+        mEraseMode = false;
+        mPainterName.setText(getPainterName());
+        mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
+	}
 
 	private MaskFilter  mBlur;
     
@@ -112,6 +125,17 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
     	{
     		mPainterName.setText(getPainterName());
     	}
+    	else if (key.equals(getString(R.string.settings_key_admob_enabled)))
+    	{
+    		mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
+    	}
+    }
+    
+    boolean getShowAds()
+    {
+    	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    	boolean admobEnabled = sp.getBoolean(getString(R.string.settings_key_admob_enabled), getResources().getBoolean(R.bool.settings_key_admob_enabled_default_value));
+		return admobEnabled;
     }
     
 	String getPainterName() {
@@ -151,7 +175,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
                 takeScreenshot();
                 return true;
             case CLEAR_MENU_ID:
-            	setContentView(R.layout.main);
+            	newPaper();
             	return true;
             case SETTINGS_MENU_ID:
             	startActivity(new Intent(getApplicationContext(), FingerpaintSettingsActivity.class));

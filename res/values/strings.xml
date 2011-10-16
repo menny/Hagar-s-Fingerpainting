@@ -3,9 +3,10 @@
     <string name="app_name">Hagar\'s Fingerpainting</string>
     <string name="app_title"><xliff:g id="painter_name">%s</xliff:g>\'s Fingerpainting</string>
     
-    <string name="settings_key_painter_name">settings_key_painter_name</string>
     <string name="painter_name_title">Painter\'s name</string>
     <string name="painter_name_summary">Will be used in app title and filenames</string>
-    <string name="settings_key_painter_name_default_value">Hagar</string>
     
+    <string name="use_admob_title">Show ads</string>
+    <string name="use_admob_title_summary_on">Hooray! Thanks for supporting!</string>
+    <string name="use_admob_title_summary_off">No ads will be shown</string>
 </resources>
