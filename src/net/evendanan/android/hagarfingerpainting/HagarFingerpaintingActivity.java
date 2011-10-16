@@ -28,6 +28,7 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.*;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
@@ -38,12 +39,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class HagarFingerpaintingActivity extends Activity
-        implements ColorPickerDialog.OnColorChangedListener {
+public class HagarFingerpaintingActivity extends Activity implements OnSharedPreferenceChangeListener {
 
     public static final String TAG = "HagarFingerpaintingActivity";
+
+	private Whiteboard mWhiteboard;
+	private boolean mBlurFilterApplied = false;
+	private boolean mEraseMode = false;
+	private TextView mPainterName;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,34 +57,25 @@ public class HagarFingerpaintingActivity extends Activity
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        //mPaint.setDither(true);
-        mPaint.setColor(0xFFFF0000);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeJoin(Paint.Join.BEVEL);
-        mPaint.setStrokeCap(Paint.Cap.BUTT);
-        mPaint.setStrokeWidth(4);
-
+        //setContentView(new Whiteboard(this, getApplicationContext()));
+        setContentView(R.layout.main);
+        mWhiteboard = (Whiteboard)findViewById(R.id.whiteboard);
+        mPainterName = (TextView)findViewById(R.id.painter_name_text);
+        mPainterName.setText(getPainterName());
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/schoolbell.ttf");
+        mPainterName.setTypeface(tf);
         mBlur = new BlurMaskFilter(2, BlurMaskFilter.Blur.NORMAL);
-        //starting with blur
-        mPaint.setMaskFilter(mBlur);
-        
-        setContentView(new Whiteboard(this, getApplicationContext()));
+        mWhiteboard.setMaskFilter(mBlur);
+        mBlurFilterApplied = true;
         
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sp.registerOnSharedPreferenceChangeListener(this);
     }
 
-	int[] mColors = new int[]{ 0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF0FF000, 0xFF000FF0}; 
-	
-    Paint       mPaint;
-    private MaskFilter  mBlur;
+	private MaskFilter  mBlur;
     
-    public void colorChanged(int color, int index) {
-    	mColors[index] = color;
-    }
-
 	private static final int COLOR_MENU_ID = Menu.FIRST;
     private static final int BLUR_MENU_ID = Menu.FIRST + 1;
     private static final int ERASE_MENU_ID = Menu.FIRST + 2;
@@ -108,6 +105,15 @@ public class HagarFingerpaintingActivity extends Activity
     	setTitle(getString(R.string.app_title, painterName));
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+    		String key) {
+    	if (key.equals(getString(R.string.settings_key_painter_name)))
+    	{
+    		mPainterName.setText(getPainterName());
+    	}
+    }
+    
 	String getPainterName() {
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     	String painterName = sp.getString(getString(R.string.settings_key_painter_name), getString(R.string.settings_key_painter_name_default_value));
@@ -122,28 +128,30 @@ public class HagarFingerpaintingActivity extends Activity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        mPaint.setXfermode(null);
-        mPaint.setAlpha(0xFF);
+        //mPaint.setXfermode(null);
+        //mPaint.setAlpha(0xFF);
 
         switch (item.getItemId()) {
             case COLOR_MENU_ID:
-                new ColorPickerDialog(this, this, mPaint.getColor(), 0).show();
+                new ColorPickerDialog(this, mWhiteboard, 0).show();
                 return true;
             case BLUR_MENU_ID:
-                if (mPaint.getMaskFilter() != mBlur) {
-                    mPaint.setMaskFilter(mBlur);
+                if (!mBlurFilterApplied) {
+                    mWhiteboard.setMaskFilter(mBlur);
                 } else {
-                    mPaint.setMaskFilter(null);
+                    mWhiteboard.setMaskFilter(null);                    
                 }
+                mBlurFilterApplied = !mBlurFilterApplied;
                 return true;
             case ERASE_MENU_ID:
-                mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            	mEraseMode = !mEraseMode;
+            	mWhiteboard.setEraserMode(mEraseMode);
                 return true;
             case SAVE_MENU_ID:
                 takeScreenshot();
                 return true;
             case CLEAR_MENU_ID:
-            	setContentView(new Whiteboard(this, this));
+            	setContentView(R.layout.main);
             	return true;
             case SETTINGS_MENU_ID:
             	startActivity(new Intent(getApplicationContext(), FingerpaintSettingsActivity.class));

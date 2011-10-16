@@ -28,6 +28,8 @@ public class ColorPickerDialog extends Dialog {
 
     public interface OnColorChangedListener {
         void colorChanged(int color, int index);
+
+		int getCurrentColor(int pointerIndex);
     }
 
     private OnColorChangedListener mListener;
@@ -36,11 +38,11 @@ public class ColorPickerDialog extends Dialog {
     
     public ColorPickerDialog(Context context,
                              OnColorChangedListener listener,
-                             int initialColor, int pointerIndex) {
+                             int pointerIndex) {
         super(context);
 
         mListener = listener;
-        mInitialColor = initialColor;
+        mInitialColor = mListener.getCurrentColor(pointerIndex);
         mPointerIndex = pointerIndex;
     }
 
@@ -51,6 +53,11 @@ public class ColorPickerDialog extends Dialog {
             public void colorChanged(int color, int index) {
                 mListener.colorChanged(color, mPointerIndex);
                 dismiss();
+            }
+            
+            @Override
+            public int getCurrentColor(int pointerIndex) {
+            	return mListener.getCurrentColor(pointerIndex);
             }
         };
 

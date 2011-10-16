@@ -28,45 +28,67 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.MaskFilter;
 import android.graphics.Paint;
-import android.graphics.Paint.Align;
-import android.graphics.Rect;
-import android.graphics.Typeface;
-import android.util.Log;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class Whiteboard extends View {
+public class Whiteboard extends View implements ColorPickerDialog.OnColorChangedListener {
 	private static final String TAG = "Whiteboard";
+	private static final float STROKE_WIDTH = 4;
     /**
 	 * 
 	 */
-	private final HagarFingerpaintingActivity mFingerpaintingActivity;
+	//private final HagarFingerpaintingActivity mFingerpaintingActivity;
 
     private Bitmap  mBitmap;
     private Canvas  mCanvas;
     private Map<Integer, PathDrawing>  mPaths;
     private Stack<Integer> mColorsStack = new Stack<Integer>();
     private Paint   mBitmapPaint;
+    private Paint   mPaint;
+    
+    int[] mColors = new int[]{ 0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF0FF000, 0xFF000FF0}; 
+	
 
-	private int mFontSize;
+	//private int mFontSize;
 
-	private int mPainterNameColor;
+	//private int mPainterNameColor;
 
-    public Whiteboard(HagarFingerpaintingActivity hagarFingerpaintingActivity, Context c) {
-        super(c);
-		mFingerpaintingActivity = hagarFingerpaintingActivity;
+    public Whiteboard(Context c, AttributeSet attrs) {
+    	super(c, attrs);
+		//mFingerpaintingActivity = hagarFingerpaintingActivity;
 
         mPaths = new HashMap<Integer, PathDrawing>();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+        
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        //mPaint.setDither(true);
+        mPaint.setColor(0xFFFF0000);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeJoin(Paint.Join.BEVEL);
+        mPaint.setStrokeCap(Paint.Cap.BUTT);
+        mPaint.setStrokeWidth(STROKE_WIDTH);
+        /*
         mFontSize = c.getResources().getDimensionPixelSize(R.dimen.painter_name_text_size);
         Typeface tf = Typeface.createFromAsset(c.getAssets(), "fonts/mikie_xmas.ttf");
         Log.d(TAG, "Typeface is "+tf.toString());
-        mFingerpaintingActivity.mPaint.setTypeface(tf);
-        mFingerpaintingActivity.mPaint.setTextAlign(Align.LEFT);
-        mFingerpaintingActivity.mPaint.setTextSize(mFontSize);
-        mPainterNameColor = c.getResources().getColor(R.color.painter_name_text_color);
+        
+        mPainterNamePaint = new TextPaint(mFingerpaintingActivity.mPaint);
+    	mPainterNamePaint.setTypeface(tf);
+    	mPainterNamePaint.setTextAlign(Align.LEFT);
+    	mPainterNamePaint.setTextSize(mFontSize);
+    	mPainterNamePaint.setColor(c.getResources().getColor(R.color.painter_name_text_color));
+    	*/
     }
 
+    @Override
+    public int getCurrentColor(int pointerIndex) {
+    	return mColors[pointerIndex];
+    }
+    
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -74,7 +96,11 @@ public class Whiteboard extends View {
         mCanvas = new Canvas(mBitmap);
     }
 
-    Rect mNameRect = new Rect();
+    @Override
+    public void colorChanged(int color, int index) {
+    	mColors[index] = color;
+    }
+    //Rect mNameRect = new Rect();
     
     @Override
     protected void onDraw(Canvas canvas) {
@@ -86,25 +112,25 @@ public class Whiteboard extends View {
         {
         	if (path != null)
         	{
-        		mFingerpaintingActivity.mPaint.setColor(path.pointerColor);
-        		canvas.drawPath(path.path, mFingerpaintingActivity.mPaint);
+        		mPaint.setColor(path.pointerColor);
+        		canvas.drawPath(path.path, mPaint);
         	}
         }
-        
-        //now the name of the painter
+    	/*
         final MaskFilter m = mFingerpaintingActivity.mPaint.getMaskFilter();
         mFingerpaintingActivity.mPaint.setMaskFilter(null);
         final float strokeSize = mFingerpaintingActivity.mPaint.getStrokeWidth();
         mFingerpaintingActivity.mPaint.setStrokeWidth(1);
         mFingerpaintingActivity.mPaint.setColor(mPainterNameColor);
-        String painterName = mFingerpaintingActivity.getPainterName();
         mFingerpaintingActivity.mPaint.getTextBounds(painterName, 0, painterName.length(), mNameRect);
         canvas.drawText(painterName, 20, mNameRect.bottom + 20, mFingerpaintingActivity.mPaint);
         mFingerpaintingActivity.mPaint.setMaskFilter(m);
         mFingerpaintingActivity.mPaint.setStrokeWidth(strokeSize);
+        */
     }
 
 	private static final float TOUCH_TOLERANCE = 4;
+	//private TextPaint mPainterNamePaint;
 
     private void touch_start(float x, float y, int pointerId) {
     	PathDrawing path = getPath(pointerId);
@@ -127,8 +153,8 @@ public class Whiteboard extends View {
     private int popColorForPointer() {
 		if (mColorsStack.isEmpty())
 		{
-			for(int i=mFingerpaintingActivity.mColors.length-1; i>=0; i--)
-				mColorsStack.push(mFingerpaintingActivity.mColors[i]);
+			for(int i=mColors.length-1; i>=0; i--)
+				mColorsStack.push(mColors[i]);
 			
 			return popColorForPointer();
 		}
@@ -163,8 +189,8 @@ public class Whiteboard extends View {
     	PathDrawing path = getPath(pointerId);
     	path.path.lineTo(path.mX, path.mY);
         // commit the path to our offscreen
-    	mFingerpaintingActivity.mPaint.setColor(path.pointerColor);
-        mCanvas.drawPath(path.path, mFingerpaintingActivity.mPaint);
+    	mPaint.setColor(path.pointerColor);
+        mCanvas.drawPath(path.path, mPaint);
         // kill this so we don't double draw
         path.path.reset();
         mPaths.remove(pointerId);
@@ -207,4 +233,21 @@ public class Whiteboard extends View {
         
         return true;
     }
+
+	public void setMaskFilter(MaskFilter blur) {
+		mPaint.setMaskFilter(blur);
+	}
+
+	public void setEraserMode(boolean eraseMode) {
+		if (eraseMode)
+		{
+			mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+			mPaint.setStrokeWidth(STROKE_WIDTH * 2);
+		}
+		else
+		{
+			mPaint.setXfermode(null);
+			mPaint.setStrokeWidth(STROKE_WIDTH);
+		}
+	}
 }
