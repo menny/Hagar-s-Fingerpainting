@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:background="#F000">
+	
+	<RelativeLayout android:background="#F000"
+		android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<!-- painter name -->
+		<TextView android:id="@+id/painter_name_title" android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
+			android:text="@string/painter_name_title" style="@style/Widget.TextView.Text"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		<EditText android:id="@+id/painter_name_input_text" 
+			android:layout_toRightOf="@id/painter_name_title" 
+			android:layout_alignTop="@id/painter_name_title"
+			android:layout_alignBaseline="@id/painter_name_title"
+			android:layout_marginLeft="6dp"
+			android:layout_width="160dp" android:layout_height="wrap_content"/>
+		<!-- paper color -->
+		<TextView android:id="@+id/paper_color_title" android:layout_alignLeft="@id/painter_name_title" android:layout_alignRight="@id/painter_name_input_text" android:layout_below="@id/painter_name_input_text"
+			android:text="@string/paper_color" style="@style/Widget.TextView.Text"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:gravity="center_horizontal"/>
+		
+		<LinearLayout android:id="@+id/buttons_layout" android:orientation="horizontal"
+			android:layout_alignParentBottom="true"
+			android:layout_alignLeft="@id/painter_name_title" android:layout_alignRight="@id/painter_name_input_text"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:background="#F777"
+			android:padding="6dp"
+			android:weightSum="2">
+			<Button
+		    	android:id="@+id/new_paper_cancel_button"
+		    	android:layout_width="0px"
+		    	android:layout_weight="1"
+		    	android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+		        android:layout_height="wrap_content"
+		        style="@style/Widget.SPButton"
+		        android:text="@android:string/cancel" />
+		        
+			<Button
+		    	android:id="@+id/new_paper_create_button"
+		    	android:layout_width="0px"
+		    	android:layout_weight="1"
+		    	android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+		        android:layout_height="wrap_content"
+		        style="@style/Widget.SPButton.Prefered"
+		        android:text="@string/create_paper_button" />
+		</LinearLayout>
+	
+		<Gallery android:id="@+id/colors_list"
+   			android:paddingTop="6dp" android:spacing="4dp"
+	  		android:background="@android:color/transparent"
+	  		android:layout_alignLeft="@id/paper_color_title"
+	  		android:layout_alignRight="@id/paper_color_title"
+	  		android:layout_below="@id/paper_color_title"
+	  		android:layout_above="@id/buttons_layout"
+	  		android:layout_width="wrap_content"
+	  		android:layout_height="wrap_content"/>			
+	</RelativeLayout>
+	
+</LinearLayout>

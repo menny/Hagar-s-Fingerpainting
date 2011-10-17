@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
+	<!-- colors are ALPHA, R, G, B -->
+	<!-- 
+	 A color value specifies an RGB value with an alpha channel, which can be used in various places such as specifying a solid color for a Drawable  or the color to use for text. A color value always begins with a pound (#) character and then followed by the Alpha-Red-Green-Blue information in one of the following formats:
+
+    * #RGB
+    * #ARGB
+    * #RRGGBB
+    * #AARRGGBB 
+    
+    colors are 00-FF
+    alpha is 00-f9 (translucent -> opaque)
+	 -->
+	<color name="title_text">#FFFFFF</color>
+    <color name="sub_title_text">#C9C9C9</color>
+    <color name="text">#B0B0B0</color>
+    
 	<color name="painter_name_text_color">#CCFFFFFF</color>
 </resources>

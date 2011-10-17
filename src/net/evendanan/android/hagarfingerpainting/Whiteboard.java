@@ -35,12 +35,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class Whiteboard extends View implements ColorPickerDialog.OnColorChangedListener {
-	private static final String TAG = "Whiteboard";
 	private static final float STROKE_WIDTH = 4;
-    /**
-	 * 
-	 */
-	//private final HagarFingerpaintingActivity mFingerpaintingActivity;
 
     private Bitmap  mBitmap;
     private Canvas  mCanvas;
@@ -50,15 +45,9 @@ public class Whiteboard extends View implements ColorPickerDialog.OnColorChanged
     private Paint   mPaint;
     
     int[] mColors = new int[]{ 0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF0FF000, 0xFF000FF0}; 
-	
-
-	//private int mFontSize;
-
-	//private int mPainterNameColor;
 
     public Whiteboard(Context c, AttributeSet attrs) {
     	super(c, attrs);
-		//mFingerpaintingActivity = hagarFingerpaintingActivity;
 
         mPaths = new HashMap<Integer, PathDrawing>();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
@@ -71,17 +60,6 @@ public class Whiteboard extends View implements ColorPickerDialog.OnColorChanged
         mPaint.setStrokeJoin(Paint.Join.BEVEL);
         mPaint.setStrokeCap(Paint.Cap.BUTT);
         mPaint.setStrokeWidth(STROKE_WIDTH);
-        /*
-        mFontSize = c.getResources().getDimensionPixelSize(R.dimen.painter_name_text_size);
-        Typeface tf = Typeface.createFromAsset(c.getAssets(), "fonts/mikie_xmas.ttf");
-        Log.d(TAG, "Typeface is "+tf.toString());
-        
-        mPainterNamePaint = new TextPaint(mFingerpaintingActivity.mPaint);
-    	mPainterNamePaint.setTypeface(tf);
-    	mPainterNamePaint.setTextAlign(Align.LEFT);
-    	mPainterNamePaint.setTextSize(mFontSize);
-    	mPainterNamePaint.setColor(c.getResources().getColor(R.color.painter_name_text_color));
-    	*/
     }
 
     @Override
@@ -100,11 +78,10 @@ public class Whiteboard extends View implements ColorPickerDialog.OnColorChanged
     public void colorChanged(int color, int index) {
     	mColors[index] = color;
     }
-    //Rect mNameRect = new Rect();
     
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(0xFF000000);
+        super.onDraw(canvas);
 
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
 
@@ -116,17 +93,6 @@ public class Whiteboard extends View implements ColorPickerDialog.OnColorChanged
         		canvas.drawPath(path.path, mPaint);
         	}
         }
-    	/*
-        final MaskFilter m = mFingerpaintingActivity.mPaint.getMaskFilter();
-        mFingerpaintingActivity.mPaint.setMaskFilter(null);
-        final float strokeSize = mFingerpaintingActivity.mPaint.getStrokeWidth();
-        mFingerpaintingActivity.mPaint.setStrokeWidth(1);
-        mFingerpaintingActivity.mPaint.setColor(mPainterNameColor);
-        mFingerpaintingActivity.mPaint.getTextBounds(painterName, 0, painterName.length(), mNameRect);
-        canvas.drawText(painterName, 20, mNameRect.bottom + 20, mFingerpaintingActivity.mPaint);
-        mFingerpaintingActivity.mPaint.setMaskFilter(m);
-        mFingerpaintingActivity.mPaint.setStrokeWidth(strokeSize);
-        */
     }
 
 	private static final float TOUCH_TOLERANCE = 4;

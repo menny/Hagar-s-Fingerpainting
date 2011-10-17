@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	 <style name="Widget.TextView.Text" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/text</item>
+    </style>
+    
+    <style name="Widget.TextView.Title" parent="Widget.TextView.Text">
+        <item name="android:textColor">@color/title_text</item>
+        <item name="android:textSize">@dimen/title</item>
+    </style>
+    <style name="Widget.TextView.SubTitle" parent="Widget.TextView.Text">
+        <item name="android:textColor">@color/sub_title_text</item>
+        <item name="android:textSize">@dimen/sub_title</item>
+    </style>
+    
+	<style name="Widget.SPButton" parent="@android:style/Widget.Button">
+		<item name="android:background">@drawable/button_background</item>
+		<item name="android:textColor">@color/button_text_color</item>
+		<item name="android:textStyle">bold</item>
+	</style>    
+    <style name="Widget.SPButton.Prefered" parent="Widget.SPButton">
+		<item name="android:background">@drawable/button_background_prefered</item>
+		<item name="android:textColor">@color/prefered_button_text_color</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+</resources>

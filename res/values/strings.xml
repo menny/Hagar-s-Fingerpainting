@@ -9,4 +9,8 @@
     <string name="use_admob_title">Show ads</string>
     <string name="use_admob_title_summary_on">Hooray! Thanks for supporting!</string>
     <string name="use_admob_title_summary_off">No ads will be shown</string>
+    
+    <string name="new_paper_dialog_title">New paper</string>
+    <string name="paper_color">Paper color</string>
+    <string name="create_paper_button">Paint!</string>
 </resources>

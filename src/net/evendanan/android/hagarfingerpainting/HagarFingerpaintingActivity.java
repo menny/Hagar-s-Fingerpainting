@@ -28,19 +28,33 @@ import java.util.Calendar;
 import com.google.ads.AdView;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.graphics.*;
+import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BlurMaskFilter;
+import android.graphics.Color;
+import android.graphics.MaskFilter;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.EditText;
+import android.widget.Gallery;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +62,8 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 
     public static final String TAG = "HagarFingerpaintingActivity";
 
+    private static final int DIALOG_NEW_PAPER = 12398;
+    
 	private Whiteboard mWhiteboard;
 	private AdView mAdView;
 	private boolean mBlurFilterApplied = false;
@@ -61,15 +77,114 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
-        newPaper();
-        
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sp.registerOnSharedPreferenceChangeListener(this);
+    	
+    	onNewPaperRequested();
     }
 
-	void newPaper() {
+	void onNewPaperRequested() {
+		showDialog(DIALOG_NEW_PAPER);
+	}
+	
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch(id)
+		{
+		case DIALOG_NEW_PAPER:
+			final Dialog newPaper = new Dialog(this);
+			newPaper.setTitle(R.string.new_paper_dialog_title);
+			newPaper.setContentView(R.layout.new_paper_dialog);
+			newPaper.setCancelable(true);
+			final EditText painterName = (EditText)newPaper.findViewById(R.id.painter_name_input_text);
+			Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/schoolbell.ttf");
+	        painterName.setTypeface(tf);
+	        
+	        final Gallery colors = (Gallery)newPaper.findViewById(R.id.colors_list);
+			colors.setAdapter(new PaperColorListAdapter(getApplicationContext()));
+			colors.setOnItemSelectedListener(new OnItemSelectedListener() {
+				private View mSelectedItem = null;
+		    	@Override
+		    	public void onItemSelected(AdapterView<?> adapter, View v,
+		    			int position, long id) {
+		    		if (mSelectedItem != null)
+	    				mSelectedItem.setBackgroundDrawable(null);
+		    		
+		    		mSelectedItem = v;
+	    			if (mSelectedItem != null)
+	    				mSelectedItem.setBackgroundResource(R.drawable.selected_color_background);
+		    	}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					if (mSelectedItem != null)
+	    				mSelectedItem.setBackgroundDrawable(null);
+				}
+		    });
+			
+			View createButton = newPaper.findViewById(R.id.new_paper_create_button);
+			createButton.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+					Editor e = sp.edit();
+					
+					final CharSequence painterNameFromUI = painterName.getText().toString();
+					final String newPainterName = TextUtils.isEmpty(painterNameFromUI)?
+							getString(R.string.settings_key_painter_name_default_value) : painterNameFromUI.toString();
+					e.putString(getString(R.string.settings_key_painter_name), newPainterName);
+					
+					int selectedColor = colors.getSelectedItemPosition() == 0? Color.BLACK : ((Integer)colors.getSelectedItem()).intValue();
+					e.putInt(getString(R.string.settings_key_paper_color), selectedColor);
+					
+					e.commit();
+			    	
+					newPaper.dismiss();
+					
+					createNewPaper();
+				}
+			});
+			View cancelButton = newPaper.findViewById(R.id.new_paper_cancel_button);
+			cancelButton.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					newPaper.dismiss();
+					if (mWhiteboard == null)
+						HagarFingerpaintingActivity.this.finish();
+				}
+			});
+			newPaper.setOnCancelListener(new OnCancelListener() {
+				@Override
+				public void onCancel(DialogInterface dialog) {
+					if (mWhiteboard == null)
+						HagarFingerpaintingActivity.this.finish();
+				}
+			});
+			
+			
+			return newPaper;
+		default:
+			return super.onCreateDialog(id);
+		}
+	}
+	
+	@Override
+	protected void onPrepareDialog(int id, Dialog dialog) {
+		switch(id)
+		{
+		case DIALOG_NEW_PAPER:
+			EditText painterName = (EditText)dialog.findViewById(R.id.painter_name_input_text);
+			painterName.setText(getPainterName());
+			break;
+		default:
+			super.onPrepareDialog(id, dialog);
+			break;
+		}
+	}
+
+	void createNewPaper() {
 		setContentView(R.layout.main);
         mWhiteboard = (Whiteboard)findViewById(R.id.whiteboard);
         mPainterName = (TextView)findViewById(R.id.painter_name_text);
@@ -82,6 +197,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         mWhiteboard.setMaskFilter(mBlur);
         mBlurFilterApplied = true;
         mWhiteboard.setEraserMode(false);
+        mWhiteboard.setBackgroundColor(getPaperColor());
         mEraseMode = false;
         mPainterName.setText(getPainterName());
         mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
@@ -93,7 +209,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
     private static final int BLUR_MENU_ID = Menu.FIRST + 1;
     private static final int ERASE_MENU_ID = Menu.FIRST + 2;
     private static final int SAVE_MENU_ID = Menu.FIRST + 3;
-    private static final int CLEAR_MENU_ID = Menu.FIRST + 4;
+    private static final int NEW_PAPER_MENU_ID = Menu.FIRST + 4;
     private static final int SETTINGS_MENU_ID = Menu.FIRST + 5;
 
     @Override
@@ -103,7 +219,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         menu.add(0, COLOR_MENU_ID, 0, "Color");
         menu.add(0, BLUR_MENU_ID, 0, "Blur");
         menu.add(0, ERASE_MENU_ID, 0, "Eraser");
-        menu.add(0, CLEAR_MENU_ID, 0, "Clear").setIcon(android.R.drawable.ic_menu_delete);
+        menu.add(0, NEW_PAPER_MENU_ID, 0, "New").setIcon(R.drawable.paper_menu);
         menu.add(0, SAVE_MENU_ID, 0, "Save").setIcon(android.R.drawable.ic_menu_save);
         menu.add(0, SETTINGS_MENU_ID, 0, "Settings").setIcon(android.R.drawable.ic_menu_preferences);
         
@@ -123,11 +239,13 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
     		String key) {
     	if (key.equals(getString(R.string.settings_key_painter_name)))
     	{
-    		mPainterName.setText(getPainterName());
+    		if (mPainterName != null)
+    			mPainterName.setText(getPainterName());
     	}
     	else if (key.equals(getString(R.string.settings_key_admob_enabled)))
     	{
-    		mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
+    		if (mAdView != null)
+    			mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
     	}
     }
     
@@ -144,6 +262,13 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 		return painterName;
 	}
     
+	int getPaperColor()
+	{
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    	int paperColor = sp.getInt(getString(R.string.settings_key_paper_color), getResources().getInteger(R.integer.settings_key_paper_color_default_value));
+		return paperColor;
+	}
+	
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
@@ -152,9 +277,6 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //mPaint.setXfermode(null);
-        //mPaint.setAlpha(0xFF);
-
         switch (item.getItemId()) {
             case COLOR_MENU_ID:
                 new ColorPickerDialog(this, mWhiteboard, 0).show();
@@ -174,8 +296,8 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
             case SAVE_MENU_ID:
                 takeScreenshot();
                 return true;
-            case CLEAR_MENU_ID:
-            	newPaper();
+            case NEW_PAPER_MENU_ID:
+            	onNewPaperRequested();
             	return true;
             case SETTINGS_MENU_ID:
             	startActivity(new Intent(getApplicationContext(), FingerpaintSettingsActivity.class));

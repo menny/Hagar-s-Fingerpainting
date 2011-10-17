@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
 	<dimen name="painter_name_text_size">24sp</dimen>
-	<dimen name="painter_name_text_stroke_size">24sp</dimen>
+	
+	<dimen name="title">24sp</dimen>
+    <dimen name="sub_title">20sp</dimen>
+    <dimen name="text">16sp</dimen>
 </resources>
