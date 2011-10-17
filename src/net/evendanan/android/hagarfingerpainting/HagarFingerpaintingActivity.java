@@ -41,6 +41,7 @@ import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
 import android.graphics.MaskFilter;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -206,22 +207,24 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 	private MaskFilter  mBlur;
     
 	private static final int COLOR_MENU_ID = Menu.FIRST;
-    private static final int BLUR_MENU_ID = Menu.FIRST + 1;
+    //private static final int BLUR_MENU_ID = Menu.FIRST + 1;
     private static final int ERASE_MENU_ID = Menu.FIRST + 2;
     private static final int SAVE_MENU_ID = Menu.FIRST + 3;
-    private static final int NEW_PAPER_MENU_ID = Menu.FIRST + 4;
-    private static final int SETTINGS_MENU_ID = Menu.FIRST + 5;
+    private static final int SHARE_MENU_ID = Menu.FIRST + 4;
+    private static final int NEW_PAPER_MENU_ID = Menu.FIRST + 5;
+    private static final int SETTINGS_MENU_ID = Menu.FIRST + 6;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        menu.add(0, COLOR_MENU_ID, 0, "Color");
-        menu.add(0, BLUR_MENU_ID, 0, "Blur");
-        menu.add(0, ERASE_MENU_ID, 0, "Eraser");
-        menu.add(0, NEW_PAPER_MENU_ID, 0, "New").setIcon(R.drawable.paper_menu);
-        menu.add(0, SAVE_MENU_ID, 0, "Save").setIcon(android.R.drawable.ic_menu_save);
-        menu.add(0, SETTINGS_MENU_ID, 0, "Settings").setIcon(android.R.drawable.ic_menu_preferences);
+        menu.add(0, COLOR_MENU_ID, 0, R.string.menu_color_title);
+        //menu.add(0, BLUR_MENU_ID, 0, R.string.menu_blur_title);
+        menu.add(0, ERASE_MENU_ID, 0, R.string.menu_eraser_title);
+        menu.add(0, NEW_PAPER_MENU_ID, 0, R.string.menu_new_title).setIcon(R.drawable.paper_menu);
+        menu.add(0, SAVE_MENU_ID, 0, R.string.menu_save_title).setIcon(R.drawable.save_menu);
+        menu.add(0, SHARE_MENU_ID, 0, R.string.menu_share_title).setIcon(R.drawable.share_menu);
+        menu.add(0, SETTINGS_MENU_ID, 0, R.string.menu_settings_title).setIcon(android.R.drawable.ic_menu_preferences);
         
         return true;
     }
@@ -281,20 +284,35 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
             case COLOR_MENU_ID:
                 new ColorPickerDialog(this, mWhiteboard, 0).show();
                 return true;
-            case BLUR_MENU_ID:
+            /*case BLUR_MENU_ID:
                 if (!mBlurFilterApplied) {
                     mWhiteboard.setMaskFilter(mBlur);
                 } else {
                     mWhiteboard.setMaskFilter(null);                    
                 }
                 mBlurFilterApplied = !mBlurFilterApplied;
-                return true;
+                return true;*/
             case ERASE_MENU_ID:
             	mEraseMode = !mEraseMode;
             	mWhiteboard.setEraserMode(mEraseMode);
                 return true;
             case SAVE_MENU_ID:
-                takeScreenshot();
+                takeScreenshot(true);
+                return true;
+            case SHARE_MENU_ID:
+                File screenshotPath = takeScreenshot(false);
+                Intent intent = new Intent();
+        		intent.setAction(Intent.ACTION_SEND);
+        		intent.setType("image/png");
+        		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_title_template, getPainterName()));
+        		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text_template, getPainterName()));
+    			intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(screenshotPath));
+    			try 
+    			{
+    				startActivity(Intent.createChooser(intent, getString(R.string.menu_share_title)));
+    			} catch (android.content.ActivityNotFoundException ex) {
+    				Toast.makeText(this.getApplicationContext(), R.string.no_way_to_share, Toast.LENGTH_LONG).show();
+    			}
                 return true;
             case NEW_PAPER_MENU_ID:
             	onNewPaperRequested();
@@ -306,7 +324,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         return super.onOptionsItemSelected(item);
     }
 
-	private void takeScreenshot() {
+	private File takeScreenshot(boolean showToast) {
 		View v = getWindow().getDecorView();
 		v.setDrawingCacheEnabled(true);
 		Bitmap cachedBitmap = v.getDrawingCache();
@@ -327,6 +345,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 			output = new FileOutputStream(file);
 			copyBitmap.compress(CompressFormat.PNG, 100, output);
 		} catch (FileNotFoundException e) {
+			file = null;
 			e.printStackTrace();
 		}
 		finally
@@ -340,10 +359,16 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 					e.printStackTrace();
 				}
 			}
-			if (file != null)
-			{
-				Toast.makeText(getApplicationContext(), "Save fingerpainting to: "+file.getAbsolutePath(), Toast.LENGTH_LONG).show();
-			}
+		}
+
+		if (file != null)
+		{
+			if (showToast) Toast.makeText(getApplicationContext(), "Save fingerpainting to: "+file.getAbsolutePath(), Toast.LENGTH_LONG).show();
+			return file;
+		}
+		else
+		{
+			return null;
 		}
 	}
 }
