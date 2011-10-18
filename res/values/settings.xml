@@ -4,7 +4,7 @@
     <string name="settings_key_painter_name_default_value">Hagar</string>
     
     <string name="settings_key_admob_enabled">settings_key_admob_enabled</string>
-    <bool name="settings_key_admob_enabled_default_value">false</bool>
+    <bool name="settings_key_admob_enabled_default_value">true</bool>
     
     <string name="settings_key_paper_color">settings_key_paper_color</string>
     <integer name="settings_key_paper_color_default_value">0xFF000000</integer>

@@ -44,7 +44,7 @@ public class Whiteboard extends View implements ColorPickerDialog.OnColorChanged
     private Paint   mBitmapPaint;
     private Paint   mPaint;
     
-    int[] mColors = new int[]{ 0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFF0FF000, 0xFF000FF0}; 
+    int[] mColors = new int[]{ 0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFFF0F000, 0xFF00F0F0}; 
 
     public Whiteboard(Context c, AttributeSet attrs) {
     	super(c, attrs);

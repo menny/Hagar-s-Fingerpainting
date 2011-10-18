@@ -228,54 +228,11 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         
         return true;
     }
-
-    @Override
-    protected void onResume() {
-    	super.onResume();
-    	
-    	String painterName = getPainterName();
-    	setTitle(getString(R.string.app_title, painterName));
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-    		String key) {
-    	if (key.equals(getString(R.string.settings_key_painter_name)))
-    	{
-    		if (mPainterName != null)
-    			mPainterName.setText(getPainterName());
-    	}
-    	else if (key.equals(getString(R.string.settings_key_admob_enabled)))
-    	{
-    		if (mAdView != null)
-    			mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
-    	}
-    }
-    
-    boolean getShowAds()
-    {
-    	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-    	boolean admobEnabled = sp.getBoolean(getString(R.string.settings_key_admob_enabled), getResources().getBoolean(R.bool.settings_key_admob_enabled_default_value));
-		return admobEnabled;
-    }
-    
-	String getPainterName() {
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-    	String painterName = sp.getString(getString(R.string.settings_key_painter_name), getString(R.string.settings_key_painter_name_default_value));
-		return painterName;
-	}
-    
-	int getPaperColor()
-	{
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-    	int paperColor = sp.getInt(getString(R.string.settings_key_paper_color), getResources().getInteger(R.integer.settings_key_paper_color_default_value));
-		return paperColor;
-	}
 	
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        return true;
+    	menu.getItem(1).setIcon(mEraseMode? android.R.drawable.button_onoff_indicator_on : android.R.drawable.button_onoff_indicator_off);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -323,6 +280,50 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         }
         return super.onOptionsItemSelected(item);
     }
+
+    
+    @Override
+    protected void onResume() {
+    	super.onResume();
+    	
+    	String painterName = getPainterName();
+    	setTitle(getString(R.string.app_title, painterName));
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+    		String key) {
+    	if (key.equals(getString(R.string.settings_key_painter_name)))
+    	{
+    		if (mPainterName != null)
+    			mPainterName.setText(getPainterName());
+    	}
+    	else if (key.equals(getString(R.string.settings_key_admob_enabled)))
+    	{
+    		if (mAdView != null)
+    			mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
+    	}
+    }
+    
+    boolean getShowAds()
+    {
+    	SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    	boolean admobEnabled = sp.getBoolean(getString(R.string.settings_key_admob_enabled), getResources().getBoolean(R.bool.settings_key_admob_enabled_default_value));
+		return admobEnabled;
+    }
+    
+	String getPainterName() {
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    	String painterName = sp.getString(getString(R.string.settings_key_painter_name), getString(R.string.settings_key_painter_name_default_value));
+		return painterName;
+	}
+    
+	int getPaperColor()
+	{
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    	int paperColor = sp.getInt(getString(R.string.settings_key_paper_color), getResources().getInteger(R.integer.settings_key_paper_color_default_value));
+		return paperColor;
+	}
 
 	private File takeScreenshot(boolean showToast) {
 		View v = getWindow().getDecorView();
