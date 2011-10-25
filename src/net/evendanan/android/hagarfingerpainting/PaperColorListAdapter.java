@@ -13,8 +13,8 @@ public class PaperColorListAdapter extends android.widget.BaseAdapter {
 
 	private static final int[] msColors = new int[]
 	                                                  {
-		0xff202020,
 		Color.WHITE,
+		0xff202020,
 		Color.GRAY,
 		Color.RED,
 	    Color.GREEN,
@@ -24,7 +24,7 @@ public class PaperColorListAdapter extends android.widget.BaseAdapter {
 	
 	public static int getColorAtPosition(int position)
 	{
-		return msColors[position];
+		return msColors[position-2];
 	}
 	
 	private final Context mAppContext;
