@@ -351,6 +351,8 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
     
 	private File takeScreenshot(boolean showToast) {
 		View v = getWindow().getDecorView();
+		final int originalAdsVisibility = mAdView.getVisibility();
+		mAdView.setVisibility(View.INVISIBLE);
 		v.setDrawingCacheEnabled(true);
 		Bitmap cachedBitmap = v.getDrawingCache();
 		Bitmap copyBitmap = cachedBitmap.copy(Bitmap.Config.RGB_565, true);
@@ -384,6 +386,8 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 					e.printStackTrace();
 				}
 			}
+			
+			mAdView.setVisibility(originalAdsVisibility);
 		}
 
 		if (file != null)
