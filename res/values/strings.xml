@@ -25,4 +25,6 @@
     <string name="new_paper_dialog_title">New paper</string>
     <string name="paper_color">Paper color</string>
     <string name="create_paper_button">Paint!</string>
+    
+    <string name="pick_image_from_gallery">Pick image</string>
 </resources>

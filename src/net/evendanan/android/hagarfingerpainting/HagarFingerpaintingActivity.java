@@ -25,6 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
+import net.evendanan.android.hagarfingerpainting.newpaper.IntentDrivenPaperBackground;
 import net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground;
 import net.evendanan.android.hagarfingerpainting.newpaper.PaperColorListAdapter;
 import android.app.Activity;
@@ -45,6 +46,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,6 +73,8 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 	private boolean mBlurFilterApplied = false;
 	private boolean mEraseMode = false;
 	private TextView mPainterName;
+
+	private IntentDrivenPaperBackground mBackgroundPaper;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +130,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 				}
 		    });
 			
-			colors.setSelection(0);
+			colors.setSelection(1);
 			
 			View createButton = newPaper.findViewById(R.id.new_paper_create_button);
 			createButton.setOnClickListener(new OnClickListener() {
@@ -142,9 +146,11 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 					
 					e.commit();
 			    	
+					PaperBackground paper = (PaperBackground)colors.getSelectedItem();
+					
 					newPaper.dismiss();
 					
-					createNewPaper((PaperBackground)colors.getSelectedItem());
+					createNewPaper(paper);
 				}
 			});
 			View cancelButton = newPaper.findViewById(R.id.new_paper_cancel_button);
@@ -198,10 +204,32 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         mWhiteboard.setMaskFilter(mBlur);
         mBlurFilterApplied = true;
         mWhiteboard.setEraserMode(false);
-        mWhiteboard.setBackgroundDrawable(paper.getBackgroundDrawable());
         mEraseMode = false;
+        
         mPainterName.setText(getPainterName());
         mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
+        
+        if (paper instanceof IntentDrivenPaperBackground)
+        {
+        	IntentDrivenPaperBackground intentPaper = (IntentDrivenPaperBackground)paper;
+        	mBackgroundPaper = intentPaper;
+            Intent i = intentPaper.getIntentToStartForResult();
+            Log.d(TAG, "IntentDrivenPaperBackground: "+i);
+        	startActivityForResult(Intent.createChooser(i, intentPaper.getActionTitle()), intentPaper.getRequestCode());
+        }
+        else
+        {
+        	mWhiteboard.setBackgroundDrawable(paper.getBackgroundDrawable());
+        }
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == RESULT_OK) {
+			if (mBackgroundPaper != null && requestCode == mBackgroundPaper.getRequestCode()) {
+				mBackgroundPaper.onActivityResult(requestCode, resultCode, data);
+				mWhiteboard.setBackgroundDrawable(mBackgroundPaper.getBackgroundDrawable());
+			}
+		}
 	}
 
 	private MaskFilter  mBlur;

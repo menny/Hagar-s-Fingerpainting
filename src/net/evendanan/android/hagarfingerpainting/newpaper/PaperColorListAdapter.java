@@ -8,22 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 
 public class PaperColorListAdapter extends android.widget.BaseAdapter {
 
 	private final PaperBackground[] mPapers;
 	
-	private final Context mAppContext;
 	private final LayoutInflater mInflator;
 	
 	public PaperColorListAdapter(Context c)
 	{
-		mAppContext = c;
 		mInflator = (LayoutInflater)c.getSystemService(Service.LAYOUT_INFLATER_SERVICE);
 		
 		mPapers = new PaperBackground[]
 		                              {
+				new GalleryPaperBackground(c),
 				new SimplePaperBackground(c, Color.WHITE, R.drawable.new_blank_paper_white),
 				new SimplePaperBackground(c, Color.DKGRAY, R.drawable.new_blank_paper_black),
 				new SimplePaperBackground(c, Color.RED, R.drawable.new_blank_paper_red),
@@ -54,12 +52,12 @@ public class PaperColorListAdapter extends android.widget.BaseAdapter {
 	
 	@Override
 	public int getItemViewType(int position) {
-		return position;
+		return 0;
 	}
 	
 	@Override
 	public int getViewTypeCount() {
-		return getCount();
+		return 1;
 	}
 	
 	@Override
