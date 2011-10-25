@@ -1,8 +1,10 @@
 package net.evendanan.android.hagarfingerpainting.newpaper;
 
 import net.evendanan.android.hagarfingerpainting.R;
+import android.app.Service;
 import android.content.Context;
 import android.graphics.Color;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,10 +15,12 @@ public class PaperColorListAdapter extends android.widget.BaseAdapter {
 	private final PaperBackground[] mPapers;
 	
 	private final Context mAppContext;
+	private final LayoutInflater mInflator;
 	
 	public PaperColorListAdapter(Context c)
 	{
 		mAppContext = c;
+		mInflator = (LayoutInflater)c.getSystemService(Service.LAYOUT_INFLATER_SERVICE);
 		
 		mPapers = new PaperBackground[]
 		                              {
@@ -65,13 +69,12 @@ public class PaperColorListAdapter extends android.widget.BaseAdapter {
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ImageView i = new ImageView(mAppContext);
-		i.setPadding(3, 3, 3, 3);
+		ViewGroup v = (ViewGroup)mInflator.inflate(R.layout.paper_icon_view, null);
+		ImageView i = (ImageView)v.findViewById(R.id.paper_icon);
 		PaperBackground paper = (PaperBackground)getItem(position);
 		i.setImageDrawable(paper.getIcon());
-		i.setScaleType(ScaleType.CENTER_INSIDE);
 		
-		return i;
+		return v;
 	}
 	
 	

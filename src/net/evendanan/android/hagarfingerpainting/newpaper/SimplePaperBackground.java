@@ -14,7 +14,7 @@ public class SimplePaperBackground implements PaperBackground {
 	{
 		Drawable d = appContext.getResources().getDrawable(R.drawable.paper);
 		d.mutate();
-		d.setColorFilter(color, Mode.LIGHTEN);
+		d.setColorFilter(color, Mode.MULTIPLY);
 		mIcon = d;
 		
 		mBackground = appContext.getResources().getDrawable(backgroundResId);
