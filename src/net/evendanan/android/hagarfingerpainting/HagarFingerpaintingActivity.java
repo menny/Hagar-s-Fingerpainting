@@ -25,8 +25,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
-import com.google.ads.AdView;
-
+import net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground;
+import net.evendanan.android.hagarfingerpainting.newpaper.PaperColorListAdapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -38,7 +38,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BlurMaskFilter;
-import android.graphics.Color;
 import android.graphics.MaskFilter;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -58,6 +57,8 @@ import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.ads.AdView;
 
 public class HagarFingerpaintingActivity extends Activity implements OnSharedPreferenceChangeListener {
 
@@ -125,6 +126,8 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 				}
 		    });
 			
+			colors.setSelection(0);
+			
 			View createButton = newPaper.findViewById(R.id.new_paper_create_button);
 			createButton.setOnClickListener(new OnClickListener() {
 				@Override
@@ -137,14 +140,11 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 							getString(R.string.settings_key_painter_name_default_value) : painterNameFromUI.toString();
 					e.putString(getString(R.string.settings_key_painter_name), newPainterName);
 					
-					int selectedColor = colors.getSelectedItemPosition() == 0? Color.BLACK : ((Integer)colors.getSelectedItem()).intValue();
-					e.putInt(getString(R.string.settings_key_paper_color), selectedColor);
-					
 					e.commit();
 			    	
 					newPaper.dismiss();
 					
-					createNewPaper();
+					createNewPaper((PaperBackground)colors.getSelectedItem());
 				}
 			});
 			View cancelButton = newPaper.findViewById(R.id.new_paper_cancel_button);
@@ -185,7 +185,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 		}
 	}
 
-	void createNewPaper() {
+	void createNewPaper(PaperBackground paper) {
 		setContentView(R.layout.main);
         mWhiteboard = (Whiteboard)findViewById(R.id.whiteboard);
         mPainterName = (TextView)findViewById(R.id.painter_name_text);
@@ -198,7 +198,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         mWhiteboard.setMaskFilter(mBlur);
         mBlurFilterApplied = true;
         mWhiteboard.setEraserMode(false);
-        mWhiteboard.setBackgroundColor(getPaperColor());
+        mWhiteboard.setBackgroundDrawable(paper.getBackgroundDrawable());
         mEraseMode = false;
         mPainterName.setText(getPainterName());
         mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
@@ -318,13 +318,6 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 		return painterName;
 	}
     
-	int getPaperColor()
-	{
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-    	int paperColor = sp.getInt(getString(R.string.settings_key_paper_color), getResources().getInteger(R.integer.settings_key_paper_color_default_value));
-		return paperColor;
-	}
-
 	private File takeScreenshot(boolean showToast) {
 		View v = getWindow().getDecorView();
 		v.setDrawingCacheEnabled(true);
