@@ -2,6 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
 	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<ImageView android:id="@+id/background_image"
+	    android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
+		android:layout_alignParentRight="true" android:layout_alignParentBottom="true"
+		android:adjustViewBounds="true"
+		android:src="@drawable/paper"
+		android:scaleType="centerCrop"
+		/>
+	
 	<net.evendanan.android.hagarfingerpainting.Whiteboard android:id="@+id/whiteboard"
 		android:layout_width="fill_parent" android:layout_height="fill_parent"
 		android:layout_alignParentLeft="true" android:layout_alignParentTop="true"

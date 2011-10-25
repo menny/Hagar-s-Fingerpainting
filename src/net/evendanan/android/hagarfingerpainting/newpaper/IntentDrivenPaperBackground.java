@@ -7,5 +7,5 @@ public interface IntentDrivenPaperBackground extends PaperBackground {
 	String getActionTitle();
 	int getRequestCode();
 	
-	void onActivityResult(int requestCode, int resultCode, Intent data);
+	void onActivityResult(Intent data);
 }

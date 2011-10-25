@@ -57,6 +57,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.Gallery;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +70,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
     private static final int DIALOG_NEW_PAPER = 12398;
     
 	private Whiteboard mWhiteboard;
+	private ImageView mBackground;
 	private AdView mAdView;
 	private boolean mBlurFilterApplied = false;
 	private boolean mEraseMode = false;
@@ -196,6 +198,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         mWhiteboard = (Whiteboard)findViewById(R.id.whiteboard);
         mPainterName = (TextView)findViewById(R.id.painter_name_text);
         mAdView = (AdView)findViewById(R.id.adView);
+        mBackground = (ImageView)findViewById(R.id.background_image);
         
         Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/schoolbell.ttf");
         mPainterName.setTypeface(tf);
@@ -219,15 +222,15 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         }
         else
         {
-        	mWhiteboard.setBackgroundDrawable(paper.getBackgroundDrawable());
+        	mBackground.setImageDrawable(paper.getBackgroundDrawable());
         }
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
 			if (mBackgroundPaper != null && requestCode == mBackgroundPaper.getRequestCode()) {
-				mBackgroundPaper.onActivityResult(requestCode, resultCode, data);
-				mWhiteboard.setBackgroundDrawable(mBackgroundPaper.getBackgroundDrawable());
+				mBackgroundPaper.onActivityResult(data);
+				mBackground.setImageDrawable(mBackgroundPaper.getBackgroundDrawable());
 			}
 		}
 	}

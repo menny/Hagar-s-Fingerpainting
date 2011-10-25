@@ -4,13 +4,22 @@ import net.evendanan.android.hagarfingerpainting.R;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Window;
 
 public class GalleryPaperBackground implements IntentDrivenPaperBackground {
 
+	private static final String TAG = "GalleryPaperBackground";
+	
 	private static final int SELECT_IMAGE_REQUEST_CODE = 89123;
 	private final Context mAppContext;
 	private final Drawable mIcon;
@@ -52,13 +61,35 @@ public class GalleryPaperBackground implements IntentDrivenPaperBackground {
 	}
 	
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode != SELECT_IMAGE_REQUEST_CODE) return;
-		
+	public void onActivityResult(Intent data) {		
 		Uri selectedImageUri = data.getData();
 		String selectedImagePath = getPath(selectedImageUri);
 		
-		mLoadedGalleryImage = TextUtils.isEmpty(selectedImagePath)? null : Drawable.createFromPath(selectedImagePath);
+		Bitmap background = TextUtils.isEmpty(selectedImagePath)? null : BitmapFactory.decodeFile(selectedImagePath);
+		//setting the correct ratio
+		if (background != null)
+		{
+			final int width = background.getWidth();
+			final int height = background.getHeight();
+			
+			DisplayMetrics dm = mAppContext.getResources().getDisplayMetrics();
+	        final int displayWidth = dm.widthPixels;
+	        final int displayHeight = dm.heightPixels;
+	        
+			Log.d(TAG, "Image selected '"+selectedImagePath+"' width "+width+" height "+height+" display width "+displayWidth+" display height "+displayHeight);
+			if (height > width)
+			{
+				Matrix rotator = new Matrix();
+				rotator.postRotate(90);
+				background = Bitmap.createBitmap(background, 0, 0, width, height, rotator, true);
+			}
+	        
+			mLoadedGalleryImage = new BitmapDrawable(background);
+		}
+		else
+		{
+			mLoadedGalleryImage = null;
+		}
 	}
 	
 	public String getPath(Uri uri) {
