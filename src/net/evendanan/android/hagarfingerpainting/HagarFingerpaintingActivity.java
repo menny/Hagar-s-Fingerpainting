@@ -41,6 +41,7 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BlurMaskFilter;
 import android.graphics.MaskFilter;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -89,8 +90,6 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sp.registerOnSharedPreferenceChangeListener(this);
-    	
-    	onNewPaperRequested();
     }
 
 	void onNewPaperRequested() {
@@ -217,20 +216,24 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         	IntentDrivenPaperBackground intentPaper = (IntentDrivenPaperBackground)paper;
         	mBackgroundPaper = intentPaper;
             Intent i = intentPaper.getIntentToStartForResult();
-            Log.d(TAG, "IntentDrivenPaperBackground: "+i);
         	startActivityForResult(Intent.createChooser(i, intentPaper.getActionTitle()), intentPaper.getRequestCode());
         }
         else
         {
-        	mBackground.setImageDrawable(paper.getBackgroundDrawable());
+        	setWhiteboardBackground(paper);
         }
+	}
+
+	void setWhiteboardBackground(PaperBackground paper) {
+		Drawable d = paper.getBackgroundDrawable();
+		mBackground.setImageDrawable(d);
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
 			if (mBackgroundPaper != null && requestCode == mBackgroundPaper.getRequestCode()) {
 				mBackgroundPaper.onActivityResult(data);
-				mBackground.setImageDrawable(mBackgroundPaper.getBackgroundDrawable());
+				setWhiteboardBackground(mBackgroundPaper);
 			}
 		}
 	}
@@ -319,6 +322,11 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
     	
     	String painterName = getPainterName();
     	setTitle(getString(R.string.app_title, painterName));
+    	
+    	if (mWhiteboard == null)
+    	{
+    		onNewPaperRequested();
+    	}
     }
 
     @Override

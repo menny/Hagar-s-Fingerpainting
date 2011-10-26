@@ -18,7 +18,9 @@
 	
 	<TextView android:id="@+id/painter_name_text" android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
 		android:layout_margin="8dp" android:text="ME!" android:textColor="@color/painter_name_text_color" android:textSize="@dimen/painter_name_text_size"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:shadowColor="@android:color/black" android:shadowRadius="6"
+		/>
 	
 	<com.google.ads.AdView android:id="@+id/adView"
                          android:layout_width="wrap_content"

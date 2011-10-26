@@ -7,6 +7,10 @@ import android.graphics.drawable.Drawable;
 
 public class SimplePaperBackground implements PaperBackground {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7833133177484047452L;
 	private final Drawable mIcon;
 	private final Drawable mBackground;
 	

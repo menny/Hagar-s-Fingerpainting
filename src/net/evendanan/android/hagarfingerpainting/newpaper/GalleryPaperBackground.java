@@ -14,9 +14,13 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Window;
 
 public class GalleryPaperBackground implements IntentDrivenPaperBackground {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4547980727028557696L;
 
 	private static final String TAG = "GalleryPaperBackground";
 	
