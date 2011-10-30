@@ -1,0 +1,506 @@
+a -> l:
+    java.util.Map a -> a
+    java.util.Map b -> b
+    void a(d,java.util.Map,android.net.Uri,android.webkit.WebView) -> a
+    boolean a(android.net.Uri) -> a
+    boolean b(android.net.Uri) -> b
+    boolean c(android.net.Uri) -> c
+    void a(android.webkit.WebView,java.lang.String,java.lang.String) -> a
+    void a(android.webkit.WebView,java.lang.String) -> a
+    void a(android.webkit.WebView,java.util.Map) -> a
+    void a(android.webkit.WebView) -> a
+    void b(android.webkit.WebView) -> b
+b -> j:
+    c a -> a
+    d b -> b
+    boolean c -> c
+    java.lang.String d -> d
+    void a() -> a
+    void a(java.net.HttpURLConnection) -> a
+    void b(java.net.HttpURLConnection) -> b
+    void a(java.lang.String) -> a
+    void run() -> run
+c -> k:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    b c -> c
+    d d -> d
+    com.google.ads.AdRequest e -> e
+    android.webkit.WebView f -> f
+    java.lang.String g -> g
+    java.util.LinkedList h -> h
+    boolean i -> i
+    com.google.ads.AdRequest$ErrorCode j -> j
+    boolean k -> k
+    int l -> l
+    java.lang.Thread m -> m
+    void a(java.lang.String) -> a
+    void a(com.google.ads.AdRequest) -> a
+    void run() -> run
+    java.lang.String a(com.google.ads.AdRequest,android.app.Activity) -> a
+    void a(com.google.ads.AdRequest$ErrorCode,boolean) -> a
+    void a(java.lang.String,java.lang.String) -> a
+    void b(java.lang.String) -> b
+    void a(com.google.ads.AdRequest$ErrorCode) -> a
+    void b() -> a
+    void a(int) -> a
+c$a -> a:
+    d b -> a
+    android.webkit.WebView c -> b
+    b d -> c
+    com.google.ads.AdRequest$ErrorCode e -> d
+    boolean f -> e
+    c a -> f
+    void run() -> run
+c$b -> b:
+    c a -> a
+c$c -> c:
+    java.lang.String b -> a
+    java.lang.String c -> b
+    android.webkit.WebView d -> c
+    c a -> d
+    void run() -> run
+c$d -> d:
+    c a -> a
+c$e -> e:
+    d b -> a
+    java.util.LinkedList c -> b
+    int d -> c
+    c a -> d
+    void run() -> run
+com.google.ads.Ad -> com.google.ads.b:
+com.google.ads.AdActivity -> com.google.ads.AdActivity:
+    java.lang.Object a -> a
+    com.google.ads.AdActivity b -> b
+    d c -> c
+    com.google.ads.AdActivity d -> d
+    com.google.ads.AdActivity e -> e
+    g f -> f
+    long g -> g
+    android.widget.RelativeLayout h -> h
+    com.google.ads.AdActivity i -> i
+    boolean j -> j
+    android.widget.VideoView k -> k
+    void a(java.lang.String) -> a
+    android.widget.VideoView getVideoView() -> a
+    g getOpeningAdWebView() -> b
+    boolean isShowing() -> c
+    void launchAdActivity(d,e) -> a
+    void onClick(android.view.View) -> onClick
+    void onCreate(android.os.Bundle) -> onCreate
+    void a(g,boolean,int) -> a
+    void showVideo(android.widget.VideoView) -> a
+    void onCompletion(android.media.MediaPlayer) -> onCompletion
+    void onDestroy() -> onDestroy
+    void onPrepared(android.media.MediaPlayer) -> onPrepared
+    boolean onError(android.media.MediaPlayer,int,int) -> onError
+    void onWindowFocusChanged(boolean) -> onWindowFocusChanged
+com.google.ads.AdListener -> com.google.ads.f:
+com.google.ads.AdRequest -> com.google.ads.c:
+    com.google.ads.AdRequest$Gender a -> a
+    java.lang.String b -> b
+    java.util.Set c -> c
+    java.util.Map d -> d
+    android.location.Location e -> e
+    boolean f -> f
+    boolean g -> g
+    java.lang.String TEST_EMULATOR -> h
+    java.util.Set h -> i
+    void addKeyword(java.lang.String) -> a
+    java.util.Map getRequestMap(android.content.Context) -> a
+com.google.ads.AdRequest$ErrorCode -> com.google.ads.g:
+    com.google.ads.AdRequest$ErrorCode INVALID_REQUEST -> a
+    com.google.ads.AdRequest$ErrorCode NO_FILL -> b
+    com.google.ads.AdRequest$ErrorCode NETWORK_ERROR -> c
+    com.google.ads.AdRequest$ErrorCode INTERNAL_ERROR -> d
+    java.lang.String a -> e
+    com.google.ads.AdRequest$ErrorCode[] b -> f
+    com.google.ads.AdRequest$ErrorCode[] values() -> values
+    com.google.ads.AdRequest$ErrorCode valueOf(java.lang.String) -> valueOf
+    java.lang.String toString() -> toString
+com.google.ads.AdRequest$Gender -> com.google.ads.e:
+    com.google.ads.AdRequest$Gender MALE -> a
+    com.google.ads.AdRequest$Gender FEMALE -> b
+    java.lang.String a -> c
+    com.google.ads.AdRequest$Gender[] b -> d
+    com.google.ads.AdRequest$Gender[] values() -> values
+    com.google.ads.AdRequest$Gender valueOf(java.lang.String) -> valueOf
+    java.lang.String toString() -> toString
+com.google.ads.AdSize -> com.google.ads.d:
+    com.google.ads.AdSize BANNER -> a
+    com.google.ads.AdSize IAB_MRECT -> b
+    com.google.ads.AdSize IAB_BANNER -> c
+    com.google.ads.AdSize IAB_LEADERBOARD -> d
+    int a -> e
+    int b -> f
+    java.lang.String c -> g
+    int getWidth() -> a
+    int getHeight() -> b
+    java.lang.String toString() -> toString
+com.google.ads.AdView -> com.google.ads.AdView:
+    d a -> a
+    void a(android.content.Context,java.lang.String,int,com.google.ads.AdSize,android.util.AttributeSet) -> a
+    void a(android.content.Context,java.lang.String,com.google.ads.AdSize,android.util.AttributeSet) -> a
+    void a(android.content.Context,android.util.AttributeSet) -> a
+    void a(android.app.Activity,com.google.ads.AdSize,java.lang.String) -> a
+com.google.ads.InstallReceiver -> com.google.ads.InstallReceiver:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    java.lang.String a(java.lang.String,java.lang.String,java.lang.String) -> a
+    void forwardIntent(android.content.Context,android.content.Intent) -> a
+com.google.ads.InterstitialAd -> com.google.ads.a:
+com.google.ads.util.AdUtil -> com.google.ads.util.AdUtil:
+    int a -> a
+    java.lang.Boolean b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    android.media.AudioManager e -> e
+    boolean f -> f
+    boolean g -> g
+    java.lang.String h -> h
+    java.lang.String a(android.content.Context) -> a
+    int a() -> a
+    int b() -> b
+    int a(android.content.Context,android.util.DisplayMetrics) -> a
+    int b(android.content.Context,android.util.DisplayMetrics) -> b
+    boolean b(android.content.Context) -> b
+    boolean c(android.content.Context) -> c
+    boolean c() -> c
+    boolean a(android.net.Uri) -> a
+    java.lang.String a(java.lang.String) -> a
+    java.lang.String d(android.content.Context) -> d
+    java.lang.String e(android.content.Context) -> e
+    com.google.ads.util.AdUtil$a f(android.content.Context) -> f
+    android.util.DisplayMetrics a(android.app.Activity) -> a
+    java.lang.String a(android.location.Location) -> a
+    java.lang.String b(java.lang.String) -> b
+    java.util.HashMap b(android.net.Uri) -> b
+    boolean d() -> d
+    void a(boolean) -> a
+    void g(android.content.Context) -> g
+    java.lang.String h(android.content.Context) -> h
+    void a(android.webkit.WebView) -> a
+    void a(java.net.HttpURLConnection,android.content.Context) -> a
+    java.lang.String a(java.util.Map) -> a
+    org.json.JSONObject b(java.util.Map) -> b
+    org.json.JSONArray a(java.util.Set) -> a
+com.google.ads.util.AdUtil$UserActivityReceiver -> com.google.ads.util.AdUtil$UserActivityReceiver:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.google.ads.util.AdUtil$a -> com.google.ads.util.c:
+    com.google.ads.util.AdUtil$a a -> d
+    com.google.ads.util.AdUtil$a b -> a
+    com.google.ads.util.AdUtil$a c -> e
+    com.google.ads.util.AdUtil$a d -> b
+    com.google.ads.util.AdUtil$a e -> c
+    com.google.ads.util.AdUtil$a f -> f
+    com.google.ads.util.AdUtil$a[] g -> g
+    com.google.ads.util.AdUtil$a[] values() -> values
+    com.google.ads.util.AdUtil$a valueOf(java.lang.String) -> valueOf
+com.google.ads.util.a -> com.google.ads.util.d:
+    void a(java.lang.String) -> a
+    void b(java.lang.String) -> b
+    void a(java.lang.String,java.lang.Throwable) -> a
+    void c(java.lang.String) -> c
+    void d(java.lang.String) -> d
+    void e(java.lang.String) -> e
+    void b(java.lang.String,java.lang.Throwable) -> b
+    boolean a(java.lang.String,int) -> a
+com.google.ads.util.b -> com.google.ads.util.e:
+    boolean a -> a
+    java.lang.String a(byte[]) -> a
+com.google.ads.util.b$a -> com.google.ads.util.b:
+    byte[] a -> d
+    int b -> e
+com.google.ads.util.b$b -> com.google.ads.util.a:
+    byte[] h -> f
+    byte[] i -> g
+    byte[] j -> h
+    int c -> i
+    int k -> j
+    boolean d -> a
+    boolean e -> b
+    boolean f -> c
+    byte[] l -> k
+    boolean g -> l
+    boolean a(byte[],int) -> a
+com.google.ads.util.c -> com.google.ads.util.f:
+    int a(android.content.Context,android.util.DisplayMetrics) -> a
+    int b(android.content.Context,android.util.DisplayMetrics) -> b
+    int a(android.content.Context,float,int) -> a
+d -> h:
+    java.lang.Object a -> a
+    java.lang.ref.WeakReference b -> b
+    com.google.ads.Ad c -> c
+    com.google.ads.AdListener d -> d
+    c e -> e
+    com.google.ads.AdRequest f -> f
+    com.google.ads.AdSize g -> g
+    f h -> h
+    java.lang.String i -> i
+    g j -> j
+    h k -> k
+    android.os.Handler l -> l
+    long m -> m
+    boolean n -> n
+    boolean o -> o
+    android.content.SharedPreferences p -> p
+    long q -> q
+    x r -> r
+    boolean s -> s
+    java.util.LinkedList t -> t
+    java.util.LinkedList u -> u
+    int v -> v
+    void a(java.lang.String) -> a
+    void a(java.util.LinkedList) -> a
+    void a() -> a
+    void c() -> b
+    void d() -> c
+    android.app.Activity e() -> d
+    com.google.ads.Ad f() -> e
+    c g() -> f
+    java.lang.String h() -> g
+    g i() -> h
+    h j() -> i
+    com.google.ads.AdSize k() -> j
+    f l() -> k
+    void a(int) -> a
+    int m() -> l
+    long n() -> m
+    boolean A() -> v
+    boolean p() -> n
+    void a(com.google.ads.AdRequest) -> a
+    void a(com.google.ads.AdRequest$ErrorCode) -> a
+    void q() -> o
+    void r() -> p
+    void s() -> q
+    void t() -> r
+    void u() -> s
+    void v() -> w
+    boolean w() -> t
+    void B() -> x
+    void a(java.lang.Runnable) -> a
+    void x() -> u
+    void a(long) -> a
+    void a(float) -> a
+e -> i:
+    java.lang.String a -> a
+    java.util.HashMap b -> b
+    android.os.Bundle a() -> a
+    java.lang.String b() -> b
+    java.util.HashMap c() -> c
+f -> f:
+    java.util.LinkedList b -> a
+    long c -> b
+    long d -> c
+    java.util.LinkedList e -> d
+    long f -> e
+    java.lang.String g -> f
+    boolean h -> g
+    boolean i -> h
+    java.lang.String a -> i
+    void a() -> a
+    void b() -> b
+    void c() -> c
+    void d() -> d
+    long e() -> e
+    java.lang.String f() -> f
+    java.lang.String g() -> g
+    long h() -> h
+    long i() -> i
+    java.lang.String j() -> j
+    void a(java.lang.String) -> a
+    boolean k() -> k
+    void l() -> l
+    boolean m() -> m
+    void n() -> n
+    void o() -> o
+    java.lang.String p() -> p
+    void b(java.lang.String) -> b
+g -> g:
+    com.google.ads.AdActivity a -> a
+    com.google.ads.AdSize b -> b
+    void a() -> a
+    com.google.ads.AdActivity b() -> b
+    void a(com.google.ads.AdActivity) -> a
+    void loadDataWithBaseURL(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> loadDataWithBaseURL
+    void loadUrl(java.lang.String) -> loadUrl
+    void onMeasure(int,int) -> onMeasure
+h -> s:
+    d a -> a
+    java.util.Map b -> b
+    boolean c -> c
+    boolean d -> d
+    boolean e -> e
+    boolean f -> f
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    void a() -> a
+    void b() -> b
+i -> t:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+j -> q:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+k -> r:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+l -> o:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+m -> p:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+n -> m:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+net.evendanan.android.hagarfingerpainting.ColorPickerDialog -> net.evendanan.android.hagarfingerpainting.i:
+    net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener mListener -> a
+    int mInitialColor -> b
+    int mPointerIndex -> c
+    void onCreate(android.os.Bundle) -> onCreate
+    net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener access$0(net.evendanan.android.hagarfingerpainting.ColorPickerDialog) -> a
+    int access$1(net.evendanan.android.hagarfingerpainting.ColorPickerDialog) -> b
+net.evendanan.android.hagarfingerpainting.ColorPickerDialog$1 -> net.evendanan.android.hagarfingerpainting.h:
+    net.evendanan.android.hagarfingerpainting.ColorPickerDialog this$0 -> a
+    void colorChanged(int,int) -> a
+    int getCurrentColor(int) -> a
+net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener -> net.evendanan.android.hagarfingerpainting.c:
+    void colorChanged(int,int) -> a
+    int getCurrentColor(int) -> a
+net.evendanan.android.hagarfingerpainting.ColorPickerView -> net.evendanan.android.hagarfingerpainting.a:
+    android.graphics.Paint mPaint -> a
+    android.graphics.Paint mCenterPaint -> b
+    int[] mColors -> c
+    net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener mListener -> d
+    boolean mTrackingCenter -> e
+    boolean mHighlightCenter -> f
+    int CENTER_X -> g
+    int CENTER_Y -> h
+    int CENTER_RADIUS -> i
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onMeasure(int,int) -> onMeasure
+    int ave(int,int,float) -> a
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+net.evendanan.android.hagarfingerpainting.FingerpaintSettingsActivity -> net.evendanan.android.hagarfingerpainting.FingerpaintSettingsActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity -> net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity:
+    net.evendanan.android.hagarfingerpainting.Whiteboard mWhiteboard -> a
+    android.widget.ImageView mBackground -> b
+    com.google.ads.AdView mAdView -> c
+    android.graphics.MaskFilter mBlur -> d
+    boolean mBlurFilterApplied -> e
+    boolean mEraseMode -> f
+    android.widget.TextView mPainterName -> g
+    net.evendanan.android.hagarfingerpainting.newpaper.IntentDrivenPaperBackground mBackgroundPaper -> h
+    void onCreate(android.os.Bundle) -> onCreate
+    void onResume() -> onResume
+    void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    android.app.Dialog onCreateDialog(int) -> onCreateDialog
+    void onPrepareDialog(int,android.app.Dialog) -> onPrepareDialog
+    void createNewPaper(net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground) -> a
+    void setWhiteboardBackground(net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground) -> b
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
+    boolean getShowAds() -> a
+    java.lang.String getPainterName() -> b
+    java.io.File takeScreenshot(boolean) -> a
+    net.evendanan.android.hagarfingerpainting.Whiteboard access$0(net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity) -> a
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$1 -> net.evendanan.android.hagarfingerpainting.f:
+    android.view.View mSelectedItem -> a
+    net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> b
+    void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
+    void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$2 -> net.evendanan.android.hagarfingerpainting.g:
+    net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> a
+    android.widget.EditText val$painterName -> b
+    android.widget.Gallery val$colors -> c
+    android.app.Dialog val$newPaper -> d
+    void onClick(android.view.View) -> onClick
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$3 -> net.evendanan.android.hagarfingerpainting.d:
+    net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> a
+    android.app.Dialog val$newPaper -> b
+    void onClick(android.view.View) -> onClick
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$4 -> net.evendanan.android.hagarfingerpainting.e:
+    net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> a
+    void onCancel(android.content.DialogInterface) -> onCancel
+net.evendanan.android.hagarfingerpainting.PathDrawing -> net.evendanan.android.hagarfingerpainting.b:
+    android.graphics.Path path -> a
+    int pointerColor -> b
+    float mX -> c
+    float mY -> d
+net.evendanan.android.hagarfingerpainting.Whiteboard -> net.evendanan.android.hagarfingerpainting.Whiteboard:
+    android.graphics.Bitmap mBitmap -> a
+    android.graphics.Canvas mCanvas -> b
+    java.util.Map mPaths -> c
+    java.util.Stack mColorsStack -> d
+    android.graphics.Paint mBitmapPaint -> e
+    android.graphics.Paint mPaint -> f
+    int[] mColors -> g
+    int getCurrentColor(int) -> a
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void colorChanged(int,int) -> a
+    void onDraw(android.graphics.Canvas) -> onDraw
+    net.evendanan.android.hagarfingerpainting.PathDrawing getPath(int) -> b
+    int popColorForPointer() -> a
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void setMaskFilter(android.graphics.MaskFilter) -> a
+    void setEraserMode(boolean) -> a
+net.evendanan.android.hagarfingerpainting.newpaper.CameraPaperBackground -> net.evendanan.android.hagarfingerpainting.a.e:
+    android.graphics.drawable.Drawable mLoadedCameraImage -> a
+    android.graphics.drawable.Drawable getIcon(android.content.Context) -> a
+    android.graphics.drawable.Drawable getBackgroundDrawable$468fc119() -> a
+    android.content.Intent getIntentToStartForResult$7ec49240() -> b
+    java.lang.String getActionTitle(android.content.Context) -> b
+    void onActivityResult(android.content.Context,android.content.Intent) -> a
+net.evendanan.android.hagarfingerpainting.newpaper.GalleryPaperBackground -> net.evendanan.android.hagarfingerpainting.a.f:
+    android.graphics.drawable.Drawable mLoadedGalleryImage -> a
+    android.graphics.drawable.Drawable getIcon(android.content.Context) -> a
+    android.graphics.drawable.Drawable getBackgroundDrawable$468fc119() -> a
+    android.content.Intent getIntentToStartForResult$7ec49240() -> b
+    java.lang.String getActionTitle(android.content.Context) -> b
+    void onActivityResult(android.content.Context,android.content.Intent) -> a
+    java.lang.String getPath(android.content.Context,android.net.Uri) -> a
+net.evendanan.android.hagarfingerpainting.newpaper.IntentDrivenPaperBackground -> net.evendanan.android.hagarfingerpainting.a.d:
+    android.content.Intent getIntentToStartForResult$7ec49240() -> b
+    java.lang.String getActionTitle(android.content.Context) -> b
+    void onActivityResult(android.content.Context,android.content.Intent) -> a
+net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground -> net.evendanan.android.hagarfingerpainting.a.b:
+    android.graphics.drawable.Drawable getIcon(android.content.Context) -> a
+    android.graphics.drawable.Drawable getBackgroundDrawable$468fc119() -> a
+net.evendanan.android.hagarfingerpainting.newpaper.PaperColorListAdapter -> net.evendanan.android.hagarfingerpainting.a.c:
+    net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground[] mPapers -> a
+    android.view.LayoutInflater mInflator -> b
+    android.content.Context mAppContext -> c
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    boolean areAllItemsEnabled() -> areAllItemsEnabled
+    int getItemViewType(int) -> getItemViewType
+    int getViewTypeCount() -> getViewTypeCount
+    boolean hasStableIds() -> hasStableIds
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+net.evendanan.android.hagarfingerpainting.newpaper.SimplePaperBackground -> net.evendanan.android.hagarfingerpainting.a.a:
+    android.graphics.drawable.Drawable mIcon -> a
+    android.graphics.drawable.Drawable mBackground -> b
+    android.graphics.drawable.Drawable getIcon(android.content.Context) -> a
+    android.graphics.drawable.Drawable getBackgroundDrawable$468fc119() -> a
+o -> n:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+p -> ab:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+q -> aa:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+r -> z:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+s -> y:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+t -> x:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+u -> w:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+v -> v:
+    void a(d,java.util.HashMap,android.webkit.WebView) -> a
+w -> u:
+    android.content.Context a -> a
+    java.lang.String b -> b
+    void run() -> run
+x -> ac:
+    java.lang.ref.WeakReference a -> a
+    void run() -> run

@@ -1,0 +1,87 @@
+c:
+    final void a()
+com.google.ads.Ad:
+    public abstract boolean isReady()
+    public abstract void loadAd(com.google.ads.AdRequest)
+    public abstract void setAdListener(com.google.ads.AdListener)
+    public abstract void stopLoading()
+com.google.ads.AdActivity:
+    public static final java.lang.String BASE_URL_PARAM
+    public static final java.lang.String HTML_PARAM
+    public static final java.lang.String URL_PARAM
+    public static final java.lang.String INTENT_ACTION_PARAM
+    public static final java.lang.String TYPE_PARAM
+    public static final java.lang.String ORIENTATION_PARAM
+com.google.ads.AdRequest:
+    public static final java.lang.String VERSION
+    public static final java.lang.String LOGTAG
+    public void setGender(com.google.ads.AdRequest$Gender)
+    public void setBirthday(java.lang.String)
+    public void setKeywords(java.util.Set)
+    public void setExtras(java.util.Map)
+    public void addExtra(java.lang.String,java.lang.Object)
+    public void setLocation(android.location.Location)
+    public void setTesting(boolean)
+    public void addTestDevice(java.lang.String)
+    public void setTestDevices(java.util.Set)
+com.google.ads.AdSize:
+    public AdSize(int,int)
+com.google.ads.AdView:
+    public AdView(android.app.Activity,com.google.ads.AdSize,java.lang.String)
+    public void destroy()
+    public boolean isReady()
+    public void setAdListener(com.google.ads.AdListener)
+    public void stopLoading()
+com.google.ads.InterstitialAd:
+    private d a
+    public InterstitialAd(android.app.Activity,java.lang.String)
+    public InterstitialAd(android.app.Activity,java.lang.String,boolean)
+    public boolean isReady()
+    public void loadAd(com.google.ads.AdRequest)
+    public void show()
+    public void setAdListener(com.google.ads.AdListener)
+    public void stopLoading()
+com.google.ads.R
+com.google.ads.R$attr
+com.google.ads.R$id
+com.google.ads.R$layout
+d:
+    public final synchronized void b()
+    public final synchronized boolean o()
+    public final synchronized void a(com.google.ads.AdListener)
+    public final synchronized void y()
+    public final synchronized void z()
+net.evendanan.android.hagarfingerpainting.ColorPickerView:
+    private static final float PI
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity:
+    public static final java.lang.String TAG
+    private static final int DIALOG_NEW_PAPER
+    private static final int PAPER_INTENT_REQUEST
+    private static final java.lang.String PAPER_INTENT_OBJECT_KEY
+    private static final int COLOR_MENU_ID
+    private static final int ERASE_MENU_ID
+    private static final int SAVE_MENU_ID
+    private static final int SHARE_MENU_ID
+    private static final int NEW_PAPER_MENU_ID
+    private static final int SETTINGS_MENU_ID
+net.evendanan.android.hagarfingerpainting.R
+net.evendanan.android.hagarfingerpainting.R$attr
+net.evendanan.android.hagarfingerpainting.R$bool
+net.evendanan.android.hagarfingerpainting.R$color
+net.evendanan.android.hagarfingerpainting.R$dimen
+net.evendanan.android.hagarfingerpainting.R$drawable
+net.evendanan.android.hagarfingerpainting.R$id
+net.evendanan.android.hagarfingerpainting.R$layout
+net.evendanan.android.hagarfingerpainting.R$string
+net.evendanan.android.hagarfingerpainting.R$style
+net.evendanan.android.hagarfingerpainting.Whiteboard:
+    private static final float STROKE_WIDTH
+    private static final float TOUCH_TOLERANCE
+net.evendanan.android.hagarfingerpainting.newpaper.CameraPaperBackground:
+    private static final long serialVersionUID
+    private static final java.lang.String TAG
+net.evendanan.android.hagarfingerpainting.newpaper.GalleryPaperBackground:
+    private static final long serialVersionUID
+    private static final java.lang.String TAG
+net.evendanan.android.hagarfingerpainting.newpaper.SimplePaperBackground:
+    private static final long serialVersionUID

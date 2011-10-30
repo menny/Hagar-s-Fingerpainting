@@ -27,4 +27,6 @@
     <string name="create_paper_button">Paint!</string>
     
     <string name="pick_image_from_gallery">Pick image</string>
+    
+    <string name="take_photo_as_paper">Take photo</string>
 </resources>

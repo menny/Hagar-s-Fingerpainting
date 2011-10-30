@@ -24,29 +24,24 @@ public class GalleryPaperBackground implements IntentDrivenPaperBackground {
 
 	private static final String TAG = "GalleryPaperBackground";
 	
-	private static final int SELECT_IMAGE_REQUEST_CODE = 89123;
-	private final Context mAppContext;
-	private final Drawable mIcon;
 	private Drawable mLoadedGalleryImage = null;
 	
-	public GalleryPaperBackground(Context context)
+	public GalleryPaperBackground()
 	{
-		mAppContext = context;
-		mIcon = context.getResources().getDrawable(R.drawable.paper_gallery);
 	}
 	
 	@Override
-	public Drawable getIcon() {
-		return mIcon;
+	public Drawable getIcon(Context appContext) {
+		return appContext.getResources().getDrawable(R.drawable.paper_gallery);
 	}
 
 	@Override
-	public Drawable getBackgroundDrawable() {
+	public Drawable getBackgroundDrawable(Context appContext) {
 		return mLoadedGalleryImage;
 	}
 
 	@Override
-	public Intent getIntentToStartForResult() {
+	public Intent getIntentToStartForResult(Context appContext) {
 		Intent intent = new Intent();
 		intent.setType("image/*");
 		intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -55,19 +50,14 @@ public class GalleryPaperBackground implements IntentDrivenPaperBackground {
 	}
 	
 	@Override
-	public String getActionTitle() {
-		return mAppContext.getString(R.string.pick_image_from_gallery);
+	public String getActionTitle(Context appContext) {
+		return appContext.getString(R.string.pick_image_from_gallery);
 	}
 	
 	@Override
-	public int getRequestCode() {
-		return SELECT_IMAGE_REQUEST_CODE;
-	}
-	
-	@Override
-	public void onActivityResult(Intent data) {		
+	public void onActivityResult(Context appContext, Intent data) {		
 		Uri selectedImageUri = data.getData();
-		String selectedImagePath = getPath(selectedImageUri);
+		String selectedImagePath = getPath(appContext, selectedImageUri);
 		
 		Bitmap background = TextUtils.isEmpty(selectedImagePath)? null : BitmapFactory.decodeFile(selectedImagePath);
 		//setting the correct ratio
@@ -76,7 +66,7 @@ public class GalleryPaperBackground implements IntentDrivenPaperBackground {
 			final int width = background.getWidth();
 			final int height = background.getHeight();
 			
-			DisplayMetrics dm = mAppContext.getResources().getDisplayMetrics();
+			DisplayMetrics dm = appContext.getResources().getDisplayMetrics();
 	        final int displayWidth = dm.widthPixels;
 	        final int displayHeight = dm.heightPixels;
 	        
@@ -96,9 +86,9 @@ public class GalleryPaperBackground implements IntentDrivenPaperBackground {
 		}
 	}
 	
-	public String getPath(Uri uri) {
+	private String getPath(Context appContext, Uri uri) {
 		String[] projection = { MediaStore.Images.Media.DATA };
-		Cursor cursor = mAppContext.getContentResolver().query(uri, projection, null, null, null);
+		Cursor cursor = appContext.getContentResolver().query(uri, projection, null, null, null);
         if (cursor != null) {
         	try
         	{

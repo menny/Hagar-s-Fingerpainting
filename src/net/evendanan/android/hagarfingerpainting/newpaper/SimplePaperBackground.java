@@ -25,12 +25,12 @@ public class SimplePaperBackground implements PaperBackground {
 	}
 	
 	@Override
-	public Drawable getIcon() {
+	public Drawable getIcon(Context appContext) {
 		return mIcon;
 	}
 
 	@Override
-	public Drawable getBackgroundDrawable() {
+	public Drawable getBackgroundDrawable(Context appContext) {
 		return mBackground;
 	}
 	

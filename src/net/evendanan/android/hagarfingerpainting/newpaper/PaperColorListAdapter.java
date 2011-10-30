@@ -14,14 +14,18 @@ public class PaperColorListAdapter extends android.widget.BaseAdapter {
 	private final PaperBackground[] mPapers;
 	
 	private final LayoutInflater mInflator;
+
+	private final Context mAppContext;
 	
 	public PaperColorListAdapter(Context c)
 	{
+		mAppContext = c;
 		mInflator = (LayoutInflater)c.getSystemService(Service.LAYOUT_INFLATER_SERVICE);
 		
 		mPapers = new PaperBackground[]
 		                              {
-				new GalleryPaperBackground(c),
+				new CameraPaperBackground(),
+				new GalleryPaperBackground(),
 				new SimplePaperBackground(c, Color.WHITE, R.drawable.new_blank_paper_white),
 				new SimplePaperBackground(c, Color.DKGRAY, R.drawable.new_blank_paper_black),
 				new SimplePaperBackground(c, Color.RED, R.drawable.new_blank_paper_red),
@@ -70,7 +74,7 @@ public class PaperColorListAdapter extends android.widget.BaseAdapter {
 		ViewGroup v = (ViewGroup)mInflator.inflate(R.layout.paper_icon_view, null);
 		ImageView i = (ImageView)v.findViewById(R.id.paper_icon);
 		PaperBackground paper = (PaperBackground)getItem(position);
-		i.setImageDrawable(paper.getIcon());
+		i.setImageDrawable(paper.getIcon(mAppContext));
 		
 		return v;
 	}

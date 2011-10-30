@@ -7,7 +7,7 @@
 		android:layout_alignParentLeft="true" android:layout_alignParentTop="true"
 		android:layout_alignParentRight="true" android:layout_alignParentBottom="true"
 		android:adjustViewBounds="true"
-		android:src="@drawable/paper"
+		android:src="@drawable/big_paper"
 		android:scaleType="centerCrop"
 		/>
 	

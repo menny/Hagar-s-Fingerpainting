@@ -1,11 +1,11 @@
 package net.evendanan.android.hagarfingerpainting.newpaper;
 
+import android.content.Context;
 import android.content.Intent;
 
 public interface IntentDrivenPaperBackground extends PaperBackground {
-	Intent getIntentToStartForResult();
-	String getActionTitle();
-	int getRequestCode();
+	Intent getIntentToStartForResult(Context appContext);
+	String getActionTitle(Context appContext);
 	
-	void onActivityResult(Intent data);
+	void onActivityResult(Context appContext, Intent data);
 }
