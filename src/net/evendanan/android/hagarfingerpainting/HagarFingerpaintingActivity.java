@@ -219,6 +219,9 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 		case DIALOG_NEW_PAPER:
 			EditText painterName = (EditText)dialog.findViewById(R.id.painter_name_input_text);
 			painterName.setText(getPainterName());
+			//recreating the items (so they lose their inner state)
+			final Gallery colors = (Gallery)dialog.findViewById(R.id.colors_list);
+			((PaperColorListAdapter)colors.getAdapter()).clearItemsState();
 			break;
 		default:
 			super.onPrepareDialog(id, dialog);

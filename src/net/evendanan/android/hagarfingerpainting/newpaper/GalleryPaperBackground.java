@@ -15,7 +15,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-public class GalleryPaperBackground implements IntentDrivenPaperBackground {
+public class GalleryPaperBackground implements IntentDrivenPaperBackground, PaperBackgroundState {
 
 	/**
 	 * 
@@ -103,5 +103,10 @@ public class GalleryPaperBackground implements IntentDrivenPaperBackground {
         }
         return null;
     }
+	
+	@Override
+	public void clearInnerState() {
+		mLoadedGalleryImage = null;
+	}
 
 }

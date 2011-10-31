@@ -78,6 +78,16 @@ public class PaperColorListAdapter extends android.widget.BaseAdapter {
 		
 		return v;
 	}
+
+	public void clearItemsState() {
+		for(PaperBackground p : mPapers)
+		{
+			if (p instanceof PaperBackgroundState)
+			{
+				((PaperBackgroundState)p).clearInnerState();
+			}
+		}
+	}
 	
 	
 }

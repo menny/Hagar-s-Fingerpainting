@@ -10,7 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-public class CameraPaperBackground implements IntentDrivenPaperBackground {
+public class CameraPaperBackground implements IntentDrivenPaperBackground, PaperBackgroundState {
 
 	/**
 	 * 
@@ -21,8 +21,7 @@ public class CameraPaperBackground implements IntentDrivenPaperBackground {
 	
 	private Drawable mLoadedCameraImage = null;
 	
-	public CameraPaperBackground()
-	{
+	public CameraPaperBackground(){
 	}
 	
 	@Override
@@ -72,5 +71,10 @@ public class CameraPaperBackground implements IntentDrivenPaperBackground {
 		}
         
 		mLoadedCameraImage = new BitmapDrawable(bm);
+	}
+	
+	@Override
+	public void clearInnerState() {
+		mLoadedCameraImage = null;
 	}
 }
