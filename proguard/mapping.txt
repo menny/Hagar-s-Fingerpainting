@@ -347,18 +347,18 @@ m -> p:
     void a(d,java.util.HashMap,android.webkit.WebView) -> a
 n -> m:
     void a(d,java.util.HashMap,android.webkit.WebView) -> a
-net.evendanan.android.hagarfingerpainting.ColorPickerDialog -> net.evendanan.android.hagarfingerpainting.i:
+net.evendanan.android.hagarfingerpainting.ColorPickerDialog -> net.evendanan.android.hagarfingerpainting.j:
     net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener mListener -> a
     int mInitialColor -> b
     int mPointerIndex -> c
     void onCreate(android.os.Bundle) -> onCreate
     net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener access$0(net.evendanan.android.hagarfingerpainting.ColorPickerDialog) -> a
     int access$1(net.evendanan.android.hagarfingerpainting.ColorPickerDialog) -> b
-net.evendanan.android.hagarfingerpainting.ColorPickerDialog$1 -> net.evendanan.android.hagarfingerpainting.h:
+net.evendanan.android.hagarfingerpainting.ColorPickerDialog$1 -> net.evendanan.android.hagarfingerpainting.i:
     net.evendanan.android.hagarfingerpainting.ColorPickerDialog this$0 -> a
     void colorChanged(int,int) -> a
     int getCurrentColor(int) -> a
-net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener -> net.evendanan.android.hagarfingerpainting.c:
+net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener -> net.evendanan.android.hagarfingerpainting.d:
     void colorChanged(int,int) -> a
     int getCurrentColor(int) -> a
 net.evendanan.android.hagarfingerpainting.ColorPickerView -> net.evendanan.android.hagarfingerpainting.a:
@@ -402,29 +402,32 @@ net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity -> net.eve
     java.lang.String getPainterName() -> b
     java.io.File takeScreenshot(boolean) -> a
     net.evendanan.android.hagarfingerpainting.Whiteboard access$0(net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity) -> a
-net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$1 -> net.evendanan.android.hagarfingerpainting.f:
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$1 -> net.evendanan.android.hagarfingerpainting.g:
     android.view.View mSelectedItem -> a
     net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> b
     void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
     void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
-net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$2 -> net.evendanan.android.hagarfingerpainting.g:
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$2 -> net.evendanan.android.hagarfingerpainting.h:
     net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> a
     android.widget.EditText val$painterName -> b
     android.widget.Gallery val$colors -> c
     android.app.Dialog val$newPaper -> d
     void onClick(android.view.View) -> onClick
-net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$3 -> net.evendanan.android.hagarfingerpainting.d:
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$3 -> net.evendanan.android.hagarfingerpainting.e:
     net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> a
     android.app.Dialog val$newPaper -> b
     void onClick(android.view.View) -> onClick
-net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$4 -> net.evendanan.android.hagarfingerpainting.e:
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$4 -> net.evendanan.android.hagarfingerpainting.f:
     net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> a
     void onCancel(android.content.DialogInterface) -> onCancel
-net.evendanan.android.hagarfingerpainting.PathDrawing -> net.evendanan.android.hagarfingerpainting.b:
+net.evendanan.android.hagarfingerpainting.PathDrawing -> net.evendanan.android.hagarfingerpainting.c:
     android.graphics.Path path -> a
     int pointerColor -> b
     float mX -> c
     float mY -> d
+net.evendanan.android.hagarfingerpainting.Places -> net.evendanan.android.hagarfingerpainting.b:
+    java.io.File getCameraTempFolder() -> b
+    java.io.File getCameraTempFile() -> a
 net.evendanan.android.hagarfingerpainting.Whiteboard -> net.evendanan.android.hagarfingerpainting.Whiteboard:
     android.graphics.Bitmap mBitmap -> a
     android.graphics.Canvas mCanvas -> b
@@ -442,28 +445,32 @@ net.evendanan.android.hagarfingerpainting.Whiteboard -> net.evendanan.android.ha
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
     void setMaskFilter(android.graphics.MaskFilter) -> a
     void setEraserMode(boolean) -> a
-net.evendanan.android.hagarfingerpainting.newpaper.CameraPaperBackground -> net.evendanan.android.hagarfingerpainting.a.e:
+net.evendanan.android.hagarfingerpainting.newpaper.CameraPaperBackground -> net.evendanan.android.hagarfingerpainting.a.f:
     android.graphics.drawable.Drawable mLoadedCameraImage -> a
     android.graphics.drawable.Drawable getIcon(android.content.Context) -> a
     android.graphics.drawable.Drawable getBackgroundDrawable$468fc119() -> a
-    android.content.Intent getIntentToStartForResult$7ec49240() -> b
+    android.content.Intent getIntentToStartForResult$7ec49240() -> c
     java.lang.String getActionTitle(android.content.Context) -> b
     void onActivityResult(android.content.Context,android.content.Intent) -> a
-net.evendanan.android.hagarfingerpainting.newpaper.GalleryPaperBackground -> net.evendanan.android.hagarfingerpainting.a.f:
+    void clearInnerState() -> b
+net.evendanan.android.hagarfingerpainting.newpaper.GalleryPaperBackground -> net.evendanan.android.hagarfingerpainting.a.g:
     android.graphics.drawable.Drawable mLoadedGalleryImage -> a
     android.graphics.drawable.Drawable getIcon(android.content.Context) -> a
     android.graphics.drawable.Drawable getBackgroundDrawable$468fc119() -> a
-    android.content.Intent getIntentToStartForResult$7ec49240() -> b
+    android.content.Intent getIntentToStartForResult$7ec49240() -> c
     java.lang.String getActionTitle(android.content.Context) -> b
     void onActivityResult(android.content.Context,android.content.Intent) -> a
     java.lang.String getPath(android.content.Context,android.net.Uri) -> a
-net.evendanan.android.hagarfingerpainting.newpaper.IntentDrivenPaperBackground -> net.evendanan.android.hagarfingerpainting.a.d:
-    android.content.Intent getIntentToStartForResult$7ec49240() -> b
+    void clearInnerState() -> b
+net.evendanan.android.hagarfingerpainting.newpaper.IntentDrivenPaperBackground -> net.evendanan.android.hagarfingerpainting.a.e:
+    android.content.Intent getIntentToStartForResult$7ec49240() -> c
     java.lang.String getActionTitle(android.content.Context) -> b
     void onActivityResult(android.content.Context,android.content.Intent) -> a
 net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground -> net.evendanan.android.hagarfingerpainting.a.b:
     android.graphics.drawable.Drawable getIcon(android.content.Context) -> a
     android.graphics.drawable.Drawable getBackgroundDrawable$468fc119() -> a
+net.evendanan.android.hagarfingerpainting.newpaper.PaperBackgroundState -> net.evendanan.android.hagarfingerpainting.a.d:
+    void clearInnerState() -> b
 net.evendanan.android.hagarfingerpainting.newpaper.PaperColorListAdapter -> net.evendanan.android.hagarfingerpainting.a.c:
     net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground[] mPapers -> a
     android.view.LayoutInflater mInflator -> b
@@ -476,6 +483,7 @@ net.evendanan.android.hagarfingerpainting.newpaper.PaperColorListAdapter -> net.
     int getViewTypeCount() -> getViewTypeCount
     boolean hasStableIds() -> hasStableIds
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    void clearItemsState() -> a
 net.evendanan.android.hagarfingerpainting.newpaper.SimplePaperBackground -> net.evendanan.android.hagarfingerpainting.a.a:
     android.graphics.drawable.Drawable mIcon -> a
     android.graphics.drawable.Drawable mBackground -> b

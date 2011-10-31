@@ -1,5 +1,9 @@
 package net.evendanan.android.hagarfingerpainting.newpaper;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import net.evendanan.android.hagarfingerpainting.Places;
 import net.evendanan.android.hagarfingerpainting.R;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +11,8 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.provider.MediaStore.Images.Media;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -33,11 +39,11 @@ public class CameraPaperBackground implements IntentDrivenPaperBackground, Paper
 	public Drawable getBackgroundDrawable(Context appContext) {
 		return mLoadedCameraImage;
 	}
-
+	
 	@Override
 	public Intent getIntentToStartForResult(Context appContext) {
 		Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-		
+		intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(Places.getCameraTempFile()));
 		return intent;
 	}
 	
@@ -48,7 +54,24 @@ public class CameraPaperBackground implements IntentDrivenPaperBackground, Paper
 	
 	@Override
 	public void onActivityResult(Context appContext, Intent data) {
-		Bitmap bm = (Bitmap) data.getExtras().get("data");
+		Bitmap bm;
+		try {
+			Uri outputFile = Uri.fromFile(Places.getCameraTempFile());
+			Log.d(TAG, "Trying to locate image capture file: "+outputFile);
+			bm = Media.getBitmap(appContext.getContentResolver(), outputFile);
+		} catch (FileNotFoundException e) {
+			bm = null;
+			e.printStackTrace();
+		} catch (IOException e) {
+			bm = null;
+			e.printStackTrace();
+		}
+		
+		if (bm == null)
+		{
+			Log.d(TAG, "No image output file found. Trying to locate simple capture...");
+			bm = (Bitmap) data.getExtras().get("data");
+		}
 		
 		if (bm == null)
 		{

@@ -383,8 +383,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 		File file = null;
 		try
 		{
-			File path = new File(Environment.getExternalStorageDirectory(), "/Fingerpainting/");
-			path.mkdirs();
+			File path = Places.getScreenshotFolder();
 			Calendar cal = Calendar.getInstance();
 			
 			file = new File(path, 
@@ -416,6 +415,11 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 		if (file != null)
 		{
 			if (showToast) Toast.makeText(getApplicationContext(), "Save fingerpainting to: "+file.getAbsolutePath(), Toast.LENGTH_LONG).show();
+			//sending a broadcast to the media scanner so it will scan the new screenshot.
+			Intent requestScan = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+			requestScan.setData(Uri.fromFile(file));
+			sendBroadcast(requestScan); 
+			
 			return file;
 		}
 		else
