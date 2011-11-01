@@ -216,4 +216,9 @@ public class Whiteboard extends View implements ColorPickerDialog.OnColorChanged
 			mPaint.setStrokeWidth(STROKE_WIDTH);
 		}
 	}
+
+	public void eraseEntireWhiteboard() {
+		mPaths.clear();
+		invalidate();
+	}
 }

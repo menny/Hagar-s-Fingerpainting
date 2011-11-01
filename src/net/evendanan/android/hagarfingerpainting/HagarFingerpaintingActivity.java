@@ -44,7 +44,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -72,6 +71,8 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 	private static final int PAPER_INTENT_REQUEST = 58721;
 
 	private static final String PAPER_INTENT_OBJECT_KEY = "PAPER_INTENT_OBJECT_KEY";
+
+	private static final String PAPER_CREATED_KEY = "PAPER_CREATED_KEY";
     
 	private Whiteboard mWhiteboard;
 	private ImageView mBackground;
@@ -82,7 +83,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 	private TextView mPainterName;
 
 	private IntentDrivenPaperBackground mBackgroundPaper;
-
+	private boolean mPaperCreated = false;
     
 	private static final int COLOR_MENU_ID = Menu.FIRST;
     //private static final int BLUR_MENU_ID = Menu.FIRST + 1;
@@ -101,10 +102,23 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         
+		setContentView(R.layout.main);
+        mWhiteboard = (Whiteboard)findViewById(R.id.whiteboard);
+        mPainterName = (TextView)findViewById(R.id.painter_name_text);
+        mAdView = (AdView)findViewById(R.id.adView);
+        mBackground = (ImageView)findViewById(R.id.background_image);
+        
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sp.registerOnSharedPreferenceChangeListener(this);
         
         mBackgroundPaper = savedInstanceState == null? null : (IntentDrivenPaperBackground)savedInstanceState.getSerializable(PAPER_INTENT_OBJECT_KEY);
+        mPaperCreated = savedInstanceState == null? false : savedInstanceState.getBoolean(PAPER_CREATED_KEY);
+        
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/schoolbell.ttf");
+        mPainterName.setTypeface(tf);
+        mBlur = new BlurMaskFilter(2, BlurMaskFilter.Blur.NORMAL);
+        
+        readyPaperTools();
     }
 
 	@Override
@@ -114,7 +128,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
     	String painterName = getPainterName();
     	setTitle(getString(R.string.app_title, painterName));
     	
-    	if (mWhiteboard == null)
+    	if (!mPaperCreated)
     	{
     		onNewPaperRequested();
     	}
@@ -124,6 +138,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putSerializable(PAPER_INTENT_OBJECT_KEY, mBackgroundPaper);
+		outState.putBoolean(PAPER_CREATED_KEY, mPaperCreated);
 	}
 
     void onNewPaperRequested() {
@@ -193,14 +208,14 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 				@Override
 				public void onClick(View v) {
 					newPaper.dismiss();
-					if (mWhiteboard == null)
+					if (!mPaperCreated)
 						HagarFingerpaintingActivity.this.finish();
 				}
 			});
 			newPaper.setOnCancelListener(new OnCancelListener() {
 				@Override
 				public void onCancel(DialogInterface dialog) {
-					if (mWhiteboard == null)
+					if (!mPaperCreated)
 						HagarFingerpaintingActivity.this.finish();
 				}
 			});
@@ -230,23 +245,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 	}
 
 	void createNewPaper(PaperBackground paper) {
-		setContentView(R.layout.main);
-        mWhiteboard = (Whiteboard)findViewById(R.id.whiteboard);
-        mPainterName = (TextView)findViewById(R.id.painter_name_text);
-        mAdView = (AdView)findViewById(R.id.adView);
-        mBackground = (ImageView)findViewById(R.id.background_image);
-        
-        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/schoolbell.ttf");
-        mPainterName.setTypeface(tf);
-        mBlur = new BlurMaskFilter(2, BlurMaskFilter.Blur.NORMAL);
-        
-        mWhiteboard.setMaskFilter(mBlur);
-        mBlurFilterApplied = true;
-        mWhiteboard.setEraserMode(false);
-        mEraseMode = false;
-        
-        mPainterName.setText(getPainterName());
-        mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
+		readyPaperTools();
         
         if (paper instanceof IntentDrivenPaperBackground && ((IntentDrivenPaperBackground)paper).getBackgroundDrawable(getApplicationContext()) == null)
         {
@@ -257,23 +256,39 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         }
         else
         {
-        	setWhiteboardBackground(paper);
+        	Drawable d = paper.getBackgroundDrawable(getApplicationContext());
+    		mBackground.setImageDrawable(d);
+    		mWhiteboard.eraseEntireWhiteboard();
+        	mPaperCreated = true;
         }
 	}
 
-	void setWhiteboardBackground(PaperBackground paper) {
-		Drawable d = paper.getBackgroundDrawable(getApplicationContext());
-		mBackground.setImageDrawable(d);
+	private void readyPaperTools() {
+		mWhiteboard.setMaskFilter(mBlur);
+        mBlurFilterApplied = true;
+        mWhiteboard.setEraserMode(false);
+        mEraseMode = false;
+        
+        mPainterName.setText(getPainterName());
+        mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		boolean handled = false;
 		if (resultCode == RESULT_OK) {
 			if (mBackgroundPaper != null && requestCode == PAPER_INTENT_REQUEST) {
 				mBackgroundPaper.onActivityResult(getApplicationContext(), data);
-				setWhiteboardBackground(mBackgroundPaper);
+				PaperBackground paper = mBackgroundPaper;
 				mBackgroundPaper = null;
+				if (paper.getBackgroundDrawable(getApplicationContext()) != null)
+				{
+					handled = true;
+					createNewPaper(paper);
+				}
 			}
 		}
+		
+		if (!handled) onNewPaperRequested();
 	}
 
     @Override

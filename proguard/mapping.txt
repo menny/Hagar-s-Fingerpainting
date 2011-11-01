@@ -386,22 +386,23 @@ net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity -> net.eve
     boolean mEraseMode -> f
     android.widget.TextView mPainterName -> g
     net.evendanan.android.hagarfingerpainting.newpaper.IntentDrivenPaperBackground mBackgroundPaper -> h
+    boolean mPaperCreated -> i
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
     android.app.Dialog onCreateDialog(int) -> onCreateDialog
     void onPrepareDialog(int,android.app.Dialog) -> onPrepareDialog
     void createNewPaper(net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground) -> a
-    void setWhiteboardBackground(net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground) -> b
+    void readyPaperTools() -> a
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
     boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
     void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
-    boolean getShowAds() -> a
-    java.lang.String getPainterName() -> b
+    boolean getShowAds() -> b
+    java.lang.String getPainterName() -> c
     java.io.File takeScreenshot(boolean) -> a
-    net.evendanan.android.hagarfingerpainting.Whiteboard access$0(net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity) -> a
+    boolean access$0(net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity) -> a
 net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$1 -> net.evendanan.android.hagarfingerpainting.g:
     android.view.View mSelectedItem -> a
     net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> b
@@ -441,10 +442,11 @@ net.evendanan.android.hagarfingerpainting.Whiteboard -> net.evendanan.android.ha
     void colorChanged(int,int) -> a
     void onDraw(android.graphics.Canvas) -> onDraw
     net.evendanan.android.hagarfingerpainting.PathDrawing getPath(int) -> b
-    int popColorForPointer() -> a
+    int popColorForPointer() -> b
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
     void setMaskFilter(android.graphics.MaskFilter) -> a
     void setEraserMode(boolean) -> a
+    void eraseEntireWhiteboard() -> a
 net.evendanan.android.hagarfingerpainting.newpaper.CameraPaperBackground -> net.evendanan.android.hagarfingerpainting.a.f:
     android.graphics.drawable.Drawable mLoadedCameraImage -> a
     android.graphics.drawable.Drawable getIcon(android.content.Context) -> a
