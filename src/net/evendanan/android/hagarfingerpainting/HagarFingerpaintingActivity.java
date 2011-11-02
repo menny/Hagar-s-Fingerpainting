@@ -71,8 +71,6 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 	private static final int PAPER_INTENT_REQUEST = 58721;
 
 	private static final String PAPER_INTENT_OBJECT_KEY = "PAPER_INTENT_OBJECT_KEY";
-
-	private static final String PAPER_CREATED_KEY = "PAPER_CREATED_KEY";
     
 	private Whiteboard mWhiteboard;
 	private ImageView mBackground;
@@ -112,7 +110,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         sp.registerOnSharedPreferenceChangeListener(this);
         
         mBackgroundPaper = savedInstanceState == null? null : (IntentDrivenPaperBackground)savedInstanceState.getSerializable(PAPER_INTENT_OBJECT_KEY);
-        mPaperCreated = savedInstanceState == null? false : savedInstanceState.getBoolean(PAPER_CREATED_KEY);
+        mPaperCreated = false;
         
         Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/schoolbell.ttf");
         mPainterName.setTypeface(tf);
@@ -138,7 +136,6 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putSerializable(PAPER_INTENT_OBJECT_KEY, mBackgroundPaper);
-		outState.putBoolean(PAPER_CREATED_KEY, mPaperCreated);
 	}
 
     void onNewPaperRequested() {
