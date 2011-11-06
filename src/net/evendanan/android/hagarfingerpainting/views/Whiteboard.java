@@ -17,7 +17,7 @@
 /*
 http://blog.evendanan.net/2011/08/Fingerpainting-app-for-Hagar-OR-Multitouch-sample-code
 */
-package net.evendanan.android.hagarfingerpainting;
+package net.evendanan.android.hagarfingerpainting.views;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -84,15 +84,16 @@ public class Whiteboard extends View implements ColorPickerDialog.OnColorChanged
         super.onDraw(canvas);
 
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
-
-        for(PathDrawing path : mPaths.values())
+        
+        //no need for this ATM, will need something like that when undo will be supported.
+        /*for(PathDrawing path : mPaths.values())
         {
         	if (path != null)
         	{
         		mPaint.setColor(path.pointerColor);
         		canvas.drawPath(path.path, mPaint);
         	}
-        }
+        }*/
     }
 
 	private static final float TOUCH_TOLERANCE = 4;
@@ -144,6 +145,10 @@ public class Whiteboard extends View implements ColorPickerDialog.OnColorChanged
         	path.path.quadTo(path.mX, path.mY, (x + path.mX)/2, (y + path.mY)/2);
         	path.mX = x;
         	path.mY = y;
+        	
+        	mPaint.setColor(path.pointerColor);
+            mCanvas.drawPath(path.path, mPaint);
+            
         	return true;
         }
         else

@@ -6851,7 +6851,7 @@ _____________________________________________________________________
 Interfaces (count = 1):
   - Class [android/content/SharedPreferences$OnSharedPreferenceChangeListener]
 
-Constant Pool (count = 579):
+Constant Pool (count = 570):
   - Integer [58721]
   - Integer [17301517]
   - Integer [17301518]
@@ -6886,7 +6886,6 @@ Constant Pool (count = 579):
   - Integer [2131296266]
   - String [.png]
   - String [/Fingerpainting/]
-  - String [PAPER_CREATED_KEY]
   - String [PAPER_INTENT_OBJECT_KEY]
   - String [Save fingerpainting to: ]
   - String [_]
@@ -6992,9 +6991,7 @@ Constant Pool (count = 579):
   - Methodref [android/graphics/BlurMaskFilter.<init> (FLandroid/graphics/BlurMaskFilter$Blur;)V]
   - Methodref [android/graphics/Typeface.createFromAsset (Landroid/content/res/AssetManager;Ljava/lang/String;)Landroid/graphics/Typeface;]
   - Methodref [android/net/Uri.fromFile (Ljava/io/File;)Landroid/net/Uri;]
-  - Methodref [android/os/Bundle.getBoolean (Ljava/lang/String;)Z]
   - Methodref [android/os/Bundle.getSerializable (Ljava/lang/String;)Ljava/io/Serializable;]
-  - Methodref [android/os/Bundle.putBoolean (Ljava/lang/String;Z)V]
   - Methodref [android/os/Bundle.putSerializable (Ljava/lang/String;Ljava/io/Serializable;)V]
   - Methodref [android/os/Environment.getExternalStorageDirectory ()Ljava/io/File;]
   - Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
@@ -7125,7 +7122,6 @@ Constant Pool (count = 579):
   + NameAndType [getApplicationContext ()Landroid/content/Context;]
   + NameAndType [getAssets ()Landroid/content/res/AssetManager;]
   + NameAndType [getBoolean (I)Z]
-  + NameAndType [getBoolean (Ljava/lang/String;)Z]
   + NameAndType [getBoolean (Ljava/lang/String;Z)Z]
   + NameAndType [getDecorView ()Landroid/view/View;]
   + NameAndType [getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
@@ -7155,7 +7151,6 @@ Constant Pool (count = 579):
   + NameAndType [onResume ()V]
   + NameAndType [onSaveInstanceState (Landroid/os/Bundle;)V]
   + NameAndType [printStackTrace ()V]
-  + NameAndType [putBoolean (Ljava/lang/String;Z)V]
   + NameAndType [putExtra (Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;]
   + NameAndType [putExtra (Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;]
   + NameAndType [putSerializable (Ljava/lang/String;Ljava/io/Serializable;)V]
@@ -7253,12 +7248,10 @@ Constant Pool (count = 579):
   + Utf8 [(Ljava/lang/String;)Ljava/io/Serializable;]
   + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + Utf8 [(Ljava/lang/String;)V]
-  + Utf8 [(Ljava/lang/String;)Z]
   + Utf8 [(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;]
   + Utf8 [(Ljava/lang/String;Ljava/io/Serializable;)V]
   + Utf8 [(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;]
   + Utf8 [(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
-  + Utf8 [(Ljava/lang/String;Z)V]
   + Utf8 [(Ljava/lang/String;Z)Z]
   + Utf8 [(Lnet/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity;)V]
   + Utf8 [(Lnet/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity;)Z]
@@ -7281,7 +7274,6 @@ Constant Pool (count = 579):
   + Utf8 [Lnet/evendanan/android/hagarfingerpainting/Whiteboard;]
   + Utf8 [Lnet/evendanan/android/hagarfingerpainting/a/e;]
   + Utf8 [NORMAL]
-  + Utf8 [PAPER_CREATED_KEY]
   + Utf8 [PAPER_INTENT_OBJECT_KEY]
   + Utf8 [PNG]
   + Utf8 [RGB_565]
@@ -7400,7 +7392,6 @@ Constant Pool (count = 579):
   + Utf8 [onSaveInstanceState]
   + Utf8 [onSharedPreferenceChanged]
   + Utf8 [printStackTrace]
-  + Utf8 [putBoolean]
   + Utf8 [putExtra]
   + Utf8 [putSerializable]
   + Utf8 [registerOnSharedPreferenceChangeListener]
@@ -7467,19 +7458,19 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 20, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] invokespecial #111
+      [1] invokespecial #110
         - Methodref [android/app/Activity.<init> ()V]
       [4] aload_0 v0
       [5] iconst_0
-      [6] putfield #106
+      [6] putfield #105
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.e Z]
       [9] aload_0 v0
       [10] iconst_0
-      [11] putfield #107
+      [11] putfield #106
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.f Z]
       [14] aload_0 v0
       [15] iconst_0
-      [16] putfield #110
+      [16] putfield #109
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.i Z]
       [19] return
       Code attribute exceptions (count = 0):
@@ -7488,81 +7479,81 @@ Methods (count = 17):
     Access flags: 0x4
       = protected void onCreate(android.os.Bundle)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 182, locals = 2, stack = 5):
+    + Code attribute instructions (code length = 169, locals = 2, stack = 5):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #112
+      [2] invokespecial #111
         - Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
       [5] aload_0 v0
       [6] iconst_1
-      [7] invokevirtual #194
+      [7] invokevirtual #191
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.requestWindowFeature (I)Z]
       [10] pop
       [11] aload_0 v0
-      [12] invokevirtual #193
+      [12] invokevirtual #190
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getWindow ()Landroid/view/Window;]
       [15] sipush 1024
       [18] sipush 1024
-      [21] invokevirtual #152
+      [21] invokevirtual #149
         - Methodref [android/view/Window.setFlags (II)V]
       [24] aload_0 v0
-      [25] invokevirtual #193
+      [25] invokevirtual #190
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getWindow ()Landroid/view/Window;]
       [28] sipush 128
-      [31] invokevirtual #150
+      [31] invokevirtual #147
         - Methodref [android/view/Window.addFlags (I)V]
       [34] aload_0 v0
       [35] ldc #8
         - Integer [2130903040]
-      [37] invokevirtual #196
+      [37] invokevirtual #193
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.setContentView (I)V]
       [40] aload_0 v0
       [41] aload_0 v0
       [42] ldc #26
         - Integer [2131296257]
-      [44] invokevirtual #187
+      [44] invokevirtual #184
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.findViewById (I)Landroid/view/View;]
-      [47] checkcast #89
+      [47] checkcast #88
         - Class [net/evendanan/android/hagarfingerpainting/Whiteboard]
-      [50] putfield #102
+      [50] putfield #101
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a Lnet/evendanan/android/hagarfingerpainting/Whiteboard;]
       [53] aload_0 v0
       [54] aload_0 v0
       [55] ldc #27
         - Integer [2131296258]
-      [57] invokevirtual #187
+      [57] invokevirtual #184
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.findViewById (I)Landroid/view/View;]
-      [60] checkcast #75
+      [60] checkcast #74
         - Class [android/widget/TextView]
-      [63] putfield #108
+      [63] putfield #107
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.g Landroid/widget/TextView;]
       [66] aload_0 v0
       [67] aload_0 v0
       [68] ldc #28
         - Integer [2131296259]
-      [70] invokevirtual #187
+      [70] invokevirtual #184
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.findViewById (I)Landroid/view/View;]
-      [73] checkcast #77
+      [73] checkcast #76
         - Class [com/google/ads/AdView]
-      [76] putfield #104
+      [76] putfield #103
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c Lcom/google/ads/AdView;]
       [79] aload_0 v0
       [80] aload_0 v0
       [81] ldc #25
         - Integer [2131296256]
-      [83] invokevirtual #187
+      [83] invokevirtual #184
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.findViewById (I)Landroid/view/View;]
-      [86] checkcast #74
+      [86] checkcast #73
         - Class [android/widget/ImageView]
-      [89] putfield #103
+      [89] putfield #102
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.b Landroid/widget/ImageView;]
       [92] aload_0 v0
-      [93] invokevirtual #188
+      [93] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
-      [96] invokestatic #146
+      [96] invokestatic #143
         - Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
       [99] aload_0 v0
-      [100] invokeinterface #214
+      [100] invokeinterface #211
         - InterfaceMethodref [android/content/SharedPreferences.registerOnSharedPreferenceChangeListener (Landroid/content/SharedPreferences$OnSharedPreferenceChangeListener;)V]
       [105] aload_0 v0
       [106] aload_1 v1
@@ -7570,72 +7561,62 @@ Methods (count = 17):
       [110] aconst_null
       [111] goto +12 (target=123)
       [114] aload_1 v1
-      [115] ldc #36
+      [115] ldc #35
         - String [PAPER_INTENT_OBJECT_KEY]
-      [117] invokevirtual #142
+      [117] invokevirtual #140
         - Methodref [android/os/Bundle.getSerializable (Ljava/lang/String;)Ljava/io/Serializable;]
-      [120] checkcast #92
+      [120] checkcast #91
         - Class [net/evendanan/android/hagarfingerpainting/a/e]
-      [123] putfield #109
+      [123] putfield #108
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.h Lnet/evendanan/android/hagarfingerpainting/a/e;]
       [126] aload_0 v0
-      [127] aload_1 v1
-      [128] ifnonnull +7 (target=135)
-      [131] iconst_0
-      [132] goto +9 (target=141)
-      [135] aload_1 v1
-      [136] ldc #35
-        - String [PAPER_CREATED_KEY]
-      [138] invokevirtual #141
-        - Methodref [android/os/Bundle.getBoolean (Ljava/lang/String;)Z]
-      [141] putfield #110
+      [127] iconst_0
+      [128] putfield #109
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.i Z]
-      [144] aload_0 v0
-      [145] invokevirtual #189
+      [131] aload_0 v0
+      [132] invokevirtual #186
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getAssets ()Landroid/content/res/AssetManager;]
-      [148] ldc #44
+      [135] ldc #43
         - String [fonts/schoolbell.ttf]
-      [150] invokestatic #139
+      [137] invokestatic #138
         - Methodref [android/graphics/Typeface.createFromAsset (Landroid/content/res/AssetManager;Ljava/lang/String;)Landroid/graphics/Typeface;]
-      [153] astore_1 v1
-      [154] aload_0 v0
-      [155] getfield #108
+      [140] astore_1 v1
+      [141] aload_0 v0
+      [142] getfield #107
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.g Landroid/widget/TextView;]
-      [158] aload_1 v1
-      [159] invokevirtual #161
+      [145] aload_1 v1
+      [146] invokevirtual #158
         - Methodref [android/widget/TextView.setTypeface (Landroid/graphics/Typeface;)V]
-      [162] aload_0 v0
-      [163] new #58
+      [149] aload_0 v0
+      [150] new #57
         - Class [android/graphics/BlurMaskFilter]
-      [166] dup
-      [167] fconst_2
-      [168] getstatic #101
+      [153] dup
+      [154] fconst_2
+      [155] getstatic #100
         - Fieldref [android/graphics/BlurMaskFilter$Blur.NORMAL Landroid/graphics/BlurMaskFilter$Blur;]
-      [171] invokespecial #138
+      [158] invokespecial #137
         - Methodref [android/graphics/BlurMaskFilter.<init> (FLandroid/graphics/BlurMaskFilter$Blur;)V]
-      [174] putfield #105
+      [161] putfield #104
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.d Landroid/graphics/MaskFilter;]
-      [177] aload_0 v0
-      [178] invokespecial #182
+      [164] aload_0 v0
+      [165] invokespecial #179
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a ()V]
-      [181] return
+      [168] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 4):
+      + Stack map table attribute (count = 2):
         - [114] Var: [a:net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity][a:android/os/Bundle][a:android/content/SharedPreferences], Stack: [a:net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity]
         - [123] Var: [a:net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity][a:android/os/Bundle][a:android/content/SharedPreferences], Stack: [a:net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity][a:net/evendanan/android/hagarfingerpainting/a/e]
-        - [135] Var: ..., Stack: [a:net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity]
-        - [141] Var: [a:net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity][a:android/os/Bundle][a:android/content/SharedPreferences], Stack: [a:net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity][i]
   + Method:       onResume()V
     Access flags: 0x4
       = protected void onResume()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 42, locals = 2, stack = 7):
       [0] aload_0 v0
-      [1] invokespecial #118
+      [1] invokespecial #117
         - Methodref [android/app/Activity.onResume ()V]
       [4] aload_0 v0
-      [5] invokespecial #186
+      [5] invokespecial #183
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c ()Ljava/lang/String;]
       [8] astore_1 v1
       [9] aload_0 v0
@@ -7643,23 +7624,23 @@ Methods (count = 17):
       [11] ldc #13
         - Integer [2131099652]
       [13] iconst_1
-      [14] anewarray #82
+      [14] anewarray #81
         - Class [java/lang/Object]
       [17] dup
       [18] iconst_0
       [19] aload_1 v1
       [20] aastore
-      [21] invokevirtual #192
+      [21] invokevirtual #189
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getString (I[Ljava/lang/Object;)Ljava/lang/String;]
-      [24] invokevirtual #197
+      [24] invokevirtual #194
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.setTitle (Ljava/lang/CharSequence;)V]
       [27] aload_0 v0
-      [28] getfield #110
+      [28] getfield #109
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.i Z]
       [31] ifne +10 (target=41)
       [34] aload_0 v0
       [35] sipush 12398
-      [38] invokevirtual #198
+      [38] invokevirtual #195
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.showDialog (I)V]
       [41] return
       Code attribute exceptions (count = 0):
@@ -7670,28 +7651,20 @@ Methods (count = 17):
     Access flags: 0x4
       = protected void onSaveInstanceState(android.os.Bundle)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 26, locals = 2, stack = 3):
+    + Code attribute instructions (code length = 16, locals = 2, stack = 3):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #119
+      [2] invokespecial #118
         - Methodref [android/app/Activity.onSaveInstanceState (Landroid/os/Bundle;)V]
       [5] aload_1 v1
-      [6] ldc #36
+      [6] ldc #35
         - String [PAPER_INTENT_OBJECT_KEY]
       [8] aload_0 v0
-      [9] getfield #109
+      [9] getfield #108
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.h Lnet/evendanan/android/hagarfingerpainting/a/e;]
-      [12] invokevirtual #144
+      [12] invokevirtual #141
         - Methodref [android/os/Bundle.putSerializable (Ljava/lang/String;Ljava/io/Serializable;)V]
-      [15] aload_1 v1
-      [16] ldc #35
-        - String [PAPER_CREATED_KEY]
-      [18] aload_0 v0
-      [19] getfield #110
-        - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.i Z]
-      [22] invokevirtual #143
-        - Methodref [android/os/Bundle.putBoolean (Ljava/lang/String;Z)V]
-      [25] return
+      [15] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       onCreateDialog(I)Landroid/app/Dialog;
@@ -7703,123 +7676,123 @@ Methods (count = 17):
       [1] tableswitch (1 offsets, default=164) (target=165)
         12398: offset = 19, target = 20
         default: offset = 164, target = 165
-      [20] new #47
+      [20] new #46
         - Class [android/app/Dialog]
       [23] dup
       [24] aload_0 v0
-      [25] invokespecial #120
+      [25] invokespecial #119
         - Methodref [android/app/Dialog.<init> (Landroid/content/Context;)V]
       [28] dup
       [29] astore_1 v1
       [30] ldc #23
         - Integer [2131099668]
-      [32] invokevirtual #125
+      [32] invokevirtual #124
         - Methodref [android/app/Dialog.setTitle (I)V]
       [35] aload_1 v1
       [36] ldc #9
         - Integer [2130903041]
-      [38] invokevirtual #123
+      [38] invokevirtual #122
         - Methodref [android/app/Dialog.setContentView (I)V]
       [41] aload_1 v1
       [42] iconst_1
-      [43] invokevirtual #122
+      [43] invokevirtual #121
         - Methodref [android/app/Dialog.setCancelable (Z)V]
       [46] aload_1 v1
       [47] ldc #29
         - Integer [2131296262]
-      [49] invokevirtual #121
+      [49] invokevirtual #120
         - Methodref [android/app/Dialog.findViewById (I)Landroid/view/View;]
-      [52] checkcast #72
+      [52] checkcast #71
         - Class [android/widget/EditText]
       [55] astore_2 v2
       [56] aload_0 v0
-      [57] invokevirtual #189
+      [57] invokevirtual #186
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getAssets ()Landroid/content/res/AssetManager;]
-      [60] ldc #44
+      [60] ldc #43
         - String [fonts/schoolbell.ttf]
-      [62] invokestatic #139
+      [62] invokestatic #138
         - Methodref [android/graphics/Typeface.createFromAsset (Landroid/content/res/AssetManager;Ljava/lang/String;)Landroid/graphics/Typeface;]
       [65] astore_3 v3
       [66] aload_2 v2
       [67] aload_3 v3
-      [68] invokevirtual #154
+      [68] invokevirtual #151
         - Methodref [android/widget/EditText.setTypeface (Landroid/graphics/Typeface;)V]
       [71] aload_1 v1
       [72] ldc #30
         - Integer [2131296264]
-      [74] invokevirtual #121
+      [74] invokevirtual #120
         - Methodref [android/app/Dialog.findViewById (I)Landroid/view/View;]
-      [77] checkcast #73
+      [77] checkcast #72
         - Class [android/widget/Gallery]
       [80] dup
       [81] astore_3 v3
-      [82] new #91
+      [82] new #90
         - Class [net/evendanan/android/hagarfingerpainting/a/c]
       [85] dup
       [86] aload_0 v0
-      [87] invokevirtual #188
+      [87] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
-      [90] invokespecial #204
+      [90] invokespecial #201
         - Methodref [net/evendanan/android/hagarfingerpainting/a/c.<init> (Landroid/content/Context;)V]
-      [93] invokevirtual #156
+      [93] invokevirtual #153
         - Methodref [android/widget/Gallery.setAdapter (Landroid/widget/SpinnerAdapter;)V]
       [96] aload_3 v3
-      [97] new #96
+      [97] new #95
         - Class [net/evendanan/android/hagarfingerpainting/g]
       [100] dup
       [101] aload_0 v0
-      [102] invokespecial #208
+      [102] invokespecial #205
         - Methodref [net/evendanan/android/hagarfingerpainting/g.<init> (Lnet/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity;)V]
-      [105] invokevirtual #157
+      [105] invokevirtual #154
         - Methodref [android/widget/Gallery.setOnItemSelectedListener (Landroid/widget/AdapterView$OnItemSelectedListener;)V]
       [108] aload_3 v3
       [109] iconst_2
-      [110] invokevirtual #158
+      [110] invokevirtual #155
         - Methodref [android/widget/Gallery.setSelection (I)V]
       [113] aload_1 v1
       [114] ldc #32
         - Integer [2131296266]
-      [116] invokevirtual #121
+      [116] invokevirtual #120
         - Methodref [android/app/Dialog.findViewById (I)Landroid/view/View;]
-      [119] new #97
+      [119] new #96
         - Class [net/evendanan/android/hagarfingerpainting/h]
       [122] dup
       [123] aload_0 v0
       [124] aload_2 v2
       [125] aload_3 v3
       [126] aload_1 v1
-      [127] invokespecial #209
+      [127] invokespecial #206
         - Methodref [net/evendanan/android/hagarfingerpainting/h.<init> (Lnet/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity;Landroid/widget/EditText;Landroid/widget/Gallery;Landroid/app/Dialog;)V]
-      [130] invokevirtual #149
+      [130] invokevirtual #146
         - Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [133] aload_1 v1
       [134] ldc #31
         - Integer [2131296265]
-      [136] invokevirtual #121
+      [136] invokevirtual #120
         - Methodref [android/app/Dialog.findViewById (I)Landroid/view/View;]
-      [139] new #94
+      [139] new #93
         - Class [net/evendanan/android/hagarfingerpainting/e]
       [142] dup
       [143] aload_0 v0
       [144] aload_1 v1
-      [145] invokespecial #206
+      [145] invokespecial #203
         - Methodref [net/evendanan/android/hagarfingerpainting/e.<init> (Lnet/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity;Landroid/app/Dialog;)V]
-      [148] invokevirtual #149
+      [148] invokevirtual #146
         - Methodref [android/view/View.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [151] aload_1 v1
-      [152] new #95
+      [152] new #94
         - Class [net/evendanan/android/hagarfingerpainting/f]
       [155] dup
       [156] aload_0 v0
-      [157] invokespecial #207
+      [157] invokespecial #204
         - Methodref [net/evendanan/android/hagarfingerpainting/f.<init> (Lnet/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity;)V]
-      [160] invokevirtual #124
+      [160] invokevirtual #123
         - Methodref [android/app/Dialog.setOnCancelListener (Landroid/content/DialogInterface$OnCancelListener;)V]
       [163] aload_1 v1
       [164] areturn
       [165] aload_0 v0
       [166] iload_1 v1
-      [167] invokespecial #113
+      [167] invokespecial #112
         - Methodref [android/app/Activity.onCreateDialog (I)Landroid/app/Dialog;]
       [170] areturn
       Code attribute exceptions (count = 0):
@@ -7839,33 +7812,33 @@ Methods (count = 17):
       [20] aload_2 v2
       [21] ldc #29
         - Integer [2131296262]
-      [23] invokevirtual #121
+      [23] invokevirtual #120
         - Methodref [android/app/Dialog.findViewById (I)Landroid/view/View;]
-      [26] checkcast #72
+      [26] checkcast #71
         - Class [android/widget/EditText]
       [29] aload_0 v0
-      [30] invokespecial #186
+      [30] invokespecial #183
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c ()Ljava/lang/String;]
-      [33] invokevirtual #153
+      [33] invokevirtual #150
         - Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [36] aload_2 v2
       [37] ldc #30
         - Integer [2131296264]
-      [39] invokevirtual #121
+      [39] invokevirtual #120
         - Methodref [android/app/Dialog.findViewById (I)Landroid/view/View;]
-      [42] checkcast #73
+      [42] checkcast #72
         - Class [android/widget/Gallery]
-      [45] invokevirtual #155
+      [45] invokevirtual #152
         - Methodref [android/widget/Gallery.getAdapter ()Landroid/widget/SpinnerAdapter;]
-      [48] checkcast #91
+      [48] checkcast #90
         - Class [net/evendanan/android/hagarfingerpainting/a/c]
-      [51] invokevirtual #205
+      [51] invokevirtual #202
         - Methodref [net/evendanan/android/hagarfingerpainting/a/c.a ()V]
       [54] return
       [55] aload_0 v0
       [56] iload_1 v1
       [57] aload_2 v2
-      [58] invokespecial #116
+      [58] invokespecial #115
         - Methodref [android/app/Activity.onPrepareDialog (ILandroid/app/Dialog;)V]
       [61] return
       Code attribute exceptions (count = 0):
@@ -7880,75 +7853,75 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 104, locals = 3, stack = 4):
       [0] aload_0 v0
-      [1] invokespecial #182
+      [1] invokespecial #179
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a ()V]
       [4] aload_1 v1
-      [5] instanceof #92
+      [5] instanceof #91
         - Class [net/evendanan/android/hagarfingerpainting/a/e]
       [8] ifeq +63 (target=71)
       [11] aload_1 v1
-      [12] checkcast #92
+      [12] checkcast #91
         - Class [net/evendanan/android/hagarfingerpainting/a/e]
       [15] aload_0 v0
-      [16] invokevirtual #188
+      [16] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
       [19] pop
-      [20] invokeinterface #220
+      [20] invokeinterface #217
         - InterfaceMethodref [net/evendanan/android/hagarfingerpainting/a/e.a ()Landroid/graphics/drawable/Drawable;]
       [25] ifnonnull +46 (target=71)
       [28] aload_1 v1
-      [29] checkcast #92
+      [29] checkcast #91
         - Class [net/evendanan/android/hagarfingerpainting/a/e]
       [32] astore_1 v1
       [33] aload_0 v0
       [34] aload_1 v1
-      [35] putfield #109
+      [35] putfield #108
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.h Lnet/evendanan/android/hagarfingerpainting/a/e;]
       [38] aload_1 v1
       [39] aload_0 v0
-      [40] invokevirtual #188
+      [40] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
       [43] pop
-      [44] invokeinterface #223
+      [44] invokeinterface #220
         - InterfaceMethodref [net/evendanan/android/hagarfingerpainting/a/e.c ()Landroid/content/Intent;]
       [49] astore_2 v2
       [50] aload_0 v0
       [51] aload_2 v2
       [52] aload_1 v1
       [53] aload_0 v0
-      [54] invokevirtual #188
+      [54] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
-      [57] invokeinterface #222
+      [57] invokeinterface #219
         - InterfaceMethodref [net/evendanan/android/hagarfingerpainting/a/e.b (Landroid/content/Context;)Ljava/lang/String;]
-      [62] invokestatic #129
+      [62] invokestatic #128
         - Methodref [android/content/Intent.createChooser (Landroid/content/Intent;Ljava/lang/CharSequence;)Landroid/content/Intent;]
       [65] ldc #1
         - Integer [58721]
-      [67] invokevirtual #200
+      [67] invokevirtual #197
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.startActivityForResult (Landroid/content/Intent;I)V]
       [70] return
       [71] aload_1 v1
       [72] aload_0 v0
-      [73] invokevirtual #188
+      [73] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
       [76] pop
-      [77] invokeinterface #219
+      [77] invokeinterface #216
         - InterfaceMethodref [net/evendanan/android/hagarfingerpainting/a/b.a ()Landroid/graphics/drawable/Drawable;]
       [82] astore_1 v1
       [83] aload_0 v0
-      [84] getfield #103
+      [84] getfield #102
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.b Landroid/widget/ImageView;]
       [87] aload_1 v1
-      [88] invokevirtual #159
+      [88] invokevirtual #156
         - Methodref [android/widget/ImageView.setImageDrawable (Landroid/graphics/drawable/Drawable;)V]
       [91] aload_0 v0
-      [92] getfield #102
+      [92] getfield #101
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a Lnet/evendanan/android/hagarfingerpainting/Whiteboard;]
-      [95] invokevirtual #201
+      [95] invokevirtual #198
         - Methodref [net/evendanan/android/hagarfingerpainting/Whiteboard.a ()V]
       [98] aload_0 v0
       [99] iconst_1
-      [100] putfield #110
+      [100] putfield #109
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.i Z]
       [103] return
       Code attribute exceptions (count = 0):
@@ -7962,46 +7935,46 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 61, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] getfield #102
+      [1] getfield #101
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a Lnet/evendanan/android/hagarfingerpainting/Whiteboard;]
       [4] aload_0 v0
-      [5] getfield #105
+      [5] getfield #104
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.d Landroid/graphics/MaskFilter;]
-      [8] invokevirtual #202
+      [8] invokevirtual #199
         - Methodref [net/evendanan/android/hagarfingerpainting/Whiteboard.a (Landroid/graphics/MaskFilter;)V]
       [11] aload_0 v0
       [12] iconst_1
-      [13] putfield #106
+      [13] putfield #105
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.e Z]
       [16] aload_0 v0
-      [17] getfield #102
+      [17] getfield #101
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a Lnet/evendanan/android/hagarfingerpainting/Whiteboard;]
       [20] iconst_0
-      [21] invokevirtual #203
+      [21] invokevirtual #200
         - Methodref [net/evendanan/android/hagarfingerpainting/Whiteboard.a (Z)V]
       [24] aload_0 v0
       [25] iconst_0
-      [26] putfield #107
+      [26] putfield #106
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.f Z]
       [29] aload_0 v0
-      [30] getfield #108
+      [30] getfield #107
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.g Landroid/widget/TextView;]
       [33] aload_0 v0
-      [34] invokespecial #186
+      [34] invokespecial #183
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c ()Ljava/lang/String;]
-      [37] invokevirtual #160
+      [37] invokevirtual #157
         - Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
       [40] aload_0 v0
-      [41] getfield #104
+      [41] getfield #103
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c Lcom/google/ads/AdView;]
       [44] aload_0 v0
-      [45] invokespecial #185
+      [45] invokespecial #182
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.b ()Z]
       [48] ifeq +7 (target=55)
       [51] iconst_0
       [52] goto +5 (target=57)
       [55] bipush 8
-      [57] invokevirtual #166
+      [57] invokevirtual #163
         - Methodref [com/google/ads/AdView.setVisibility (I)V]
       [60] return
       Code attribute exceptions (count = 0):
@@ -8020,7 +7993,7 @@ Methods (count = 17):
       [4] iconst_m1
       [5] ificmpne +62 (target=67)
       [8] aload_0 v0
-      [9] getfield #109
+      [9] getfield #108
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.h Lnet/evendanan/android/hagarfingerpainting/a/e;]
       [12] ifnull +55 (target=67)
       [15] iload_1 v1
@@ -8028,41 +8001,41 @@ Methods (count = 17):
         - Integer [58721]
       [18] ificmpne +49 (target=67)
       [21] aload_0 v0
-      [22] getfield #109
+      [22] getfield #108
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.h Lnet/evendanan/android/hagarfingerpainting/a/e;]
       [25] aload_0 v0
-      [26] invokevirtual #188
+      [26] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
       [29] aload_3 v3
-      [30] invokeinterface #221
+      [30] invokeinterface #218
         - InterfaceMethodref [net/evendanan/android/hagarfingerpainting/a/e.a (Landroid/content/Context;Landroid/content/Intent;)V]
       [35] aload_0 v0
-      [36] getfield #109
+      [36] getfield #108
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.h Lnet/evendanan/android/hagarfingerpainting/a/e;]
       [39] astore_1 v1
       [40] aload_0 v0
       [41] aconst_null
-      [42] putfield #109
+      [42] putfield #108
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.h Lnet/evendanan/android/hagarfingerpainting/a/e;]
       [45] aload_1 v1
       [46] aload_0 v0
-      [47] invokevirtual #188
+      [47] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
       [50] pop
-      [51] invokeinterface #219
+      [51] invokeinterface #216
         - InterfaceMethodref [net/evendanan/android/hagarfingerpainting/a/b.a ()Landroid/graphics/drawable/Drawable;]
       [56] ifnull +11 (target=67)
       [59] iconst_1
       [60] istore v4
       [62] aload_0 v0
       [63] aload_1 v1
-      [64] invokevirtual #183
+      [64] invokevirtual #180
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a (Lnet/evendanan/android/hagarfingerpainting/a/b;)V]
       [67] iload v4
       [69] ifne +10 (target=79)
       [72] aload_0 v0
       [73] sipush 12398
-      [76] invokevirtual #198
+      [76] invokevirtual #195
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.showDialog (I)V]
       [79] return
       Code attribute exceptions (count = 0):
@@ -8077,7 +8050,7 @@ Methods (count = 17):
     + Code attribute instructions (code length = 110, locals = 2, stack = 5):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #114
+      [2] invokespecial #113
         - Methodref [android/app/Activity.onCreateOptionsMenu (Landroid/view/Menu;)Z]
       [5] pop
       [6] aload_1 v1
@@ -8086,7 +8059,7 @@ Methods (count = 17):
       [9] iconst_0
       [10] ldc #14
         - Integer [2131099653]
-      [12] invokeinterface #215
+      [12] invokeinterface #212
         - InterfaceMethodref [android/view/Menu.add (IIII)Landroid/view/MenuItem;]
       [17] pop
       [18] aload_1 v1
@@ -8095,7 +8068,7 @@ Methods (count = 17):
       [21] iconst_0
       [22] ldc #15
         - Integer [2131099655]
-      [24] invokeinterface #215
+      [24] invokeinterface #212
         - InterfaceMethodref [android/view/Menu.add (IIII)Landroid/view/MenuItem;]
       [29] pop
       [30] aload_1 v1
@@ -8104,11 +8077,11 @@ Methods (count = 17):
       [34] iconst_0
       [35] ldc #16
         - Integer [2131099656]
-      [37] invokeinterface #215
+      [37] invokeinterface #212
         - InterfaceMethodref [android/view/Menu.add (IIII)Landroid/view/MenuItem;]
       [42] ldc #5
         - Integer [2130837527]
-      [44] invokeinterface #218
+      [44] invokeinterface #215
         - InterfaceMethodref [android/view/MenuItem.setIcon (I)Landroid/view/MenuItem;]
       [49] pop
       [50] aload_1 v1
@@ -8117,11 +8090,11 @@ Methods (count = 17):
       [53] iconst_0
       [54] ldc #17
         - Integer [2131099657]
-      [56] invokeinterface #215
+      [56] invokeinterface #212
         - InterfaceMethodref [android/view/Menu.add (IIII)Landroid/view/MenuItem;]
       [61] ldc #6
         - Integer [2130837528]
-      [63] invokeinterface #218
+      [63] invokeinterface #215
         - InterfaceMethodref [android/view/MenuItem.setIcon (I)Landroid/view/MenuItem;]
       [68] pop
       [69] aload_1 v1
@@ -8130,11 +8103,11 @@ Methods (count = 17):
       [72] iconst_0
       [73] ldc #18
         - Integer [2131099658]
-      [75] invokeinterface #215
+      [75] invokeinterface #212
         - InterfaceMethodref [android/view/Menu.add (IIII)Landroid/view/MenuItem;]
       [80] ldc #7
         - Integer [2130837530]
-      [82] invokeinterface #218
+      [82] invokeinterface #215
         - InterfaceMethodref [android/view/MenuItem.setIcon (I)Landroid/view/MenuItem;]
       [87] pop
       [88] aload_1 v1
@@ -8143,11 +8116,11 @@ Methods (count = 17):
       [92] iconst_0
       [93] ldc #19
         - Integer [2131099659]
-      [95] invokeinterface #215
+      [95] invokeinterface #212
         - InterfaceMethodref [android/view/Menu.add (IIII)Landroid/view/MenuItem;]
       [100] ldc #4
         - Integer [17301577]
-      [102] invokeinterface #218
+      [102] invokeinterface #215
         - InterfaceMethodref [android/view/MenuItem.setIcon (I)Landroid/view/MenuItem;]
       [107] pop
       [108] iconst_1
@@ -8161,10 +8134,10 @@ Methods (count = 17):
     + Code attribute instructions (code length = 33, locals = 2, stack = 2):
       [0] aload_1 v1
       [1] iconst_1
-      [2] invokeinterface #216
+      [2] invokeinterface #213
         - InterfaceMethodref [android/view/Menu.getItem (I)Landroid/view/MenuItem;]
       [7] aload_0 v0
-      [8] getfield #107
+      [8] getfield #106
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.f Z]
       [11] ifeq +8 (target=19)
       [14] ldc #2
@@ -8172,12 +8145,12 @@ Methods (count = 17):
       [16] goto +5 (target=21)
       [19] ldc #3
         - Integer [17301518]
-      [21] invokeinterface #218
+      [21] invokeinterface #215
         - InterfaceMethodref [android/view/MenuItem.setIcon (I)Landroid/view/MenuItem;]
       [26] pop
       [27] aload_0 v0
       [28] aload_1 v1
-      [29] invokespecial #117
+      [29] invokespecial #116
         - Methodref [android/app/Activity.onPrepareOptionsMenu (Landroid/view/Menu;)Z]
       [32] ireturn
       Code attribute exceptions (count = 0):
@@ -8191,7 +8164,7 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 256, locals = 3, stack = 8):
       [0] aload_1 v1
-      [1] invokeinterface #217
+      [1] invokeinterface #214
         - InterfaceMethodref [android/view/MenuItem.getItemId ()I]
       [6] tableswitch (7 offsets, default=244) (target=250)
         1: offset = 42, target = 48
@@ -8202,116 +8175,116 @@ Methods (count = 17):
         6: offset = 216, target = 222
         7: offset = 225, target = 231
         default: offset = 244, target = 250
-      [48] new #98
+      [48] new #97
         - Class [net/evendanan/android/hagarfingerpainting/j]
       [51] dup
       [52] aload_0 v0
       [53] aload_0 v0
-      [54] getfield #102
+      [54] getfield #101
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a Lnet/evendanan/android/hagarfingerpainting/Whiteboard;]
-      [57] invokespecial #210
+      [57] invokespecial #207
         - Methodref [net/evendanan/android/hagarfingerpainting/j.<init> (Landroid/content/Context;Lnet/evendanan/android/hagarfingerpainting/d;)V]
-      [60] invokevirtual #211
+      [60] invokevirtual #208
         - Methodref [net/evendanan/android/hagarfingerpainting/j.show ()V]
       [63] iconst_1
       [64] ireturn
       [65] aload_0 v0
       [66] aload_0 v0
-      [67] getfield #107
+      [67] getfield #106
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.f Z]
       [70] ifeq +7 (target=77)
       [73] iconst_0
       [74] goto +4 (target=78)
       [77] iconst_1
-      [78] putfield #107
+      [78] putfield #106
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.f Z]
       [81] aload_0 v0
-      [82] getfield #102
+      [82] getfield #101
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a Lnet/evendanan/android/hagarfingerpainting/Whiteboard;]
       [85] aload_0 v0
-      [86] getfield #107
+      [86] getfield #106
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.f Z]
-      [89] invokevirtual #203
+      [89] invokevirtual #200
         - Methodref [net/evendanan/android/hagarfingerpainting/Whiteboard.a (Z)V]
       [92] iconst_1
       [93] ireturn
       [94] aload_0 v0
       [95] iconst_1
-      [96] invokespecial #184
+      [96] invokespecial #181
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a (Z)Ljava/io/File;]
       [99] pop
       [100] iconst_1
       [101] ireturn
       [102] aload_0 v0
       [103] iconst_0
-      [104] invokespecial #184
+      [104] invokespecial #181
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.a (Z)Ljava/io/File;]
       [107] astore_1 v1
-      [108] new #51
+      [108] new #50
         - Class [android/content/Intent]
       [111] dup
-      [112] invokespecial #126
+      [112] invokespecial #125
         - Methodref [android/content/Intent.<init> ()V]
       [115] dup
       [116] astore_2 v2
-      [117] ldc #40
+      [117] ldc #39
         - String [android.intent.action.SEND]
-      [119] invokevirtual #132
+      [119] invokevirtual #131
         - Methodref [android/content/Intent.setAction (Ljava/lang/String;)Landroid/content/Intent;]
       [122] pop
       [123] aload_2 v2
-      [124] ldc #45
+      [124] ldc #44
         - String [image/png]
-      [126] invokevirtual #134
+      [126] invokevirtual #133
         - Methodref [android/content/Intent.setType (Ljava/lang/String;)Landroid/content/Intent;]
       [129] pop
       [130] aload_2 v2
-      [131] ldc #42
+      [131] ldc #41
         - String [android.intent.extra.SUBJECT]
       [133] aload_0 v0
       [134] ldc #20
         - Integer [2131099660]
       [136] iconst_1
-      [137] anewarray #82
+      [137] anewarray #81
         - Class [java/lang/Object]
       [140] dup
       [141] iconst_0
       [142] aload_0 v0
-      [143] invokespecial #186
+      [143] invokespecial #183
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c ()Ljava/lang/String;]
       [146] aastore
-      [147] invokevirtual #192
+      [147] invokevirtual #189
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getString (I[Ljava/lang/Object;)Ljava/lang/String;]
-      [150] invokevirtual #131
+      [150] invokevirtual #130
         - Methodref [android/content/Intent.putExtra (Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;]
       [153] pop
       [154] aload_2 v2
-      [155] ldc #43
+      [155] ldc #42
         - String [android.intent.extra.TEXT]
       [157] aload_0 v0
       [158] ldc #21
         - Integer [2131099661]
       [160] iconst_1
-      [161] anewarray #82
+      [161] anewarray #81
         - Class [java/lang/Object]
       [164] dup
       [165] iconst_0
       [166] aload_0 v0
-      [167] invokespecial #186
+      [167] invokespecial #183
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c ()Ljava/lang/String;]
       [170] aastore
-      [171] invokevirtual #192
+      [171] invokevirtual #189
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getString (I[Ljava/lang/Object;)Ljava/lang/String;]
-      [174] invokevirtual #131
+      [174] invokevirtual #130
         - Methodref [android/content/Intent.putExtra (Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;]
       [177] pop
       [178] aload_2 v2
-      [179] ldc #41
+      [179] ldc #40
         - String [android.intent.extra.STREAM]
       [181] aload_1 v1
-      [182] invokestatic #140
+      [182] invokestatic #139
         - Methodref [android/net/Uri.fromFile (Ljava/io/File;)Landroid/net/Uri;]
-      [185] invokevirtual #130
+      [185] invokevirtual #129
         - Methodref [android/content/Intent.putExtra (Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;]
       [188] pop
       [189] aload_0 v0
@@ -8319,50 +8292,50 @@ Methods (count = 17):
       [191] aload_0 v0
       [192] ldc #18
         - Integer [2131099658]
-      [194] invokevirtual #191
+      [194] invokevirtual #188
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getString (I)Ljava/lang/String;]
-      [197] invokestatic #129
+      [197] invokestatic #128
         - Methodref [android/content/Intent.createChooser (Landroid/content/Intent;Ljava/lang/CharSequence;)Landroid/content/Intent;]
-      [200] invokevirtual #199
+      [200] invokevirtual #196
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.startActivity (Landroid/content/Intent;)V]
       [203] goto +17 (target=220)
       [206] pop
       [207] aload_0 v0
-      [208] invokevirtual #188
+      [208] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
       [211] ldc #22
         - Integer [2131099662]
       [213] iconst_1
-      [214] invokestatic #162
+      [214] invokestatic #159
         - Methodref [android/widget/Toast.makeText (Landroid/content/Context;II)Landroid/widget/Toast;]
-      [217] invokevirtual #164
+      [217] invokevirtual #161
         - Methodref [android/widget/Toast.show ()V]
       [220] iconst_1
       [221] ireturn
       [222] aload_0 v0
       [223] sipush 12398
-      [226] invokevirtual #198
+      [226] invokevirtual #195
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.showDialog (I)V]
       [229] iconst_1
       [230] ireturn
       [231] aload_0 v0
-      [232] new #51
+      [232] new #50
         - Class [android/content/Intent]
       [235] dup
       [236] aload_0 v0
-      [237] invokevirtual #188
+      [237] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
-      [240] ldc #87
+      [240] ldc #86
         - Class [net/evendanan/android/hagarfingerpainting/FingerpaintSettingsActivity]
-      [242] invokespecial #127
+      [242] invokespecial #126
         - Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
-      [245] invokevirtual #199
+      [245] invokevirtual #196
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.startActivity (Landroid/content/Intent;)V]
       [248] iconst_1
       [249] ireturn
       [250] aload_0 v0
       [251] aload_1 v1
-      [252] invokespecial #115
+      [252] invokespecial #114
         - Methodref [android/app/Activity.onOptionsItemSelected (Landroid/view/MenuItem;)Z]
       [255] ireturn
       Code attribute exceptions (count = 1):
@@ -8390,48 +8363,48 @@ Methods (count = 17):
       [1] aload_0 v0
       [2] ldc #10
         - Integer [2131099648]
-      [4] invokevirtual #191
+      [4] invokevirtual #188
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getString (I)Ljava/lang/String;]
-      [7] invokevirtual #174
+      [7] invokevirtual #171
         - Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
       [10] ifeq +22 (target=32)
       [13] aload_0 v0
-      [14] getfield #108
+      [14] getfield #107
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.g Landroid/widget/TextView;]
       [17] ifnull +55 (target=72)
       [20] aload_0 v0
-      [21] getfield #108
+      [21] getfield #107
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.g Landroid/widget/TextView;]
       [24] aload_0 v0
-      [25] invokespecial #186
+      [25] invokespecial #183
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c ()Ljava/lang/String;]
-      [28] invokevirtual #160
+      [28] invokevirtual #157
         - Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
       [31] return
       [32] aload_2 v2
       [33] aload_0 v0
       [34] ldc #12
         - Integer [2131099650]
-      [36] invokevirtual #191
+      [36] invokevirtual #188
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getString (I)Ljava/lang/String;]
-      [39] invokevirtual #174
+      [39] invokevirtual #171
         - Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
       [42] ifeq +30 (target=72)
       [45] aload_0 v0
-      [46] getfield #104
+      [46] getfield #103
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c Lcom/google/ads/AdView;]
       [49] ifnull +23 (target=72)
       [52] aload_0 v0
-      [53] getfield #104
+      [53] getfield #103
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c Lcom/google/ads/AdView;]
       [56] aload_0 v0
-      [57] invokespecial #185
+      [57] invokespecial #182
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.b ()Z]
       [60] ifeq +7 (target=67)
       [63] iconst_0
       [64] goto +5 (target=69)
       [67] bipush 8
-      [69] invokevirtual #166
+      [69] invokevirtual #163
         - Methodref [com/google/ads/AdView.setVisibility (I)V]
       [72] return
       Code attribute exceptions (count = 0):
@@ -8448,23 +8421,23 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 28, locals = 1, stack = 4):
       [0] aload_0 v0
-      [1] invokevirtual #188
+      [1] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
-      [4] invokestatic #146
+      [4] invokestatic #143
         - Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
       [7] aload_0 v0
       [8] ldc #12
         - Integer [2131099650]
-      [10] invokevirtual #191
+      [10] invokevirtual #188
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getString (I)Ljava/lang/String;]
       [13] aload_0 v0
-      [14] invokevirtual #190
+      [14] invokevirtual #187
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getResources ()Landroid/content/res/Resources;]
       [17] ldc #24
         - Integer [2131165184]
-      [19] invokevirtual #135
+      [19] invokevirtual #134
         - Methodref [android/content/res/Resources.getBoolean (I)Z]
-      [22] invokeinterface #212
+      [22] invokeinterface #209
         - InterfaceMethodref [android/content/SharedPreferences.getBoolean (Ljava/lang/String;Z)Z]
       [27] ireturn
       Code attribute exceptions (count = 0):
@@ -8475,21 +8448,21 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 25, locals = 1, stack = 4):
       [0] aload_0 v0
-      [1] invokevirtual #188
+      [1] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
-      [4] invokestatic #146
+      [4] invokestatic #143
         - Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
       [7] aload_0 v0
       [8] ldc #10
         - Integer [2131099648]
-      [10] invokevirtual #191
+      [10] invokevirtual #188
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getString (I)Ljava/lang/String;]
       [13] aload_0 v0
       [14] ldc #11
         - Integer [2131099649]
-      [16] invokevirtual #191
+      [16] invokevirtual #188
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getString (I)Ljava/lang/String;]
-      [19] invokeinterface #213
+      [19] invokeinterface #210
         - InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [24] areturn
       Code attribute exceptions (count = 0):
@@ -8500,155 +8473,155 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 375, locals = 7, stack = 7):
       [0] aload_0 v0
-      [1] invokevirtual #193
+      [1] invokevirtual #190
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getWindow ()Landroid/view/Window;]
-      [4] invokevirtual #151
+      [4] invokevirtual #148
         - Methodref [android/view/Window.getDecorView ()Landroid/view/View;]
       [7] astore_2 v2
       [8] aload_0 v0
-      [9] getfield #104
+      [9] getfield #103
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c Lcom/google/ads/AdView;]
-      [12] invokevirtual #165
+      [12] invokevirtual #162
         - Methodref [com/google/ads/AdView.getVisibility ()I]
       [15] istore_3 v3
       [16] aload_0 v0
-      [17] getfield #104
+      [17] getfield #103
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c Lcom/google/ads/AdView;]
       [20] iconst_4
-      [21] invokevirtual #166
+      [21] invokevirtual #163
         - Methodref [com/google/ads/AdView.setVisibility (I)V]
       [24] aload_2 v2
       [25] iconst_1
-      [26] invokevirtual #148
+      [26] invokevirtual #145
         - Methodref [android/view/View.setDrawingCacheEnabled (Z)V]
       [29] aload_2 v2
-      [30] invokevirtual #147
+      [30] invokevirtual #144
         - Methodref [android/view/View.getDrawingCache ()Landroid/graphics/Bitmap;]
-      [33] getstatic #100
+      [33] getstatic #99
         - Fieldref [android/graphics/Bitmap$Config.RGB_565 Landroid/graphics/Bitmap$Config;]
       [36] iconst_1
-      [37] invokevirtual #137
+      [37] invokevirtual #136
         - Methodref [android/graphics/Bitmap.copy (Landroid/graphics/Bitmap$Config;Z)Landroid/graphics/Bitmap;]
       [40] astore_2 v2
       [41] aconst_null
       [42] astore v4
-      [44] new #78
+      [44] new #77
         - Class [java/io/File]
       [47] dup
-      [48] invokestatic #145
+      [48] invokestatic #142
         - Methodref [android/os/Environment.getExternalStorageDirectory ()Ljava/io/File;]
       [51] ldc #34
         - String [/Fingerpainting/]
-      [53] invokespecial #167
+      [53] invokespecial #164
         - Methodref [java/io/File.<init> (Ljava/io/File;Ljava/lang/String;)V]
       [56] dup
       [57] astore v5
-      [59] invokevirtual #169
+      [59] invokevirtual #166
         - Methodref [java/io/File.mkdirs ()Z]
       [62] pop
       [63] aload v5
       [65] astore v6
-      [67] invokestatic #181
+      [67] invokestatic #178
         - Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
       [70] astore v5
-      [72] new #78
+      [72] new #77
         - Class [java/io/File]
       [75] dup
       [76] aload v6
-      [78] new #84
+      [78] new #83
         - Class [java/lang/StringBuilder]
       [81] dup
       [82] aload_0 v0
-      [83] invokespecial #186
+      [83] invokespecial #183
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c ()Ljava/lang/String;]
-      [86] invokestatic #175
+      [86] invokestatic #172
         - Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [89] invokespecial #176
+      [89] invokespecial #173
         - Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [92] ldc #38
+      [92] ldc #37
         - String [_]
-      [94] invokevirtual #178
+      [94] invokevirtual #175
         - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [97] aload v5
       [99] iconst_1
-      [100] invokevirtual #180
+      [100] invokevirtual #177
         - Methodref [java/util/Calendar.get (I)I]
-      [103] invokevirtual #177
+      [103] invokevirtual #174
         - Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [106] ldc #38
+      [106] ldc #37
         - String [_]
-      [108] invokevirtual #178
+      [108] invokevirtual #175
         - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [111] iconst_1
       [112] aload v5
       [114] iconst_2
-      [115] invokevirtual #180
+      [115] invokevirtual #177
         - Methodref [java/util/Calendar.get (I)I]
       [118] iadd
-      [119] invokevirtual #177
+      [119] invokevirtual #174
         - Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [122] ldc #38
+      [122] ldc #37
         - String [_]
-      [124] invokevirtual #178
+      [124] invokevirtual #175
         - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [127] aload v5
       [129] iconst_5
-      [130] invokevirtual #180
+      [130] invokevirtual #177
         - Methodref [java/util/Calendar.get (I)I]
-      [133] invokevirtual #177
+      [133] invokevirtual #174
         - Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [136] ldc #38
+      [136] ldc #37
         - String [_]
-      [138] invokevirtual #178
+      [138] invokevirtual #175
         - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [141] aload v5
       [143] bipush 11
-      [145] invokevirtual #180
+      [145] invokevirtual #177
         - Methodref [java/util/Calendar.get (I)I]
-      [148] invokevirtual #177
+      [148] invokevirtual #174
         - Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [151] ldc #38
+      [151] ldc #37
         - String [_]
-      [153] invokevirtual #178
+      [153] invokevirtual #175
         - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [156] aload v5
       [158] bipush 12
-      [160] invokevirtual #180
+      [160] invokevirtual #177
         - Methodref [java/util/Calendar.get (I)I]
-      [163] invokevirtual #177
+      [163] invokevirtual #174
         - Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
-      [166] ldc #38
+      [166] ldc #37
         - String [_]
-      [168] invokevirtual #178
+      [168] invokevirtual #175
         - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [171] aload v5
       [173] bipush 13
-      [175] invokevirtual #180
+      [175] invokevirtual #177
         - Methodref [java/util/Calendar.get (I)I]
-      [178] invokevirtual #177
+      [178] invokevirtual #174
         - Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
       [181] ldc #33
         - String [.png]
-      [183] invokevirtual #178
+      [183] invokevirtual #175
         - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [186] invokevirtual #179
+      [186] invokevirtual #176
         - Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [189] invokespecial #167
+      [189] invokespecial #164
         - Methodref [java/io/File.<init> (Ljava/io/File;Ljava/lang/String;)V]
       [192] astore v5
-      [194] new #80
+      [194] new #79
         - Class [java/io/FileOutputStream]
       [197] dup
       [198] aload v5
-      [200] invokespecial #171
+      [200] invokespecial #168
         - Methodref [java/io/FileOutputStream.<init> (Ljava/io/File;)V]
       [203] astore v4
       [205] aload_2 v2
-      [206] getstatic #99
+      [206] getstatic #98
         - Fieldref [android/graphics/Bitmap$CompressFormat.PNG Landroid/graphics/Bitmap$CompressFormat;]
       [209] bipush 100
       [211] aload v4
-      [213] invokevirtual #136
+      [213] invokevirtual #135
         - Methodref [android/graphics/Bitmap.compress (Landroid/graphics/Bitmap$CompressFormat;ILjava/io/OutputStream;)Z]
       [216] pop
       [217] goto +67 (target=284)
@@ -8656,96 +8629,96 @@ Methods (count = 17):
       [222] aconst_null
       [223] astore v5
       [225] aload v6
-      [227] invokevirtual #170
+      [227] invokevirtual #167
         - Methodref [java/io/FileNotFoundException.printStackTrace ()V]
       [230] aload v4
       [232] ifnull +14 (target=246)
       [235] aload v4
-      [237] invokevirtual #172
+      [237] invokevirtual #169
         - Methodref [java/io/FileOutputStream.close ()V]
       [240] goto +6 (target=246)
-      [243] invokevirtual #173
+      [243] invokevirtual #170
         - Methodref [java/io/IOException.printStackTrace ()V]
       [246] aload_0 v0
-      [247] getfield #104
+      [247] getfield #103
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c Lcom/google/ads/AdView;]
       [250] iload_3 v3
-      [251] invokevirtual #166
+      [251] invokevirtual #163
         - Methodref [com/google/ads/AdView.setVisibility (I)V]
       [254] goto +49 (target=303)
       [257] astore_1 v1
       [258] aload v4
       [260] ifnull +14 (target=274)
       [263] aload v4
-      [265] invokevirtual #172
+      [265] invokevirtual #169
         - Methodref [java/io/FileOutputStream.close ()V]
       [268] goto +6 (target=274)
-      [271] invokevirtual #173
+      [271] invokevirtual #170
         - Methodref [java/io/IOException.printStackTrace ()V]
       [274] aload_0 v0
-      [275] getfield #104
+      [275] getfield #103
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c Lcom/google/ads/AdView;]
       [278] iload_3 v3
-      [279] invokevirtual #166
+      [279] invokevirtual #163
         - Methodref [com/google/ads/AdView.setVisibility (I)V]
       [282] aload_1 v1
       [283] athrow
       [284] aload v4
-      [286] invokevirtual #172
+      [286] invokevirtual #169
         - Methodref [java/io/FileOutputStream.close ()V]
       [289] goto +6 (target=295)
-      [292] invokevirtual #173
+      [292] invokevirtual #170
         - Methodref [java/io/IOException.printStackTrace ()V]
       [295] aload_0 v0
-      [296] getfield #104
+      [296] getfield #103
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.c Lcom/google/ads/AdView;]
       [299] iload_3 v3
-      [300] invokevirtual #166
+      [300] invokevirtual #163
         - Methodref [com/google/ads/AdView.setVisibility (I)V]
       [303] aload v5
       [305] ifnull +68 (target=373)
       [308] iload_1 v1
       [309] ifeq +34 (target=343)
       [312] aload_0 v0
-      [313] invokevirtual #188
+      [313] invokevirtual #185
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.getApplicationContext ()Landroid/content/Context;]
-      [316] new #84
+      [316] new #83
         - Class [java/lang/StringBuilder]
       [319] dup
-      [320] ldc #37
+      [320] ldc #36
         - String [Save fingerpainting to: ]
-      [322] invokespecial #176
+      [322] invokespecial #173
         - Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [325] aload v5
-      [327] invokevirtual #168
+      [327] invokevirtual #165
         - Methodref [java/io/File.getAbsolutePath ()Ljava/lang/String;]
-      [330] invokevirtual #178
+      [330] invokevirtual #175
         - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [333] invokevirtual #179
+      [333] invokevirtual #176
         - Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [336] iconst_1
-      [337] invokestatic #163
+      [337] invokestatic #160
         - Methodref [android/widget/Toast.makeText (Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;]
-      [340] invokevirtual #164
+      [340] invokevirtual #161
         - Methodref [android/widget/Toast.show ()V]
-      [343] new #51
+      [343] new #50
         - Class [android/content/Intent]
       [346] dup
-      [347] ldc #39
+      [347] ldc #38
         - String [android.intent.action.MEDIA_SCANNER_SCAN_FILE]
-      [349] invokespecial #128
+      [349] invokespecial #127
         - Methodref [android/content/Intent.<init> (Ljava/lang/String;)V]
       [352] dup
       [353] astore v6
       [355] aload v5
-      [357] invokestatic #140
+      [357] invokestatic #139
         - Methodref [android/net/Uri.fromFile (Ljava/io/File;)Landroid/net/Uri;]
-      [360] invokevirtual #133
+      [360] invokevirtual #132
         - Methodref [android/content/Intent.setData (Landroid/net/Uri;)Landroid/content/Intent;]
       [363] pop
       [364] aload_0 v0
       [365] aload v6
-      [367] invokevirtual #195
+      [367] invokevirtual #192
         - Methodref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.sendBroadcast (Landroid/content/Intent;)V]
       [370] aload v5
       [372] areturn
@@ -8781,7 +8754,7 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #110
+      [1] getfield #109
         - Fieldref [net/evendanan/android/hagarfingerpainting/HagarFingerpaintingActivity.i Z]
       [4] ireturn
       Code attribute exceptions (count = 0):

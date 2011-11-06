@@ -17,9 +17,9 @@
 /*
 http://blog.evendanan.net/2011/08/Fingerpainting-app-for-Hagar-OR-Multitouch-sample-code
 */
-package net.evendanan.android.hagarfingerpainting;
+package net.evendanan.android.hagarfingerpainting.views;
 
-import net.evendanan.android.hagarfingerpainting.ColorPickerDialog.OnColorChangedListener;
+import net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog.OnColorChangedListener;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;

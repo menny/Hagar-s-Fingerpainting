@@ -58,7 +58,6 @@ net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity:
     private static final int DIALOG_NEW_PAPER
     private static final int PAPER_INTENT_REQUEST
     private static final java.lang.String PAPER_INTENT_OBJECT_KEY
-    private static final java.lang.String PAPER_CREATED_KEY
     private static final int COLOR_MENU_ID
     private static final int ERASE_MENU_ID
     private static final int SAVE_MENU_ID

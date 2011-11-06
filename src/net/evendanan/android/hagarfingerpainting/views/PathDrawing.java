@@ -17,7 +17,7 @@
 /*
 http://blog.evendanan.net/2011/08/Fingerpainting-app-for-Hagar-OR-Multitouch-sample-code
 */
-package net.evendanan.android.hagarfingerpainting;
+package net.evendanan.android.hagarfingerpainting.views;
 
 import android.graphics.Path;
 

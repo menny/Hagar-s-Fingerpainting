@@ -7,4 +7,6 @@
     <dimen name="text">16sp</dimen>
     
 	<dimen name="new_paper_icon_padding">3dp</dimen>
+	
+	<dimen name="settings_circle_padding">4dp</dimen>
 </resources>

@@ -28,6 +28,9 @@ import java.util.Calendar;
 import net.evendanan.android.hagarfingerpainting.newpaper.IntentDrivenPaperBackground;
 import net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground;
 import net.evendanan.android.hagarfingerpainting.newpaper.PaperColorListAdapter;
+import net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog;
+import net.evendanan.android.hagarfingerpainting.views.SettingsIconsView;
+import net.evendanan.android.hagarfingerpainting.views.Whiteboard;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -49,6 +52,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
@@ -57,6 +61,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,9 +85,13 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 	private boolean mEraseMode = false;
 	private TextView mPainterName;
 
+	private SettingsIconsView mSettingsIcons;
+	
 	private IntentDrivenPaperBackground mBackgroundPaper;
 	private boolean mPaperCreated = false;
     
+	
+	
 	private static final int COLOR_MENU_ID = Menu.FIRST;
     //private static final int BLUR_MENU_ID = Menu.FIRST + 1;
     private static final int ERASE_MENU_ID = Menu.FIRST + 2;
@@ -105,6 +114,11 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         mPainterName = (TextView)findViewById(R.id.painter_name_text);
         mAdView = (AdView)findViewById(R.id.adView);
         mBackground = (ImageView)findViewById(R.id.background_image);
+        mSettingsIcons = (SettingsIconsView)findViewById(R.id.settings_icons);
+        /*mSettingsIcons = new SettingsIconsView(this);
+        ViewGroup mainLayout = (ViewGroup)findViewById(R.id.main_layout);
+        mainLayout.addView(mSettingsIcons, mainLayout.getChildCount() - 1);
+        mSettingsIcons.bringToFront();*/
         
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sp.registerOnSharedPreferenceChangeListener(this);
