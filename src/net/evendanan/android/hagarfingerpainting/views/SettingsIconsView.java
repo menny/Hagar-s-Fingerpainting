@@ -36,8 +36,8 @@ public class SettingsIconsView extends View {
     
     private final DisplayMetrics mDisplayMetrics;
 
-    private int mWidth;
-    private int mHeight;
+    private final int mWidth;
+    private final int mHeight;
     private float mDragIconX;
     private float mDragIconY;
     private final Bitmap mDragIcon;
@@ -53,9 +53,12 @@ public class SettingsIconsView extends View {
         mPaint.setStrokeWidth(1);
         mDisplayMetrics = c.getResources().getDisplayMetrics();
         mHeight = mDisplayMetrics.heightPixels;
+        mWidth = mDisplayMetrics.widthPixels;
         
-        mDragIcon = BitmapFactory.decodeResource(c.getResources(), android.R.drawable.ic_menu_preferences);
-        mDragIconRadius = mDragIcon.getWidth()/2;
+        mDragIcon = BitmapFactory.decodeResource(c.getResources(), R.drawable.settings_drag_icon);
+        mDragIconRadius = Math.max(mDragIcon.getWidth(), mDragIcon.getHeight()) /2;
+        
+        Log.d(TAG, "Drag icon radius: "+mDragIconRadius);
         
         resetIcons();
     }
@@ -63,10 +66,8 @@ public class SettingsIconsView extends View {
     private void resetIcons() {
     	mTouched = false;
     	
-    	mWidth = mDragIcon.getWidth();
-    	
-    	mDragIconX = 0;
-    	mDragIconY = 0;
+    	mDragIconX = mWidth - (mDragIconRadius*1.5f);
+    	mDragIconY = 0 - (mDragIconRadius*0.5f);
     	
     	invalidate();
 	}
@@ -78,7 +79,7 @@ public class SettingsIconsView extends View {
 		canvas.translate(0, 0);
 		
 		mPaint.setColor(mTouched? 0x900505A0 : 0x300505A0);
-		canvas.drawCircle(mDragIconX + mDragIconRadius, mDragIconY + mDragIconRadius, mDragIconRadius, mPaint);
+		canvas.drawCircle(mDragIconX + mDragIconRadius, mDragIconY + mDragIconRadius, mDragIconRadius*1.25f, mPaint);
 		canvas.drawBitmap(mDragIcon, mDragIconX, mDragIconY, mPaint);
     }
 	
@@ -91,21 +92,18 @@ public class SettingsIconsView extends View {
     public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
         case MotionEvent.ACTION_DOWN:
-        	mTouched = true;
+        	mTouched = isTouchInsideSettingsDragIcon(event);
         case MotionEvent.ACTION_MOVE:
+        	if (!mTouched) return false;
+        	
         	mDragIconX = event.getX() - mDragIconRadius;
         	mDragIconY = event.getY() - mDragIconRadius;
-        	
-        	int newWidth = (int) Math.max(mDragIcon.getWidth(), event.getX() + mDragIconRadius);
-        	if (newWidth != mWidth)
-        	{
-        		//resize this view is required
-        	}
-        	mWidth = newWidth;
         	
         	invalidate();
         	break;
         case MotionEvent.ACTION_UP:
+        	if (!mTouched) return false;
+        	
         	mTouched = false;
         	resetIcons();
         	break;
@@ -113,49 +111,21 @@ public class SettingsIconsView extends View {
 		
 		return true;
 	}
-    /*
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        float x = event.getX() - CENTER_X;
-        float y = event.getY() - CENTER_Y;
-        boolean inCenter = java.lang.Math.sqrt(x*x + y*y) <= CENTER_RADIUS;
 
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                mTrackingCenter = inCenter;
-                if (inCenter) {
-                    mHighlightCenter = true;
-                    invalidate();
-                    break;
-                }
-            case MotionEvent.ACTION_MOVE:
-                if (mTrackingCenter) {
-                    if (mHighlightCenter != inCenter) {
-                        mHighlightCenter = inCenter;
-                        invalidate();
-                    }
-                } else {
-                    float angle = (float)java.lang.Math.atan2(y, x);
-                    // need to turn angle [-PI ... PI] into unit [0....1]
-                    float unit = angle/(2*PI);
-                    if (unit < 0) {
-                        unit += 1;
-                    }
-                    mCenterPaint.setColor(interpColor(mColors, unit));
-                    invalidate();
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                if (mTrackingCenter) {
-                    if (inCenter) {
-                        mListener.colorChanged(mCenterPaint.getColor(), -1);
-                    }
-                    mTrackingCenter = false;    // so we draw w/o halo
-                    invalidate();
-                }
-                break;
-        }
-        return true;
-    }
-    */
+	private boolean isTouchInsideSettingsDragIcon(MotionEvent event) {
+		final float touchX = event.getX();
+		final float touchY = event.getY();
+		
+		Log.d(TAG, "Touch @ "+touchX+","+touchY+" icon at "+mDragIconX+","+mDragIconY+" with radius "+mDragIconRadius);
+		
+		if (	(touchX >= mDragIconX) && (touchX < (mDragIconX + mDragIconRadius*2)) &&
+				(touchY >= mDragIconY) && (touchY < (mDragIconY + mDragIconRadius*2)))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
