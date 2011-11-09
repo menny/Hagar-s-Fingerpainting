@@ -51,8 +51,6 @@ d:
     public final synchronized void a(com.google.ads.AdListener)
     public final synchronized void y()
     public final synchronized void z()
-net.evendanan.android.hagarfingerpainting.ColorPickerView:
-    private static final float PI
 net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity:
     public static final java.lang.String TAG
     private static final int DIALOG_NEW_PAPER
@@ -74,9 +72,6 @@ net.evendanan.android.hagarfingerpainting.R$id
 net.evendanan.android.hagarfingerpainting.R$layout
 net.evendanan.android.hagarfingerpainting.R$string
 net.evendanan.android.hagarfingerpainting.R$style
-net.evendanan.android.hagarfingerpainting.Whiteboard:
-    private static final float STROKE_WIDTH
-    private static final float TOUCH_TOLERANCE
 net.evendanan.android.hagarfingerpainting.newpaper.CameraPaperBackground:
     private static final long serialVersionUID
     private static final java.lang.String TAG
@@ -85,3 +80,10 @@ net.evendanan.android.hagarfingerpainting.newpaper.GalleryPaperBackground:
     private static final java.lang.String TAG
 net.evendanan.android.hagarfingerpainting.newpaper.SimplePaperBackground:
     private static final long serialVersionUID
+net.evendanan.android.hagarfingerpainting.views.ColorPickerView:
+    private static final float PI
+net.evendanan.android.hagarfingerpainting.views.SettingsIconsView:
+    private static final java.lang.String TAG
+net.evendanan.android.hagarfingerpainting.views.Whiteboard:
+    private static final float STROKE_WIDTH
+    private static final float TOUCH_TOLERANCE

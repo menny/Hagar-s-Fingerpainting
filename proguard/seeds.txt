@@ -1,7 +1,9 @@
+net.evendanan.android.hagarfingerpainting.views.SettingsIconsView
+net.evendanan.android.hagarfingerpainting.views.SettingsIconsView: SettingsIconsView(android.content.Context,android.util.AttributeSet)
 com.google.ads.AdView
 com.google.ads.AdView: AdView(android.content.Context,android.util.AttributeSet)
-net.evendanan.android.hagarfingerpainting.Whiteboard
-net.evendanan.android.hagarfingerpainting.Whiteboard: Whiteboard(android.content.Context,android.util.AttributeSet)
+net.evendanan.android.hagarfingerpainting.views.Whiteboard
+net.evendanan.android.hagarfingerpainting.views.Whiteboard: Whiteboard(android.content.Context,android.util.AttributeSet)
 com.google.ads.AdView
 com.google.ads.AdView: AdView(android.content.Context,android.util.AttributeSet,int)
 com.google.ads.util.AdUtil$a: com.google.ads.util.AdUtil$a[] values()

@@ -4,6 +4,6 @@
     <string name="settings_key_painter_name_default_value">Hagar</string>
     
     <string name="settings_key_admob_enabled">settings_key_admob_enabled</string>
-    <bool name="settings_key_admob_enabled_default_value">false</bool>
+    <bool name="settings_key_admob_enabled_default_value">true</bool>
     
 </resources>

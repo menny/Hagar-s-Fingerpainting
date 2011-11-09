@@ -347,46 +347,19 @@ m -> p:
     void a(d,java.util.HashMap,android.webkit.WebView) -> a
 n -> m:
     void a(d,java.util.HashMap,android.webkit.WebView) -> a
-net.evendanan.android.hagarfingerpainting.ColorPickerDialog -> net.evendanan.android.hagarfingerpainting.j:
-    net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener mListener -> a
-    int mInitialColor -> b
-    int mPointerIndex -> c
-    void onCreate(android.os.Bundle) -> onCreate
-    net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener access$0(net.evendanan.android.hagarfingerpainting.ColorPickerDialog) -> a
-    int access$1(net.evendanan.android.hagarfingerpainting.ColorPickerDialog) -> b
-net.evendanan.android.hagarfingerpainting.ColorPickerDialog$1 -> net.evendanan.android.hagarfingerpainting.i:
-    net.evendanan.android.hagarfingerpainting.ColorPickerDialog this$0 -> a
-    void colorChanged(int,int) -> a
-    int getCurrentColor(int) -> a
-net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener -> net.evendanan.android.hagarfingerpainting.d:
-    void colorChanged(int,int) -> a
-    int getCurrentColor(int) -> a
-net.evendanan.android.hagarfingerpainting.ColorPickerView -> net.evendanan.android.hagarfingerpainting.a:
-    android.graphics.Paint mPaint -> a
-    android.graphics.Paint mCenterPaint -> b
-    int[] mColors -> c
-    net.evendanan.android.hagarfingerpainting.ColorPickerDialog$OnColorChangedListener mListener -> d
-    boolean mTrackingCenter -> e
-    boolean mHighlightCenter -> f
-    int CENTER_X -> g
-    int CENTER_Y -> h
-    int CENTER_RADIUS -> i
-    void onDraw(android.graphics.Canvas) -> onDraw
-    void onMeasure(int,int) -> onMeasure
-    int ave(int,int,float) -> a
-    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
 net.evendanan.android.hagarfingerpainting.FingerpaintSettingsActivity -> net.evendanan.android.hagarfingerpainting.FingerpaintSettingsActivity:
     void onCreate(android.os.Bundle) -> onCreate
 net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity -> net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity:
-    net.evendanan.android.hagarfingerpainting.Whiteboard mWhiteboard -> a
+    net.evendanan.android.hagarfingerpainting.views.Whiteboard mWhiteboard -> a
     android.widget.ImageView mBackground -> b
     com.google.ads.AdView mAdView -> c
     android.graphics.MaskFilter mBlur -> d
     boolean mBlurFilterApplied -> e
     boolean mEraseMode -> f
     android.widget.TextView mPainterName -> g
-    net.evendanan.android.hagarfingerpainting.newpaper.IntentDrivenPaperBackground mBackgroundPaper -> h
-    boolean mPaperCreated -> i
+    net.evendanan.android.hagarfingerpainting.views.SettingsIconsView mSettingsIcons -> h
+    net.evendanan.android.hagarfingerpainting.newpaper.IntentDrivenPaperBackground mBackgroundPaper -> i
+    boolean mPaperCreated -> j
     void onCreate(android.os.Bundle) -> onCreate
     void onResume() -> onResume
     void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
@@ -403,50 +376,27 @@ net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity -> net.eve
     java.lang.String getPainterName() -> c
     java.io.File takeScreenshot(boolean) -> a
     boolean access$0(net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity) -> a
-net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$1 -> net.evendanan.android.hagarfingerpainting.g:
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$1 -> net.evendanan.android.hagarfingerpainting.d:
     android.view.View mSelectedItem -> a
     net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> b
     void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
     void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
-net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$2 -> net.evendanan.android.hagarfingerpainting.h:
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$2 -> net.evendanan.android.hagarfingerpainting.e:
     net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> a
     android.widget.EditText val$painterName -> b
     android.widget.Gallery val$colors -> c
     android.app.Dialog val$newPaper -> d
     void onClick(android.view.View) -> onClick
-net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$3 -> net.evendanan.android.hagarfingerpainting.e:
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$3 -> net.evendanan.android.hagarfingerpainting.b:
     net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> a
     android.app.Dialog val$newPaper -> b
     void onClick(android.view.View) -> onClick
-net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$4 -> net.evendanan.android.hagarfingerpainting.f:
+net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity$4 -> net.evendanan.android.hagarfingerpainting.c:
     net.evendanan.android.hagarfingerpainting.HagarFingerpaintingActivity this$0 -> a
     void onCancel(android.content.DialogInterface) -> onCancel
-net.evendanan.android.hagarfingerpainting.PathDrawing -> net.evendanan.android.hagarfingerpainting.c:
-    android.graphics.Path path -> a
-    int pointerColor -> b
-    float mX -> c
-    float mY -> d
-net.evendanan.android.hagarfingerpainting.Places -> net.evendanan.android.hagarfingerpainting.b:
+net.evendanan.android.hagarfingerpainting.Places -> net.evendanan.android.hagarfingerpainting.a:
     java.io.File getCameraTempFolder() -> b
     java.io.File getCameraTempFile() -> a
-net.evendanan.android.hagarfingerpainting.Whiteboard -> net.evendanan.android.hagarfingerpainting.Whiteboard:
-    android.graphics.Bitmap mBitmap -> a
-    android.graphics.Canvas mCanvas -> b
-    java.util.Map mPaths -> c
-    java.util.Stack mColorsStack -> d
-    android.graphics.Paint mBitmapPaint -> e
-    android.graphics.Paint mPaint -> f
-    int[] mColors -> g
-    int getCurrentColor(int) -> a
-    void onSizeChanged(int,int,int,int) -> onSizeChanged
-    void colorChanged(int,int) -> a
-    void onDraw(android.graphics.Canvas) -> onDraw
-    net.evendanan.android.hagarfingerpainting.PathDrawing getPath(int) -> b
-    int popColorForPointer() -> b
-    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
-    void setMaskFilter(android.graphics.MaskFilter) -> a
-    void setEraserMode(boolean) -> a
-    void eraseEntireWhiteboard() -> a
 net.evendanan.android.hagarfingerpainting.newpaper.CameraPaperBackground -> net.evendanan.android.hagarfingerpainting.a.f:
     android.graphics.drawable.Drawable mLoadedCameraImage -> a
     android.graphics.drawable.Drawable getIcon(android.content.Context) -> a
@@ -491,6 +441,71 @@ net.evendanan.android.hagarfingerpainting.newpaper.SimplePaperBackground -> net.
     android.graphics.drawable.Drawable mBackground -> b
     android.graphics.drawable.Drawable getIcon(android.content.Context) -> a
     android.graphics.drawable.Drawable getBackgroundDrawable$468fc119() -> a
+net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog -> net.evendanan.android.hagarfingerpainting.views.b:
+    net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog$OnColorChangedListener mListener -> a
+    int mInitialColor -> b
+    int mPointerIndex -> c
+    void onCreate(android.os.Bundle) -> onCreate
+    net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog$OnColorChangedListener access$0(net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog) -> a
+    int access$1(net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog) -> b
+net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog$1 -> net.evendanan.android.hagarfingerpainting.views.e:
+    net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog this$0 -> a
+    void colorChanged(int,int) -> a
+    int getCurrentColor(int) -> a
+net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog$OnColorChangedListener -> net.evendanan.android.hagarfingerpainting.views.c:
+    void colorChanged(int,int) -> a
+    int getCurrentColor(int) -> a
+net.evendanan.android.hagarfingerpainting.views.ColorPickerView -> net.evendanan.android.hagarfingerpainting.views.d:
+    android.graphics.Paint mPaint -> a
+    android.graphics.Paint mCenterPaint -> b
+    int[] mColors -> c
+    net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog$OnColorChangedListener mListener -> d
+    boolean mTrackingCenter -> e
+    boolean mHighlightCenter -> f
+    int CENTER_X -> g
+    int CENTER_Y -> h
+    int CENTER_RADIUS -> i
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onMeasure(int,int) -> onMeasure
+    int ave(int,int,float) -> a
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+net.evendanan.android.hagarfingerpainting.views.PathDrawing -> net.evendanan.android.hagarfingerpainting.views.a:
+    android.graphics.Path path -> a
+    int pointerColor -> b
+    float mX -> c
+    float mY -> d
+net.evendanan.android.hagarfingerpainting.views.SettingsIconsView -> net.evendanan.android.hagarfingerpainting.views.SettingsIconsView:
+    android.util.DisplayMetrics mDisplayMetrics -> a
+    int mWidth -> b
+    int mHeight -> c
+    float mDragIconX -> d
+    float mDragIconY -> e
+    android.graphics.Bitmap mDragIcon -> f
+    float mDragIconRadius -> g
+    android.graphics.Paint mPaint -> h
+    boolean mTouched -> i
+    void resetIcons() -> a
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onMeasure(int,int) -> onMeasure
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+net.evendanan.android.hagarfingerpainting.views.Whiteboard -> net.evendanan.android.hagarfingerpainting.views.Whiteboard:
+    android.graphics.Bitmap mBitmap -> a
+    android.graphics.Canvas mCanvas -> b
+    java.util.Map mPaths -> c
+    java.util.Stack mColorsStack -> d
+    android.graphics.Paint mBitmapPaint -> e
+    android.graphics.Paint mPaint -> f
+    int[] mColors -> g
+    int getCurrentColor(int) -> a
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void colorChanged(int,int) -> a
+    void onDraw(android.graphics.Canvas) -> onDraw
+    net.evendanan.android.hagarfingerpainting.views.PathDrawing getPath(int) -> b
+    int popColorForPointer() -> b
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void setMaskFilter(android.graphics.MaskFilter) -> a
+    void setEraserMode(boolean) -> a
+    void eraseEntireWhiteboard() -> a
 o -> n:
     void a(d,java.util.HashMap,android.webkit.WebView) -> a
 p -> ab:
