@@ -3,6 +3,9 @@
     <string name="app_name">Hagar\'s Fingerpainting</string>
     <string name="app_title"><xliff:g id="painter_name">%s</xliff:g>\'s Fingerpainting</string>
     
+    <string name="drag_to_toolbox">Drag to here to open toolbox -> </string>
+    <string name="drag_to_settings">Drag to here to open app settings -> </string>
+    
     <string name="menu_color_title">Color</string>
     <string name="menu_blur_title">Blur</string>
     <string name="menu_eraser_title">Eraser</string>

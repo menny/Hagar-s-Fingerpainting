@@ -30,6 +30,7 @@ import net.evendanan.android.hagarfingerpainting.newpaper.PaperBackground;
 import net.evendanan.android.hagarfingerpainting.newpaper.PaperColorListAdapter;
 import net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog;
 import net.evendanan.android.hagarfingerpainting.views.SettingsIconsView;
+import net.evendanan.android.hagarfingerpainting.views.SettingsIconsView.SettingsIconsTouchedListener;
 import net.evendanan.android.hagarfingerpainting.views.Whiteboard;
 import android.app.Activity;
 import android.app.Dialog;
@@ -49,10 +50,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
@@ -61,13 +62,12 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageView;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.ads.AdView;
 
-public class HagarFingerpaintingActivity extends Activity implements OnSharedPreferenceChangeListener {
+public class HagarFingerpaintingActivity extends Activity implements OnSharedPreferenceChangeListener, SettingsIconsTouchedListener {
 
     public static final String TAG = "HagarFingerpaintingActivity";
 
@@ -91,14 +91,13 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 	private boolean mPaperCreated = false;
     
 	
-	
 	private static final int COLOR_MENU_ID = Menu.FIRST;
     //private static final int BLUR_MENU_ID = Menu.FIRST + 1;
     private static final int ERASE_MENU_ID = Menu.FIRST + 2;
     private static final int SAVE_MENU_ID = Menu.FIRST + 3;
     private static final int SHARE_MENU_ID = Menu.FIRST + 4;
     private static final int NEW_PAPER_MENU_ID = Menu.FIRST + 5;
-    private static final int SETTINGS_MENU_ID = Menu.FIRST + 6;
+    //private static final int SETTINGS_MENU_ID = Menu.FIRST + 6;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,10 +114,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         mAdView = (AdView)findViewById(R.id.adView);
         mBackground = (ImageView)findViewById(R.id.background_image);
         mSettingsIcons = (SettingsIconsView)findViewById(R.id.settings_icons);
-        /*mSettingsIcons = new SettingsIconsView(this);
-        ViewGroup mainLayout = (ViewGroup)findViewById(R.id.main_layout);
-        mainLayout.addView(mSettingsIcons, mainLayout.getChildCount() - 1);
-        mSettingsIcons.bringToFront();*/
+        mSettingsIcons.setOnSettingsIconsTouchedListener(this);
         
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sp.registerOnSharedPreferenceChangeListener(this);
@@ -312,7 +308,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         menu.add(0, NEW_PAPER_MENU_ID, 0, R.string.menu_new_title).setIcon(R.drawable.paper_menu);
         menu.add(0, SAVE_MENU_ID, 0, R.string.menu_save_title).setIcon(R.drawable.save_menu);
         menu.add(0, SHARE_MENU_ID, 0, R.string.menu_share_title).setIcon(R.drawable.share_menu);
-        menu.add(0, SETTINGS_MENU_ID, 0, R.string.menu_settings_title).setIcon(android.R.drawable.ic_menu_preferences);
+        //menu.add(0, SETTINGS_MENU_ID, 0, R.string.menu_settings_title).setIcon(android.R.drawable.ic_menu_preferences);
         
         return true;
     }
@@ -362,9 +358,9 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
             case NEW_PAPER_MENU_ID:
             	onNewPaperRequested();
             	return true;
-            case SETTINGS_MENU_ID:
+            /*case SETTINGS_MENU_ID:
             	startActivity(new Intent(getApplicationContext(), FingerpaintSettingsActivity.class));
-            	return true;
+            	return true;*/
         }
         return super.onOptionsItemSelected(item);
     }
@@ -452,5 +448,15 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
 		{
 			return null;
 		}
+	}
+
+	@Override
+	public void onToolboxIconTouched() {
+		mSettingsIcons.setToolBoxVisibility(true);
+	}
+
+	@Override
+	public void onSettingsIconTouched() {
+		startActivity(new Intent(getApplicationContext(), FingerpaintSettingsActivity.class));
 	}
 }
