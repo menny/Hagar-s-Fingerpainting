@@ -27,7 +27,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -43,22 +42,22 @@ public class SettingsIconsView extends View {
 	
 	private static final String TAG = "SettingsIconsView";
     
-	private static int msCurrentColorIndex = 0;
-	private static final int[] msHintTextColor = new int[]
-	                                                    {
-		Color.BLACK,
-		Color.BLUE,
-		Color.CYAN,
-		Color.DKGRAY,
-		Color.GRAY,
-		Color.GREEN,
-		Color.LTGRAY,
-		Color.MAGENTA,
-		Color.RED,
-		Color.WHITE,
-		Color.YELLOW
-		
-	                                                    };
+//	private static int msCurrentColorIndex = 0;
+//	private static final int[] msHintTextColor = new int[]
+//	                                                    {
+//		Color.BLACK,
+//		Color.BLUE,
+//		Color.CYAN,
+//		Color.DKGRAY,
+//		Color.GRAY,
+//		Color.GREEN,
+//		Color.LTGRAY,
+//		Color.MAGENTA,
+//		Color.RED,
+//		Color.WHITE,
+//		Color.YELLOW
+//		
+//	                                                    };
     private final DisplayMetrics mDisplayMetrics;
 
     private final int mWidth;
@@ -83,19 +82,19 @@ public class SettingsIconsView extends View {
     
     private final Paint mPaint;
     
-    private static final int CHANGE_COLOR_DELAY = 250;
-    private final Runnable mChangeHintTextColor = new Runnable() {
-		@Override
-		public void run() {
-			if (mTouched)
-			{
-				msCurrentColorIndex++;
-				invalidate();
-			}
-		}
-	};
-	
-	private final Handler mHandler;
+//    private static final int CHANGE_COLOR_DELAY = 250;
+//    private final Runnable mChangeHintTextColor = new Runnable() {
+//		@Override
+//		public void run() {
+//			if (mTouched)
+//			{
+//				msCurrentColorIndex++;
+//				invalidate();
+//			}
+//		}
+//	};
+//	
+//	private final Handler mHandler;
 	private boolean mTouched;
 	
 	private SettingsIconsTouchedListener mListener;
@@ -128,7 +127,7 @@ public class SettingsIconsView extends View {
         mDragToToolBoxTextX = mTargetToolsIconX-mPaint.measureText(mDragToToolBoxText);
         mDragToSettingsTextX = mTargetSettingsIconX-mPaint.measureText(mDragToSettingsText);
         
-        mHandler = new Handler();
+//        mHandler = new Handler();
         
         resetIcons();
     }
@@ -146,13 +145,8 @@ public class SettingsIconsView extends View {
     	
     	invalidate();
     	
-    	mHandler.removeCallbacks(mChangeHintTextColor);
+    	//mHandler.removeCallbacks(mChangeHintTextColor);
 	}
-    
-    public void setToolBoxVisibility(boolean visible)
-    {
-    	
-    }
 
 	@Override
     protected void onDraw(Canvas canvas) {
@@ -165,13 +159,14 @@ public class SettingsIconsView extends View {
 		canvas.drawBitmap(mDragIcon, mDragIconX, mDragIconY, mPaint);
 		if (mTouched)
 		{
-			mPaint.setColor(msHintTextColor[msCurrentColorIndex % msHintTextColor.length]);
+			mPaint.setShadowLayer(3, 3, 3, Color.BLACK);
+			mPaint.setColor(Color.LTGRAY/*msHintTextColor[msCurrentColorIndex % msHintTextColor.length]*/);
 			canvas.drawText(mDragToToolBoxText, mDragToToolBoxTextX, mTargetToolsIconY + mTargetToolsIconRadius, mPaint);
 			canvas.drawBitmap(mTargetToolsIcon, mTargetToolsIconX, mTargetToolsIconY, mPaint);
 			canvas.drawText(mDragToSettingsText, mDragToSettingsTextX, mTargetSettingsIconY - mTargetSettingsIconDiameter/2, mPaint);
 			canvas.drawBitmap(mTargetSettingsIcon, mTargetSettingsIconX, mTargetSettingsIconY, mPaint);
-			
-			mHandler.postDelayed(mChangeHintTextColor, CHANGE_COLOR_DELAY);
+			mPaint.setShadowLayer(0, 0, 0, Color.BLACK);
+			//mHandler.postDelayed(mChangeHintTextColor, CHANGE_COLOR_DELAY);
 		}
     }
 	
@@ -190,7 +185,7 @@ public class SettingsIconsView extends View {
         	
         	mDragIconX = event.getX() - mDragIconRadius;
         	mDragIconY = event.getY() - mDragIconRadius;
-        	
+        	        		
         	invalidate();
         	break;
         case MotionEvent.ACTION_UP:

@@ -42,6 +42,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BlurMaskFilter;
+import android.graphics.Color;
 import android.graphics.MaskFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -52,8 +53,10 @@ import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -83,13 +86,16 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
 	private boolean mBlurFilterApplied = false;
 	private boolean mEraseMode = false;
 	private TextView mPainterName;
+	
+	private ViewGroup mToolbox;
+	private ImageView mEraserToolBoxIcon;
 
 	private SettingsIconsView mSettingsIcons;
 	
 	private IntentDrivenPaperBackground mBackgroundPaper;
 	private boolean mPaperCreated = false;
     
-	
+	/*
 	private static final int COLOR_MENU_ID = Menu.FIRST;
     //private static final int BLUR_MENU_ID = Menu.FIRST + 1;
     private static final int ERASE_MENU_ID = Menu.FIRST + 2;
@@ -97,7 +103,7 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
     private static final int SHARE_MENU_ID = Menu.FIRST + 4;
     private static final int NEW_PAPER_MENU_ID = Menu.FIRST + 5;
     //private static final int SETTINGS_MENU_ID = Menu.FIRST + 6;
-
+*/
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +120,25 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
         mBackground = (ImageView)findViewById(R.id.background_image);
         mSettingsIcons = (SettingsIconsView)findViewById(R.id.settings_icons);
         mSettingsIcons.setOnSettingsIconsTouchedListener(this);
+        mToolbox = (ViewGroup)findViewById(R.id.toolbox);
+        
+        for(View innerView : mToolbox.getTouchables())
+        {
+        	if (innerView instanceof ImageView)
+        	{
+        		if (innerView.getId() == R.id.toolbox_eraser)
+        		{
+        			mEraserToolBoxIcon = (ImageView) innerView;
+        		}
+        		
+        		innerView.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						onToolboxClicked(v.getId());
+					}
+				});
+        	}
+        }
         
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sp.registerOnSharedPreferenceChangeListener(this);
@@ -127,6 +152,43 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
         
         readyPaperTools();
     }
+
+	protected void onToolboxClicked(int id) {
+		mToolbox.setVisibility(View.GONE);
+		mSettingsIcons.setVisibility(View.VISIBLE);
+		switch(id)
+		{
+		case R.id.toolbox_color:
+			new ColorPickerDialog(this, mWhiteboard, 0).show();
+			break;
+		case R.id.toolbox_eraser:
+			mEraseMode = !mEraseMode;
+			mEraserToolBoxIcon.setBackgroundColor(mEraseMode? Color.BLACK : Color.TRANSPARENT);
+        	mWhiteboard.setEraserMode(mEraseMode);
+        	break;
+		case R.id.toolbox_save:
+			takeScreenshot(true);
+			break;
+		case R.id.toolbox_share:
+			File screenshotPath = takeScreenshot(false);
+            Intent intent = new Intent();
+    		intent.setAction(Intent.ACTION_SEND);
+    		intent.setType("image/png");
+    		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_title_template, getPainterName()));
+    		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text_template, getPainterName()));
+			intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(screenshotPath));
+			try 
+			{
+				startActivity(Intent.createChooser(intent, getString(R.string.menu_share_title)));
+			} catch (android.content.ActivityNotFoundException ex) {
+				Toast.makeText(this.getApplicationContext(), R.string.no_way_to_share, Toast.LENGTH_LONG).show();
+			}
+			break;
+		case R.id.toolbox_new_paper:
+			onNewPaperRequested();
+			break;
+		}
+	}
 
 	@Override
     protected void onResume() {
@@ -274,6 +336,7 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
         mBlurFilterApplied = true;
         mWhiteboard.setEraserMode(false);
         mEraseMode = false;
+        mEraserToolBoxIcon.setBackgroundColor(mEraseMode? Color.BLACK : Color.TRANSPARENT);
         mWhiteboard.eraseEntireWhiteboard();
         
         mPainterName.setText(getPainterName());
@@ -299,32 +362,8 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
 	}
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-
-        menu.add(0, COLOR_MENU_ID, 0, R.string.menu_color_title);
-        //menu.add(0, BLUR_MENU_ID, 0, R.string.menu_blur_title);
-        menu.add(0, ERASE_MENU_ID, 0, R.string.menu_eraser_title);
-        menu.add(0, NEW_PAPER_MENU_ID, 0, R.string.menu_new_title).setIcon(R.drawable.paper_menu);
-        menu.add(0, SAVE_MENU_ID, 0, R.string.menu_save_title).setIcon(R.drawable.save_menu);
-        menu.add(0, SHARE_MENU_ID, 0, R.string.menu_share_title).setIcon(R.drawable.share_menu);
-        //menu.add(0, SETTINGS_MENU_ID, 0, R.string.menu_settings_title).setIcon(android.R.drawable.ic_menu_preferences);
-        
-        return true;
-    }
-	
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-    	menu.getItem(1).setIcon(mEraseMode? android.R.drawable.button_onoff_indicator_on : android.R.drawable.button_onoff_indicator_off);
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case COLOR_MENU_ID:
-                new ColorPickerDialog(this, mWhiteboard, 0).show();
-                return true;
             /*case BLUR_MENU_ID:
                 if (!mBlurFilterApplied) {
                     mWhiteboard.setMaskFilter(mBlur);
@@ -333,34 +372,6 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
                 }
                 mBlurFilterApplied = !mBlurFilterApplied;
                 return true;*/
-            case ERASE_MENU_ID:
-            	mEraseMode = !mEraseMode;
-            	mWhiteboard.setEraserMode(mEraseMode);
-                return true;
-            case SAVE_MENU_ID:
-                takeScreenshot(true);
-                return true;
-            case SHARE_MENU_ID:
-                File screenshotPath = takeScreenshot(false);
-                Intent intent = new Intent();
-        		intent.setAction(Intent.ACTION_SEND);
-        		intent.setType("image/png");
-        		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_title_template, getPainterName()));
-        		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text_template, getPainterName()));
-    			intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(screenshotPath));
-    			try 
-    			{
-    				startActivity(Intent.createChooser(intent, getString(R.string.menu_share_title)));
-    			} catch (android.content.ActivityNotFoundException ex) {
-    				Toast.makeText(this.getApplicationContext(), R.string.no_way_to_share, Toast.LENGTH_LONG).show();
-    			}
-                return true;
-            case NEW_PAPER_MENU_ID:
-            	onNewPaperRequested();
-            	return true;
-            /*case SETTINGS_MENU_ID:
-            	startActivity(new Intent(getApplicationContext(), FingerpaintSettingsActivity.class));
-            	return true;*/
         }
         return super.onOptionsItemSelected(item);
     }
@@ -398,6 +409,8 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
 		View v = getWindow().getDecorView();
 		final int originalAdsVisibility = mAdView.getVisibility();
 		mAdView.setVisibility(View.INVISIBLE);
+		mSettingsIcons.setVisibility(View.INVISIBLE);
+		
 		v.setDrawingCacheEnabled(true);
 		Bitmap cachedBitmap = v.getDrawingCache();
 		Bitmap copyBitmap = cachedBitmap.copy(Bitmap.Config.RGB_565, true);
@@ -432,6 +445,7 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
 			}
 			
 			mAdView.setVisibility(originalAdsVisibility);
+			mSettingsIcons.setVisibility(View.VISIBLE);
 		}
 
 		if (file != null)
@@ -452,7 +466,8 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
 
 	@Override
 	public void onToolboxIconTouched() {
-		mSettingsIcons.setToolBoxVisibility(true);
+		mToolbox.setVisibility(View.VISIBLE);
+		mSettingsIcons.setVisibility(View.GONE);
 	}
 
 	@Override
