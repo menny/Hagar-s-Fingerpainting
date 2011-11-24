@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="net.evendanan.android.hagarfingerpainting"
       android:versionName="1.2.2-20111109" android:versionCode="5">
-    <uses-sdk android:minSdkVersion="8" />
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="13" />
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".HagarFingerpaintingActivity"
@@ -32,4 +32,12 @@
 	<!-- device features required -->
     <uses-configuration android:reqTouchScreen="finger"/>
     <uses-configuration android:reqTouchScreen="stylus"/>
+    
+    <!-- screen -->
+    <supports-screens
+                  android:smallScreens="true"
+                  android:normalScreens="true"
+                  android:largeScreens="true"
+                  android:xlargeScreens="true"
+                  android:anyDensity="true" />
 </manifest>

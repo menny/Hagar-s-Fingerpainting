@@ -224,6 +224,11 @@ public class Whiteboard extends View implements ColorPickerDialog.OnColorChanged
 
 	public void eraseEntireWhiteboard() {
 		mPaths.clear();
+		if (mBitmap != null)
+		{
+			mBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+			mCanvas = new Canvas(mBitmap);
+		}
 		invalidate();
 	}
 }

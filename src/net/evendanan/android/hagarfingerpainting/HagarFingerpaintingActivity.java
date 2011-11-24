@@ -32,7 +32,6 @@ import net.evendanan.android.hagarfingerpainting.views.ColorPickerDialog;
 import net.evendanan.android.hagarfingerpainting.views.SettingsIconsView;
 import net.evendanan.android.hagarfingerpainting.views.SettingsIconsView.SettingsIconsTouchedListener;
 import net.evendanan.android.hagarfingerpainting.views.Whiteboard;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -49,8 +48,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,7 +66,7 @@ import android.widget.Toast;
 
 import com.google.ads.AdView;
 
-public class HagarFingerpaintingActivity extends Activity implements OnSharedPreferenceChangeListener, SettingsIconsTouchedListener {
+public class HagarFingerpaintingActivity extends FragmentActivity implements OnSharedPreferenceChangeListener, SettingsIconsTouchedListener {
 
     public static final String TAG = "HagarFingerpaintingActivity";
 
@@ -275,6 +274,7 @@ public class HagarFingerpaintingActivity extends Activity implements OnSharedPre
         mBlurFilterApplied = true;
         mWhiteboard.setEraserMode(false);
         mEraseMode = false;
+        mWhiteboard.eraseEntireWhiteboard();
         
         mPainterName.setText(getPainterName());
         mAdView.setVisibility(getShowAds()? View.VISIBLE : View.GONE);
