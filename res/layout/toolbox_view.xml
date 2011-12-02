@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-	android:id="@+id/toolbox"
+	android:id="@+id/toolbox" android:clickable="true"
 	android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
-	android:visibility="gone" android:background="#A000">
+	android:visibility="gone" android:background="#333" android:padding="@dimen/toolbox_padding">
 	<ImageView android:id="@+id/toolbox_close" android:src="@drawable/close_toolbox_strip_icon"
 		  		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		  		android:scaleType="centerInside" android:adjustViewBounds="true"

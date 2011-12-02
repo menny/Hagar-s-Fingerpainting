@@ -56,6 +56,9 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -94,6 +97,10 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
 	
 	private IntentDrivenPaperBackground mBackgroundPaper;
 	private boolean mPaperCreated = false;
+
+	private Animation mInAnimation;
+
+	private Animation mOutAnimation;
     
 	/*
 	private static final int COLOR_MENU_ID = Menu.FIRST;
@@ -140,6 +147,22 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
         	}
         }
         
+        mInAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
+		mOutAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.slide_out_right);
+		mOutAnimation.setAnimationListener(new AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {}
+			
+			@Override
+			public void onAnimationRepeat(Animation animation) {}
+			
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				mToolbox.setVisibility(View.GONE);
+				mSettingsIcons.setVisibility(View.VISIBLE);
+			}
+		});
+		
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sp.registerOnSharedPreferenceChangeListener(this);
         
@@ -154,10 +177,11 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
     }
 
 	protected void onToolboxClicked(int id) {
-		mToolbox.setVisibility(View.GONE);
-		mSettingsIcons.setVisibility(View.VISIBLE);
 		switch(id)
 		{
+		case R.id.toolbox_close:
+			mToolbox.startAnimation(mOutAnimation);
+			break;
 		case R.id.toolbox_color:
 			new ColorPickerDialog(this, mWhiteboard, 0).show();
 			break;
@@ -467,6 +491,7 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
 	@Override
 	public void onToolboxIconTouched() {
 		mToolbox.setVisibility(View.VISIBLE);
+		mToolbox.startAnimation(mInAnimation);
 		mSettingsIcons.setVisibility(View.GONE);
 	}
 
