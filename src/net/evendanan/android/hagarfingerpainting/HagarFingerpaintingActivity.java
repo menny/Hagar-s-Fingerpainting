@@ -179,7 +179,7 @@ public class HagarFingerpaintingActivity extends FragmentActivity implements OnS
 			intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(screenshotPath));
 			try 
 			{
-				startActivity(Intent.createChooser(intent, getString(R.string.menu_share_title)));
+				startActivity(Intent.createChooser(intent, getString(R.string.toolbox_share_title)));
 			} catch (android.content.ActivityNotFoundException ex) {
 				Toast.makeText(this.getApplicationContext(), R.string.no_way_to_share, Toast.LENGTH_LONG).show();
 			}

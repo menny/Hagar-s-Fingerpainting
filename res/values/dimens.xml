@@ -9,4 +9,9 @@
 	<dimen name="new_paper_icon_padding">3dp</dimen>
 	
 	<dimen name="settings_circle_padding">4dp</dimen>
+	
+	<dimen name="toolbox_text_size">8sp</dimen>
+	<dimen name="toolbox_padding">8dp</dimen>
+	<dimen name="toolbox_image_padding">3dp</dimen>
+	<dimen name="toolbox_text_padding">6dp</dimen>
 </resources>

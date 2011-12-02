@@ -6,13 +6,11 @@
     <string name="drag_to_toolbox">Drag to here to open toolbox -> </string>
     <string name="drag_to_settings">Drag to here to open app settings -> </string>
     
-    <string name="menu_color_title">Color</string>
-    <string name="menu_blur_title">Blur</string>
-    <string name="menu_eraser_title">Eraser</string>
-    <string name="menu_new_title">New</string>
-    <string name="menu_save_title">Save</string>
-    <string name="menu_share_title">Share</string>
-    <string name="menu_settings_title">Settings</string>
+    <string name="toolbox_color_title">Color</string>
+    <string name="toolbox_eraser_title">Eraser</string>
+    <string name="toolbox_new_title">New</string>
+    <string name="toolbox_save_title">Save</string>
+    <string name="toolbox_share_title">Share</string>
     
     <string name="share_title_template">See what dearest <xliff:g id="painter_name">%s</xliff:g> painted</string>
     <string name="share_text_template">\n\n\n<xliff:g id="painter_name">%s</xliff:g> painted this using Hagar\'s Fingerpainting app for Android</string>
