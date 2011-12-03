@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-	android:id="@+id/toolbox" android:clickable="true"
+	android:id="@+id/toolbox"
 	android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
-	android:visibility="gone" android:background="#333" android:padding="@dimen/toolbox_padding">
+	android:visibility="gone" android:background="#333">
 	<ImageView android:id="@+id/toolbox_close" android:src="@drawable/close_toolbox_strip_icon"
 		  		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		  		android:scaleType="centerInside" android:adjustViewBounds="true"
 		  		android:clickable="true" android:layout_gravity="right"
 		  		android:padding="@dimen/toolbox_text_padding"/>
 	
-	<ScrollView android:layout_width="wrap_content" android:layout_height="0px" android:layout_weight="1">
+	<ScrollView android:layout_width="wrap_content" android:layout_height="wrap_content">
 	    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
-	        android:layout_marginRight="@dimen/toolbox_padding">
+	        android:padding="@dimen/toolbox_padding">
 	        <ImageView android:id="@+id/toolbox_color" android:src="@drawable/toolbox_color_selection"
 		  		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		  		android:scaleType="centerInside" android:adjustViewBounds="true"
